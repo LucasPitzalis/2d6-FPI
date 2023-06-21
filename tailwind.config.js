@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {
+      display: ["group-hover"],
       width: {
           a4: '210mm',
       },

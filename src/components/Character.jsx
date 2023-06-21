@@ -1,10 +1,11 @@
-import HInput from "./HInput";
+import SheetInput from "./SheetInput";
 
 export default function Character() {
     return (
         <>
             <div className="flex p-4">
-                <HInput label="nom" name="charName" />
+                <SheetInput label="nom" name="charName" />
+                <SheetInput label="age" name="charAge" />
             </div>
         </>
     );
