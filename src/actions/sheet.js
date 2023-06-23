@@ -2,13 +2,11 @@
 export const EDIT_SHEET = 'EDIT_SHEET';
 
 // Action creator
-export const editSheet = (target) => {
-    const nameSplit = target.name.split(".");
-
+export const editSheet = (target, reducer) => {
     return {
         type: EDIT_SHEET,
-        reducer: nameSplit[0],
-        prop: nameSplit.pop(),
+        reducer: reducer,
+        prop: target.name,
         value: target.value,
     };
 }

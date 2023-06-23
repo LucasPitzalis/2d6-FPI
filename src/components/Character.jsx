@@ -1,11 +1,10 @@
-import LockedInput from "./LockedInput";
+import SheetField from "./SheetField";
 
 export default function Character() {
     return (
         <>
             <div className="flex p-4">
-                <LockedInput label="nom" name="character.name" />
-                <LockedInput label="age" name="character.age" type="number" />
+                <SheetField label="nom" reducer="character" name="name" />
             </div>
         </>
     );
