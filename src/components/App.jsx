@@ -4,7 +4,7 @@ import Character from "./Character";
 function App() {
 
   return (
-    <div className="bg-black h-screen w-screen flex lg:p-6">
+    <div className="bg-black h-screen w-screen flex lg:p-6 text-sm">
       <main className="lg:w-a4 bg-white mx-auto">
         <Routes>
           <Route path="/*" element={<Character />} />

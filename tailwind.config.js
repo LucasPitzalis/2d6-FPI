@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {
       display: ["group-hover"],
+      aspectRatio: {
+        'avatar': '4 / 3'
+      },
       width: {
           a4: '210mm',
       },
