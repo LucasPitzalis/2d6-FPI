@@ -5,11 +5,12 @@ import { editSheet } from '../actions/sheet';
 import CancelIcon from '../icons/CancelIcon';
 import EditIcon from '../icons/EditIcon';
 import ValidateIcon from '../icons/ValidateIcon';
+import { getProperty } from '../utils/functions';
 
 export default function LockedInput({name, htmlType, reducer}) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
-    const storedValue = useSelector((state) => state[reducer][name]);
+    const storedValue = useSelector((state) => getProperty(state[reducer], name));
 
     const [currentValue, setCurrentValue] = useState(storedValue);
 

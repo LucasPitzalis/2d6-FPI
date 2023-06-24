@@ -1,3 +1,4 @@
+import Abilities from "./Abilities";
 import Actions from "./Actions";
 import Health from "./Health";
 import Job from "./Job";
@@ -5,7 +6,6 @@ import Level from "./Level";
 import Measurements from "./Measurements";
 import SectionTitle from "./SectionTitle";
 import SheetField from "./SheetField";
-import Stats from "./Stats";
 
 export default function Character() {
     return (
@@ -26,7 +26,7 @@ export default function Character() {
                 <SheetField label="conséquence" reducer="character" name="physicalConsequences" />
                 <SheetField label="état mental" reducer="character" name="mentalCondition" />
                 <SheetField label="conséquence" reducer="character" name="mentalConsequences" />
-                <Stats />
+                <Abilities />
                 <Actions />
                 <Health />
                 <div className="flex space-x-0.5">
