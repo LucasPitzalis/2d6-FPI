@@ -1,4 +1,4 @@
-import { EDIT_SHEET } from "../actions/sheet";
+import { EDIT_CHAR } from "../actions/character";
 
 const initialState = {
     name: '',
@@ -15,9 +15,7 @@ const initialState = {
   
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case EDIT_SHEET: 
-            if (action.reducer === "character") return {...state, [action.prop]: action.value};
-            break;
+        case EDIT_CHAR: return {...state, [action.property]: action.value};
         default: return state;
     }
 };

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-export default function StaticField() {
+export default function StaticField({ value }) {
     return (
-        
+        <p className="p-1">{ value }</p>
     );
 }
 

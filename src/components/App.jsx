@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Character from "./Character";
+import Character from "./character/Character";
 
 function App() {
 

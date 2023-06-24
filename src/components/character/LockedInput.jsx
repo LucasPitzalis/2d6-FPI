@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { editSheet } from '../actions/sheet';
-import CancelIcon from '../icons/CancelIcon';
-import EditIcon from '../icons/EditIcon';
-import ValidateIcon from '../icons/ValidateIcon';
-import { getProperty } from '../utils/functions';
+import { editChar } from '../../actions/character';
+import CancelIcon from '../../icons/CancelIcon';
+import EditIcon from '../../icons/EditIcon';
+import ValidateIcon from '../../icons/ValidateIcon';
 
-export default function LockedInput({name, htmlType, reducer}) {
+export default function LockedInput({name, htmlType}) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
-    const storedValue = useSelector((state) => getProperty(state[reducer], name));
+    const storedValue = useSelector((state) => state.character[name]);
 
     const [currentValue, setCurrentValue] = useState(storedValue);
 
     const handleSave = (e) => {
         e.preventDefault();
-        dispatch(editSheet(e.target.firstChild, reducer));
+        dispatch(editChar(e.target.firstChild));
         changeLocked(true);
     };
 
@@ -38,7 +37,6 @@ export default function LockedInput({name, htmlType, reducer}) {
 }
 
 LockedInput.propTypes = {
-    reducer: PropTypes.string.isRequired,
     htmlType: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
 }
