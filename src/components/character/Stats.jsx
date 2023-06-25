@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import CharField from "../CharField";
-import StaticField from "../StaticField";
+import CharField from "./CharField";
+import StaticField from "./StaticField";
 
-export default function Abilities() {
+export default function Stats() {
     const { str, dex, con, int, wis, cha } = useSelector((state) => state.character.abilities)
 
     return (
@@ -21,7 +21,8 @@ export default function Abilities() {
                 <StaticField label="volonté" name="will" styles="w-1/3" value={wis + cha} vertical />
             </div>
             <div className="flex space-x-0.5">
-                <CharField label="pv" name="healthPoints" styles="w-1/2" controlType="direct" vertical />
+                <CharField label="pv" name="healthPoints" styles="w-1/2" controlType="direct" htmlType="number" vertical />
+                <CharField label="pe" name="energyPoints" styles="w-1/2" controlType="direct" htmlType="number" vertical />
             </div>
         </>
     );

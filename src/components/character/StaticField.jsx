@@ -6,7 +6,7 @@ export default function StaticField({ name, label, value ,isTitle, styles, verti
     return (
         <LabelledField {...{isTitle, styles, vertical}}>
             <FieldLabel { ...{name, label}}/>
-            <p className="p-1 text-center">{ value }</p>
+            <p className={`p-1 ${typeof(value) === 'number' && 'text-center'}`}>{ value }</p>
         </LabelledField>
     );
 }

@@ -7,11 +7,11 @@ export default function DirectInput({name, htmlType}) {
     const stateValue = useSelector((state) => state.character[name]);
 
     const handleChange = (e) => {
-        dispatch(editChar(e.target.firstChild));
+        dispatch(editChar(e.target));
     };
 
     return (
-        <input className="p-1 w-0 flex-1" type={htmlType} name={name} value={stateValue} onChange={(e) => handleChange(e)}/>
+        <input className={`p-1 w-100 ${htmlType === 'number' && 'text-center'}`} type={htmlType} name={name} value={stateValue} onChange={(e) => handleChange(e)}/>
     );
 }
 

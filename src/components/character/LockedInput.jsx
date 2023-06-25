@@ -21,7 +21,7 @@ export default function LockedInput({name, htmlType}) {
 
     return (
         <form className="group relative flex flex-1" onSubmit={handleSave}>
-            <input className="p-1 w-0 flex-1" type={htmlType} name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
+            <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
             {<div className="hidden group-hover:block absolute right-0">
                     {locked && <button onClick={() => changeLocked(false)}><EditIcon /></button>}
                     {!locked &&
