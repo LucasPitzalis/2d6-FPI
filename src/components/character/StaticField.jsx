@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import FieldLabel from '../FieldLabel';
-import LabelledField from '../LabelledField';
+import SheetField from '../SheetField';
 
 export default function StaticField({ name, label, value ,isTitle, styles, vertical }) {
     return (
-        <LabelledField {...{isTitle, styles, vertical}}>
+        <SheetField {...{isTitle, styles, vertical}}>
             <FieldLabel { ...{name, label}}/>
             <p className={`p-1 ${typeof(value) === 'number' && 'text-center'}`}>{ value }</p>
-        </LabelledField>
+        </SheetField>
     );
 }
 

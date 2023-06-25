@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function LabelledField(props) {
+export default function SheetField(props) {
     return (
         <div className={`border-2 border-black rounded flex ${props.isTitle && "text-base"} ${props.styles} ${props.vertical && "flex-col"}`}>
             {props.children}
@@ -8,7 +8,7 @@ export default function LabelledField(props) {
     );
 }
 
-LabelledField.propTypes = {
+SheetField.propTypes = {
     isTitle: PropTypes.bool,
     styles: PropTypes.string,
     vertical: PropTypes.bool,
@@ -16,7 +16,7 @@ LabelledField.propTypes = {
 };
 
 
-LabelledField.defaultProps = {
+SheetField.defaultProps = {
     isTitle: false,
     styles: '',
     vertical: false,

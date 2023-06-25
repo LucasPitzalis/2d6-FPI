@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import CharField from "./CharField";
 import StaticField from "./StaticField";
 import stats from "../../utils/characterStats";
+import DirectInput from "./DirectInput";
 
 export default function Stats() {
     const { str, dex, con, int, wis, cha } = useSelector((state) => state.character.abilities)
@@ -22,8 +22,8 @@ export default function Stats() {
                 <StaticField label="volonté" name="will" styles="w-1/3" value={stats.wil()} vertical />
             </div>
             <div className="flex space-x-0.5">
-                <CharField label="pv" name="healthPoints" styles="w-1/2" controlType="direct" htmlType="number" vertical />
-                <CharField label="pe" name="energyPoints" styles="w-1/2" controlType="direct" htmlType="number" vertical />
+                <DirectInput label="pv" name="healthPoints" styles="w-1/2" htmlType="number" limit={stats.maxHp()} vertical />
+                <DirectInput label="pe" name="energyPoints" styles="w-1/2" htmlType="number" limit={stats.maxEp()} vertical />
             </div>
         </>
     );

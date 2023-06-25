@@ -5,8 +5,10 @@ import { editChar } from '../../actions/character';
 import CancelIcon from '../../icons/CancelIcon';
 import EditIcon from '../../icons/EditIcon';
 import ValidateIcon from '../../icons/ValidateIcon';
+import FieldLabel from '../FieldLabel';
+import SheetField from '../SheetField';
 
-export default function LockedInput({name, htmlType}) {
+export default function LockedInput({label, name, htmlType, isTitle, styles, vertical}) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
     const storedValue = useSelector((state) => state.character[name]);
@@ -20,23 +22,37 @@ export default function LockedInput({name, htmlType}) {
     };
 
     return (
-        <form className="group relative flex flex-1" onSubmit={handleSave}>
-            <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
-            {<div className="hidden group-hover:block absolute right-0">
-                    {locked && <button onClick={() => changeLocked(false)}><EditIcon /></button>}
-                    {!locked &&
-                        <div>
-                            <button type="submit"><ValidateIcon /></button>
-                            <button onClick={() => changeLocked(true)}><CancelIcon /></button>
-                        </div>
-                    }
-                </div>
-            }
-        </form>
+        <SheetField {...{isTitle, styles, vertical}} >
+            <FieldLabel {...{label, name}} />
+            <form className="group relative flex flex-1" onSubmit={handleSave}>
+                <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
+                {<div className="hidden group-hover:block absolute right-0">
+                        {locked && <button onClick={() => changeLocked(false)}><EditIcon /></button>}
+                        {!locked &&
+                            <div>
+                                <button type="submit"><ValidateIcon /></button>
+                                <button onClick={() => changeLocked(true)}><CancelIcon /></button>
+                            </div>
+                        }
+                    </div>
+                }
+            </form>
+        </SheetField>
     );
 }
 
 LockedInput.propTypes = {
-    htmlType: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    htmlType: PropTypes.string,
+    isTitle: PropTypes.bool,
+    styles: PropTypes.string,
+    vertical: PropTypes.bool,
+}
+
+LockedInput.defaultProps = {
+    htmlType: 'text',
+    isTitle: false,
+    styles: '',
+    vertical: false,
 }

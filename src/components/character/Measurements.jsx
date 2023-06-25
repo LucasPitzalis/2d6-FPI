@@ -1,11 +1,11 @@
-import CharField from "./CharField";
+import LockedInput from "./LockedInput";
 
 export default function Measurements() {
     return (
         <div className="flex space-x-0.5">
-            <CharField label="âge" name="age" styles="w-1/3" />
-            <CharField label="taille" name="height" styles="w-1/3" />
-            <CharField label="poids" name="weight" styles="w-1/3" />
+            <LockedInput label="âge" name="age" styles="w-1/3" />
+            <LockedInput label="taille" name="height" styles="w-1/3" />
+            <LockedInput label="poids" name="weight" styles="w-1/3" />
         </div>
     );
 }
