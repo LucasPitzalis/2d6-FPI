@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types';
 import FieldLabel from '../FieldLabel';
 import LabelledField from '../LabelledField';
+import DirectInput from './DirectInput';
 import LockedInput from './LockedInput';
 
 export default function CharField({label, name, htmlType, controlType, isTitle, styles, vertical}) {
+    function renderInput(param) {
+        switch (param) {
+            case 'locked': return <LockedInput {...{name, htmlType}} />;
+            case 'direct': return <DirectInput {...{name, htmlType}} />;
+            default: break;
+        }
+    }
+
     return (
         <LabelledField {...{isTitle, styles, vertical}} >
             <FieldLabel {...{label, name}} />
-            {controlType === 'locked' && <LockedInput {...{name, htmlType}} />}
+            {renderInput(controlType)}
         </LabelledField>
     );
 }

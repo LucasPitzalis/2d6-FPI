@@ -1,5 +1,4 @@
 import Abilities from "./abilities/Abilities";
-import Health from "./Health";
 import Job from "./Job";
 import Level from "./Level";
 import Measurements from "./Measurements";
@@ -26,7 +25,6 @@ export default function Character() {
                 <CharField label="état mental" name="mentalCondition" />
                 <CharField label="conséquence" name="mentalConsequences" />
                 <Abilities />
-                <Health />
                 <div className="flex space-x-0.5">
                     <CharField label="poids max" name="maxWeight" styles="w-1/3" vertical />
                     <CharField label="indice de recherche" name="wantedIndex" styles="w-2/3" vertical />
