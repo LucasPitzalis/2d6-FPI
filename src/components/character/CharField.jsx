@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
 import FieldLabel from '../FieldLabel';
+import LabelledField from '../LabelledField';
 import LockedInput from './LockedInput';
 
-export default function SheetField({label, name, htmlType, controlType, isTitle, styles, vertical}) {
+export default function CharField({label, name, htmlType, controlType, isTitle, styles, vertical}) {
     return (
-        <div className={`border-2 border-black rounded flex ${isTitle && "text-base"} ${styles} ${vertical && "flex-col"}`}>
+        <LabelledField {...{isTitle, styles, vertical}} >
             <FieldLabel {...{label, name}} />
             {controlType === 'locked' && <LockedInput {...{name, htmlType}} />}
-        </div>
+        </LabelledField>
     );
 }
 
-SheetField.propTypes = {
+CharField.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     htmlType: PropTypes.string,
@@ -21,7 +22,7 @@ SheetField.propTypes = {
     vertical: PropTypes.bool,
 }
 
-SheetField.defaultProps = {
+CharField.defaultProps = {
     htmlType: 'text',
     controlType: 'locked',
     isTitle: false,
