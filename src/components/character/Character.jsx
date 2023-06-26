@@ -40,6 +40,7 @@ export default function Character() {
             </div>
             <div>
                 <button onClick={() => dispatch(handleModal('editAbilities')) }>Modal Caracs</button>
+                <button onClick={() => dispatch(handleModal('editExperience')) }>Modal XP</button>
             </div>
         </>
     );
