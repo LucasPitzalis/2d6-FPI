@@ -38,8 +38,8 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
                     type={htmlType} step="1" name={name} disabled={locked}
                     value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}
                 />
-                <div className="hidden group-hover:block absolute right-0">
-                    {locked && <button onClick={() => changeLocked(false)}><EditIcon /></button>}
+                <div className="absolute right-0">
+                    {locked && <button className="hidden group-hover:block " onClick={() => changeLocked(false)}><EditIcon /></button>}
                     {!locked &&
                         <div>
                             <button type="submit"><ValidateIcon /></button>
