@@ -13,6 +13,7 @@ const initialState = {
     },
     healthPoints: 0,
     energyPoints: 0,
+    experience: 0,
 };
   
 const reducer = (state = initialState, action = {}) => {
