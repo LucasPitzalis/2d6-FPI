@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { editChar } from '../../actions/character';
 import CancelIcon from '../../icons/CancelIcon';
@@ -8,11 +8,13 @@ import ValidateIcon from '../../icons/ValidateIcon';
 import FieldLabel from '../FieldLabel';
 import SheetField from '../SheetField';
 import { noArrows } from '../../utils/styles';
+import { useEffect } from 'react';
 
 export default function LockedInput({label, name, htmlType, isTitle, styles, vertical}) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
     const storedValue = useSelector((state) => state.character[name]);
+    const ref = useRef(null);
 
     const [currentValue, setCurrentValue] = useState(storedValue);
 
@@ -22,11 +24,20 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
         changeLocked(true);
     };
 
+    useEffect(() => {
+        if (locked === false) ref.current.focus();
+    }, [locked]);
+
     return (
         <SheetField {...{isTitle, styles, vertical}} >
             <FieldLabel {...{label, name}} />
             <form className="group relative flex flex-1" onSubmit={handleSave}>
-                <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && `text-center ${noArrows}`}`} type={htmlType} step="1" name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
+                <input 
+                    ref={ref}
+                    className={`p-1 w-0 flex-1 ${htmlType === 'number' && `text-center ${noArrows}`}`} 
+                    type={htmlType} step="1" name={name} disabled={locked}
+                    value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}
+                />
                 <div className="hidden group-hover:block absolute right-0">
                     {locked && <button onClick={() => changeLocked(false)}><EditIcon /></button>}
                     {!locked &&
