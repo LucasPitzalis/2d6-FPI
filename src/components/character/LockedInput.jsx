@@ -7,6 +7,7 @@ import EditIcon from '../../icons/EditIcon';
 import ValidateIcon from '../../icons/ValidateIcon';
 import FieldLabel from '../FieldLabel';
 import SheetField from '../SheetField';
+import { noArrows } from '../../utils/styles';
 
 export default function LockedInput({label, name, htmlType, isTitle, styles, vertical}) {
     const [locked, changeLocked] = useState(true);
@@ -25,7 +26,7 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
         <SheetField {...{isTitle, styles, vertical}} >
             <FieldLabel {...{label, name}} />
             <form className="group relative flex flex-1" onSubmit={handleSave}>
-                <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
+                <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && `text-center ${noArrows}`}`} type={htmlType} name={name} disabled={locked} value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}/>
                 <div className="hidden group-hover:block absolute right-0">
                     {locked && <button onClick={() => changeLocked(false)}><EditIcon /></button>}
                     {!locked &&
