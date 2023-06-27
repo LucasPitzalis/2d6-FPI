@@ -22,9 +22,11 @@ export const levelsTable = [
 ];
 
 export function getLevel(xp) {
+    if (xp >= levelsTable.slice(-1)[0].minXp) return levelsTable.slice(-1)[0].level;
     return levelsTable[levelsTable.findIndex((level) => level.minXp > xp)].level - 1;
 }
 
 export function getNextLevelXp(xp) {
+    if (xp >= levelsTable.slice(-1)[0].minXp) return 'XP MAX ATTEINT';
     return levelsTable.find((level) => level.minXp > xp).minXp;
 }

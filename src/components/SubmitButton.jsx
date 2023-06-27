@@ -16,7 +16,7 @@ export default function SubmitButton({ text, isDisabled }) {
 
 SubmitButton.propTypes = {
     text: PropTypes.string.isRequired,
-    isDisabled: PropTypes.string,
+    isDisabled: PropTypes.bool,
 };
 
 SubmitButton.defaultProps = {
