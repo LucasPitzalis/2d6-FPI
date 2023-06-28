@@ -13,7 +13,7 @@ export default function EditExperience() {
     const currentLevel = getLevel(experience);
     const [targetLevel, setTargetLevel] = useState(currentLevel);
 
-    const reachedLevel = getLevel(Number(experience) + Number(xpToAdd));
+    const reachedLevel = getLevel(experience + xpToAdd);
 
     function selectMethod(e) {
         setMethod(e.target.value);
@@ -22,7 +22,7 @@ export default function EditExperience() {
     const isDisabled = () => {
         switch (method) {
             case "addXp": return xpToAdd < 1;
-            case "goToLevel": return Number(targetLevel) === currentLevel;
+            case "goToLevel": return targetLevel === currentLevel;
             default: break;
         }
     }
@@ -33,10 +33,10 @@ export default function EditExperience() {
         e.preventDefault();
         switch (method) {
             case "addXp": 
-                dispatch(editExperience(Number(experience) + Number(xpToAdd)));
+                dispatch(editExperience(experience + xpToAdd));
                 break;
             case "goToLevel": 
-                dispatch(editExperience(levelsTable.find((levelObject) => levelObject.level === Number(targetLevel)).minXp));
+                dispatch(editExperience(levelsTable.find((levelObject) => levelObject.level === targetLevel).minXp));
                 break;
             default: break;
         }
@@ -57,7 +57,7 @@ export default function EditExperience() {
                         disabled={method !== "addXp"} 
                         type="number" name="xpToAdd" step="1" 
                         value={xpToAdd} onChange={(e) => {
-                            if (e.target.value >= 0) setXpToAdd(e.target.value);
+                            if (e.target.value >= 0) setXpToAdd(Number(e.target.value));
                         }}
                     />
                     {method === "addXp" && reachedLevel - currentLevel > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel})</span>}
@@ -73,7 +73,7 @@ export default function EditExperience() {
                     disabled={method !== "goToLevel"} 
                     type="number" name="targetLevel" step="1" 
                     value={targetLevel} onChange={(e) => {
-                        if (e.target.value >= 1 && e.target.value <= 20) setTargetLevel(e.target.value);
+                        if (e.target.value >= 1 && e.target.value <= 20) setTargetLevel(Number(e.target.value));
                     }}
                 />
             </div>
