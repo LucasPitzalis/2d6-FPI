@@ -12,3 +12,18 @@ export function getProperty(obj, path) {
     return currentObj;
 }
 
+export function getAbilityNameFr(ability, long = false) {
+    let abilityFr;
+
+    switch (ability) {
+        case 'str': abilityFr = 'force'; break;
+        case 'dex': abilityFr = 'dexterité'; break;
+        case 'con': abilityFr = 'constitution'; break;
+        case 'int': abilityFr = 'intelligence'; break;
+        case 'wis': abilityFr = 'sagesse'; break;
+        case 'cha': abilityFr = 'charsime'; break;
+        default: break;
+    }
+
+    return long ? abilityFr : abilityFr.slice(0, 3).toUpperCase();
+}

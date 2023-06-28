@@ -18,11 +18,11 @@ export default function Modal() {
         switch (modal) {
             case 'editAbilities': 
                 setModalContent(<EditAbilities />);
-                setModalTitle('Editer les caractéristiques')
+                setModalTitle('Modifier les caractéristiques')
                 break;
             case 'editExperience':
                 setModalContent(<EditExperience />);
-                setModalTitle('Mettre à jour l\'expérience')
+                setModalTitle('Modifier l\'expérience')
                 break;
             default: break;
         }
