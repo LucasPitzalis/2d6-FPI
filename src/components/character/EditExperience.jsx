@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editExperience } from "../../actions/character";
 import { getLevel, levelsTable } from "../../utils/levels";
-import SubmitButton from "../SubmitButton";
+import SubmitButton from "../buttons/SubmitButton";
 
 export default function EditExperience() {
     const { experience } = useSelector((state) => state.character);
