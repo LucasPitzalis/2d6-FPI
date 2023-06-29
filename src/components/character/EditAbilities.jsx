@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getAbilityNameFr } from "../../utils/functions";
+import MinusButton from "../buttons/MinusButton";
 import PlusButton from "../buttons/PlusButton";
 
 export default function EditAbilities() {
@@ -36,7 +37,8 @@ export default function EditAbilities() {
                         </td>
                         <td>{abilities[ability]}</td>
                         <td>
-                            <PlusButton onClick={() => console.log("oui")} />
+                            <MinusButton scale={75} onClick={() => console.log("oui")} />
+                            <PlusButton scale={75} onClick={() => console.log("oui")} />
                         </td>
                     </tr>
                 )})}
