@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { editChar } from '../../actions/character';
-import EditIcon from '../../icons/EditIcon';
 import FieldLabel from '../FieldLabel';
 import SheetField from '../SheetField';
 import { noArrows } from '../../utils/styles';
