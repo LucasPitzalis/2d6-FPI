@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editExperience } from "../../actions/character";
-import { getLevel, levelsTable } from "../../utils/levels";
+import { getLevel, minXp } from "../../utils/levels";
 import SubmitButton from "../buttons/SubmitButton";
 
 export default function EditExperience() {
@@ -11,7 +11,7 @@ export default function EditExperience() {
     const [xpToAdd, setXpToAdd] = useState(0);
     
     const currentLevel = getLevel(experience);
-    const [targetLevel, setTargetLevel] = useState(currentLevel);
+    const [targetLevel, setTargetLevel] = useState(currentLevel.level);
 
     const reachedLevel = getLevel(experience + xpToAdd);
 
@@ -22,7 +22,7 @@ export default function EditExperience() {
     const isDisabled = () => {
         switch (method) {
             case "addXp": return xpToAdd < 1;
-            case "goToLevel": return targetLevel === currentLevel;
+            case "goToLevel": return targetLevel === currentLevel.level;
             default: break;
         }
     }
@@ -31,12 +31,13 @@ export default function EditExperience() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (isDisabled()) return;
         switch (method) {
             case "addXp": 
                 dispatch(editExperience(experience + xpToAdd));
                 break;
             case "goToLevel": 
-                dispatch(editExperience(levelsTable.find((levelObject) => levelObject.level === targetLevel).minXp));
+                dispatch(editExperience(minXp(targetLevel)));
                 break;
             default: break;
         }
@@ -60,7 +61,7 @@ export default function EditExperience() {
                             if (e.target.value >= 0) setXpToAdd(Number(e.target.value));
                         }}
                     />
-                    {method === "addXp" && reachedLevel - currentLevel > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel})</span>}
+                    {method === "addXp" && reachedLevel.level - currentLevel.level > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel.level})</span>}
                 </div>
             </div>
             <div>
