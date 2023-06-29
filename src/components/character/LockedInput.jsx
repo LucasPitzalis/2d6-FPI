@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { editChar } from '../../actions/character';
-import CancelIcon from '../../icons/CancelIcon';
 import EditIcon from '../../icons/EditIcon';
-import ValidateIcon from '../../icons/ValidateIcon';
 import FieldLabel from '../FieldLabel';
 import SheetField from '../SheetField';
 import { noArrows } from '../../utils/styles';
 import { useEffect } from 'react';
+import SimpleButton from '../buttons/SimpleButton';
+
 
 export default function LockedInput({label, name, htmlType, isTitle, styles, vertical}) {
     const [locked, changeLocked] = useState(true);
@@ -31,7 +31,7 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
     return (
         <SheetField {...{isTitle, styles, vertical}} >
             <FieldLabel {...{label, name}} />
-            <form className="group relative flex flex-1" onSubmit={handleSave}>
+            <form className="group relative flex flex-1">
                 <input 
                     ref={ref}
                     className={`p-1 w-0 flex-1 ${htmlType === 'number' && `text-center ${noArrows}`}`} 
@@ -39,11 +39,11 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
                     value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}
                 />
                 <div className="absolute right-0">
-                    {locked && <button className="hidden group-hover:block " onClick={() => changeLocked(false)}><EditIcon /></button>}
+                    {locked && <SimpleButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
                     {!locked &&
                         <div>
-                            <button type="submit"><ValidateIcon /></button>
-                            <button onClick={() => changeLocked(true)}><CancelIcon /></button>
+                            <SimpleButton size={15} handler={handleSave} icon="validate" />
+                            <SimpleButton size={15} handler={() => changeLocked(true)} icon="close" />
                         </div>
                     }
                 </div>

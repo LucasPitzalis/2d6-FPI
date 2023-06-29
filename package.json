@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
     "@redux-devtools/extension": "^3.2.5",
     "lucide-react": "^0.256.0",
     "react": "^18.2.0",

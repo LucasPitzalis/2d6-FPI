@@ -8,7 +8,7 @@ export default function PlusButton({ handler, size }) {
 
     return (
         <button className="hover:bg-black rounded-full p-0.5" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onClick={handler}>
-            <PlusCircle size={size*4} color={hover ? 'white' : 'black'} />
+            <PlusCircle size={size} color={hover ? 'white' : 'black'} />
         </button>
     );
 }
@@ -19,5 +19,5 @@ PlusButton.propTypes = {
 };
 
 PlusButton.defaultProps = {
-    size: 5,
+    size: 20,
 }

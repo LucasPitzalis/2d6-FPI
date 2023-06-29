@@ -8,7 +8,7 @@ export default function MinusButton({ handler, size }) {
 
     return (
         <button className="hover:bg-black rounded-full p-0.5" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onClick={handler}>
-            <MinusCircle size={size*4} color={hover ? 'white' : 'black'} />
+            <MinusCircle size={size} color={hover ? 'white' : 'black'} />
         </button>
     );
 }
@@ -19,5 +19,5 @@ MinusButton.propTypes = {
 };
 
 MinusButton.defaultProps = {
-    size: 5,
+    size: 20,
 }
