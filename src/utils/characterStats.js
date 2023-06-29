@@ -29,3 +29,4 @@ export default {
         return (con + str)*10;
     },
 }
+

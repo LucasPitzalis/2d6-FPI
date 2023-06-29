@@ -27,3 +27,7 @@ export function getAbilityNameFr(ability, long = false) {
 
     return long ? abilityFr : abilityFr.slice(0, 3).toUpperCase();
 }
+
+export function sumProperties(object) {
+    return Object.keys(object).reduce((acc, property) => acc + object[property], 0);
+}

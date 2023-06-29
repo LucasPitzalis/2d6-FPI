@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import CloseIcon from '../icons/CloseIcon';
 import EditAbilities from './character/EditAbilities';
 import { handleModal } from '../actions/app';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import EditExperience from './character/EditExperience';
+import SimpleButton from './buttons/SimpleButton';
 
 export default function Modal() {
     const { modal } = useSelector((state) => state.app);
@@ -33,7 +33,7 @@ export default function Modal() {
             <dialog open className="roundedbg-white text-base">
                 <div className="relative border-b border-gray-400 flex justify-between min-w-[300px]">
                     <h3 className="font-bold">{modalTitle}</h3>
-                    <button className="relative bottom-1" onClick={() => dispatch(handleModal(false))}><CloseIcon /></button>
+                    <div className="relative bottom-0.5"><SimpleButton size={24} icon={"close"} handler={() => dispatch(handleModal(false))} /></div>
                 </div>
                 {modalContent}
             </dialog>

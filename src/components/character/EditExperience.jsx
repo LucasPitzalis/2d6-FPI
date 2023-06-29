@@ -45,7 +45,7 @@ export default function EditExperience() {
     }
 
     return (
-        <form className="flex flex-col space-y-1 mt-1" onSubmit={handleSubmit}>
+        <form className="flex flex-col space-y-1 p-2" onSubmit={handleSubmit}>
             <h4>Choix de la méthode :</h4>
             <div>
                 <div className="flex space-x-2">

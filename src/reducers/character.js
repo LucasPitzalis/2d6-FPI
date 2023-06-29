@@ -1,4 +1,4 @@
-import { EDIT_CHAR, EDIT_EXPERIENCE } from "../actions/character";
+import { EDIT_CHAR, EDIT_EXPERIENCE, EDIT_ABILITIES } from "../actions/character";
 
 const initialState = {
     name: '',
@@ -20,6 +20,7 @@ const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case EDIT_CHAR: return {...state, [action.property]: action.value};
         case EDIT_EXPERIENCE: return {...state, experience: action.experience};
+        case EDIT_ABILITIES: return {...state, abilities: action.abilities};
         default: return state;
     }
 };

@@ -18,11 +18,11 @@ export const levelsTable = [
     {level: 17, nextLevelXp: 144900, abilityPts: 45, skillPts: 21},
     {level: 18, nextLevelXp: 158900, abilityPts: 47, skillPts: 23},
     {level: 19, nextLevelXp: 186900, abilityPts: 49, skillPts: 24},
-    {level: 20, nextLevelXp: 'Niveau max atteint', abilityPts: 56, skillPts: 28},
+    {level: 20, nextLevelXp: 'Niveau max !', abilityPts: 56, skillPts: 28},
 ];
 
 export function getLevel(xp) {
-    if (xp >= levelsTable.slice(-2)[0].nextLevelXp) return levelsTable.slice(-1)[0].nextLevelXp;
+    if (xp >= levelsTable.slice(-2)[0].nextLevelXp) return levelsTable.slice(-1)[0];
     return levelsTable.find((level) => level.nextLevelXp > xp);
 }
 

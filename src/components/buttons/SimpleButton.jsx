@@ -12,7 +12,7 @@ export default function SimpleButton({ handler, size, icon, hidden }) {
     }
 
     return (
-        <button onClick={handler} className={hidden && 'hidden group-hover:block'}>
+        <button onClick={handler} className={hidden ? 'hidden group-hover:block' : ''}>
             {getIcon()}
         </button>
     );
