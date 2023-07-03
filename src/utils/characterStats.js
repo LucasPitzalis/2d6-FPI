@@ -1,31 +1,42 @@
 import store from "../store";
+import { sumProperties } from "./functions";
+import { getLevel } from "./levels";
 
-const state = store.getState();
+let currentState = store.getState();
 
-const { str, dex, con, int, wis, cha } = state.character.abilities;
+store.subscribe(() => {
+    currentState = store.getState();
+});
 
 export function atk() {
+    const { str, dex } = currentState.character.abilities;
     return str + dex;
 }
 
 export function def() {
+    const { con, int } = currentState.character.abilities;
     return con + int;
 }
 
 export function wil() {
+    const { wis, cha } = currentState.character.abilities;
     return wis + cha;
 }
 
 export function maxHp() {
-    return con*10;
+    return currentState.character.abilities.con * 10;
 }
 
 export function maxEp() {
-    return wis*10;
+    return currentState.character.abilities.wis * 10;
 }
 
 export function maxWeight() {
-    return (con + str)*10;
+    const { con, str } = currentState.character.abilities;
+    return (con + str) * 10;
 }
 
-
+export function abilityPointsLeft() {
+    const { experience, abilities } = currentState.character;
+    return getLevel(experience).abilityPts - sumProperties(abilities);
+}

@@ -3,21 +3,21 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editAbilities } from "../../actions/character";
+import { abilityPointsLeft } from "../../utils/characterStats";
 import { getAbilityNameFr, sumProperties } from "../../utils/functions";
-import { getLevel } from "../../utils/levels";
 import HoverableButton from "../buttons/HoverableButton";
 import SimpleButton from "../buttons/SimpleButton";
 
 export default function EditAbilities() {
     const dispatch = useDispatch();
 
-    const { abilities, experience } = useSelector((state) => state.character);
+    const { abilities } = useSelector((state) => state.character);
 
     const [abilityChange, setAbilityChange] = useState({str:0, dex:0, con:0, int:0, wis:0, cha:0});
     // const [unlimitedPts, toggleUnlimitedPts] = useState(false);
     const [allowRemoval, toggleAllowRemoval] = useState(false);
 
-    const remainingPoints = getLevel(experience).abilityPts - sumProperties(abilityChange) - sumProperties(abilities);
+    const remainingPoints = abilityPointsLeft() - sumProperties(abilityChange);
 
     const handleMinus = (ability) => {
         if ((allowRemoval && abilityChange[ability] + abilities[ability] > 0) || abilityChange[ability] > 0) 
@@ -79,7 +79,8 @@ export default function EditAbilities() {
                 </tbody>
             </table>
             <div className="flex flex-col">
-                {/* <div className="flex space-x-2">
+                {/* // TODO ? add the option to allow for unlimited points
+                <div className="flex space-x-2">
                     <input checked={unlimitedPts} onChange={() => toggleUnlimitedPts(!unlimitedPts)} type="checkbox" name="unlimitedPts"/>
                     <label htmlFor="unlimitedPts">Points illimités</label>
                 </div> */}
