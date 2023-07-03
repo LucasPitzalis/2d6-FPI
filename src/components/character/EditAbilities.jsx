@@ -6,7 +6,7 @@ import { editAbilities } from "../../actions/character";
 import { getAbilityNameFr, sumProperties } from "../../utils/functions";
 import { getLevel } from "../../utils/levels";
 import HoverableButton from "../buttons/HoverableButton";
-import SubmitButton from "../buttons/SubmitButton";
+import SimpleButton from "../buttons/SimpleButton";
 
 export default function EditAbilities() {
     const dispatch = useDispatch();
@@ -89,7 +89,7 @@ export default function EditAbilities() {
                 </div>
             </div>
             <div className="flex justify-center">
-                <SubmitButton text={"Enregistrer"} isDisabled={isDisabled()} />
+                <SimpleButton btnType="submit" text={"Enregistrer"} isDisabled={isDisabled()} />
             </div>
         </form>
     );

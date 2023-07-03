@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editExperience } from "../../actions/character";
 import { getLevel, minXp } from "../../utils/levels";
-import SubmitButton from "../buttons/SubmitButton";
+import SimpleButton from "../buttons/SimpleButton";
 
 export default function EditExperience() {
     const { experience } = useSelector((state) => state.character);
@@ -79,7 +79,7 @@ export default function EditExperience() {
                 />
             </div>
             <div className="flex justify-center">
-                <SubmitButton text={"Enregistrer"} isDisabled={isDisabled()} />
+                <SimpleButton btnType="submit" text={"Enregistrer"} isDisabled={isDisabled()} />
             </div>
         </form>
     );

@@ -5,7 +5,7 @@ import SectionTitle from "../SectionTitle";
 import LockedInput from "./LockedInput";
 import Stats from "./Stats";
 import StaticField from "./StaticField";
-import characterStats from "../../utils/characterStats";
+import { maxWeight } from "../../utils/characterStats";
 import { handleModal } from "../../actions/app";
 import { useDispatch } from "react-redux";
 
@@ -33,7 +33,7 @@ export default function Character() {
                     <LockedInput label="conséquence" name="mentalConsequences" />
                     <Stats />
                     <div className="flex space-x-0.5">
-                        <StaticField label="poids max" name="maxWeight" styles="w-1/3" value={characterStats.maxWeight()} vertical />
+                        <StaticField label="poids max" name="maxWeight" styles="w-1/3" value={maxWeight()} vertical />
                         <LockedInput label="indice de recherche" name="wantedIndex" styles="w-2/3" vertical />
                     </div>
                 </div>
