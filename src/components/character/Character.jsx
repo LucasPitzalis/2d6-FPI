@@ -15,7 +15,7 @@ export default function Character() {
     return (
         <>
             <div className="flex space-y-4 flex-col lg:space-x-2 lg:space-y-0 lg:flex-row">
-                <div className="flex flex-col space-y-0.5 w-full lg:w-1/2">
+                <div className="flex flex-col space-y-0.5 justify-between w-full lg:w-1/2">
                     <SectionTitle title="état civil" />
                     <LockedInput label="nom" name="name" isTitle />
                     <div className="w-full aspect-avatar border-2 border-black rounded" />
@@ -24,7 +24,7 @@ export default function Character() {
                     <LockedInput label="ordre" name="order" />
                     <LockedInput label="religion" name="religion" />
                 </div>
-                <div className="flex flex-col space-y-0.5 w-full lg:w-1/2">
+                <div className="flex flex-col space-y-0.5 justify-between w-full lg:w-1/2">
                     <SectionTitle title="statistiques et état du personnage" />
                     <Level />
                     <LockedInput label="état physique" name="physicalCondition" />
