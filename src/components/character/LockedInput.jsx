@@ -6,7 +6,7 @@ import FieldLabel from '../FieldLabel';
 import SheetField from '../SheetField';
 import { noArrows } from '../../utils/styles';
 import { useEffect } from 'react';
-import SimpleButton from '../buttons/SimpleButton';
+import IconButton from '../buttons/IconButton';
 
 
 export default function LockedInput({label, name, htmlType, isTitle, styles, vertical}) {
@@ -38,11 +38,11 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
                     value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}
                 />
                 <div className="absolute right-0">
-                    {locked && <SimpleButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
+                    {locked && <IconButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
                     {!locked &&
                         <div>
-                            <SimpleButton size={15} handler={handleSave} icon="validate" />
-                            <SimpleButton size={15} handler={() => changeLocked(true)} icon="close" />
+                            <IconButton size={15} handler={handleSave} icon="validate" />
+                            <IconButton size={15} handler={() => changeLocked(true)} icon="close" />
                         </div>
                     }
                 </div>

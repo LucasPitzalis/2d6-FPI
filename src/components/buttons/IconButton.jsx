@@ -1,7 +1,7 @@
 import { X, Edit, Check } from 'lucide-react';
 import PropTypes from 'prop-types';
 
-export default function SimpleButton({ handler, size, icon, hidden }) {
+export default function IconButton({ handler, size, icon, hidden }) {
     function getIcon() {
         switch (icon) {
             case "validate": return <Check size={size}/>;
@@ -18,14 +18,14 @@ export default function SimpleButton({ handler, size, icon, hidden }) {
     );
 }
 
-SimpleButton.propTypes = {
+IconButton.propTypes = {
     handler: PropTypes.func.isRequired,
     icon: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
     size: PropTypes.number,
 };
 
-SimpleButton.defaultProps = {
+IconButton.defaultProps = {
     size: 20,
     hidden: false,
 }

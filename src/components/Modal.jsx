@@ -5,7 +5,7 @@ import { handleModal } from '../actions/app';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import EditExperience from './character/EditExperience';
-import SimpleButton from './buttons/SimpleButton';
+import IconButton from './buttons/IconButton';
 
 export default function Modal() {
     const { modal } = useSelector((state) => state.app);
@@ -33,7 +33,7 @@ export default function Modal() {
             <dialog open className="roundedbg-white text-base">
                 <div className="relative border-b border-gray-400 flex justify-between min-w-[300px]">
                     <h3 className="font-bold">{modalTitle}</h3>
-                    <div className="relative bottom-0.5"><SimpleButton size={24} icon={"close"} handler={() => dispatch(handleModal(false))} /></div>
+                    <div className="relative bottom-0.5"><IconButton size={24} icon={"close"} handler={() => dispatch(handleModal(false))} /></div>
                 </div>
                 {modalContent}
             </dialog>
