@@ -5,9 +5,11 @@ import SectionTitle from "../SectionTitle";
 import LockedInput from "./LockedInput";
 import Stats from "./Stats";
 import StaticField from "./StaticField";
-import { maxWeight } from "../../utils/characterStats";
+import { abilityPointsLeft, maxWeight } from "../../utils/characterStats";
 import { handleModal } from "../../actions/app";
 import { useDispatch } from "react-redux";
+import SimpleButton from "../buttons/SimpleButton";
+import Warning from "../ui-elements/Warning";
 
 export default function Character() {
     const dispatch = useDispatch();
@@ -38,9 +40,12 @@ export default function Character() {
                     </div>
                 </div>
             </div>
-            <div>
-                <button onClick={() => dispatch(handleModal('editAbilities')) }>Modal Caracs</button>
-                <button onClick={() => dispatch(handleModal('editExperience')) }>Modal XP</button>
+            <div className="flex mt-1 justify-center space-x-2">
+                <div className="relative">
+                    <SimpleButton handler={() => dispatch(handleModal('editAbilities')) } text="Editer les caractéristiques" />
+                    {abilityPointsLeft() !== 0 && <Warning isRed={abilityPointsLeft() < 0} />}
+                </div>
+                <SimpleButton onClick={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
             </div>
         </>
     );

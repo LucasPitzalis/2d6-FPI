@@ -4,7 +4,7 @@ const initialState = {
     name: '',
     age: null,
     abilities: {
-        str: 1,
+        str: 10,
         dex: 1,
         con: 1,
         int: 2,
