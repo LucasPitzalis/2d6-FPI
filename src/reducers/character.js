@@ -2,7 +2,21 @@ import { EDIT_CHAR, EDIT_EXPERIENCE, EDIT_ABILITIES } from "../actions/character
 
 const initialState = {
     name: '',
-    age: null,
+    avatar: '',
+    age: '',
+    height: '',
+    weight: '',
+    job1: '',
+    job2: '',
+    difficulty1: '',
+    difficulty2: '',
+    order: '',
+    religion: '',
+    experience: 0,
+    physicalCondition: '',
+    physicalConsequences: '',
+    mentalCondition: '',
+    mentalConsequences: '',
     abilities: {
         str: 0,
         dex: 0,
@@ -13,7 +27,6 @@ const initialState = {
     },
     healthPoints: 0,
     energyPoints: 0,
-    experience: 0,
     wantedIndex: 0,
 };
   
