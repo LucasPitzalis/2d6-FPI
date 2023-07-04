@@ -10,6 +10,7 @@ import { handleModal } from "../../actions/app";
 import { useDispatch } from "react-redux";
 import SimpleButton from "../buttons/SimpleButton";
 import Warning from "../ui-elements/Warning";
+import WantedIndex from "./WantedIndex";
 
 export default function Character() {
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ export default function Character() {
                     <Stats />
                     <div className="flex space-x-0.5">
                         <StaticField label="poids max" name="maxWeight" styles="w-1/3" value={maxWeight()} vertical />
-                        <LockedInput label="indice de recherche" name="wantedIndex" styles="w-2/3" vertical />
+                        <WantedIndex />
                     </div>
                 </div>
             </div>

@@ -4,16 +4,17 @@ const initialState = {
     name: '',
     age: null,
     abilities: {
-        str: 10,
-        dex: 1,
-        con: 1,
-        int: 2,
-        wis: 1,
-        cha: 1,
+        str: 0,
+        dex: 0,
+        con: 0,
+        int: 0,
+        wis: 0,
+        cha: 0,
     },
     healthPoints: 0,
     energyPoints: 0,
     experience: 0,
+    wantedIndex: 0,
 };
   
 const reducer = (state = initialState, action = {}) => {

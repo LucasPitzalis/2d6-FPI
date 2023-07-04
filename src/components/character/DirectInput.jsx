@@ -18,7 +18,7 @@ export default function DirectInput({name, htmlType, isTitle, styles, vertical, 
             <FieldLabel {...{label, name}} />
             <div className="flex">
                 <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} step="1" name={name} value={stateValue} onChange={(e) => handleChange(e)}/>
-                {limit && <span className="leading-5 font-bold italic p-1">/ { limit }</span>}
+                {limit !== null && <span className="leading-5 font-bold italic p-1">/ { limit }</span>}
             </div>
         </SheetField>
     );
@@ -39,4 +39,5 @@ DirectInput.defaultProps = {
     isTitle: false,
     styles: '',
     vertical: false,
+    limit: null,
 }
