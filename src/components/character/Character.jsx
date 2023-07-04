@@ -46,7 +46,7 @@ export default function Character() {
                     <SimpleButton handler={() => dispatch(handleModal('editAbilities')) } text="Editer les caractéristiques" />
                     {abilityPointsLeft() !== 0 && <Warning isRed={abilityPointsLeft() < 0} />}
                 </div>
-                <SimpleButton onClick={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
+                <SimpleButton handler={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
             </div>
         </>
     );

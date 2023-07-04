@@ -19,9 +19,14 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
 
     const handleSave = (e) => {
         e.preventDefault();
-        dispatch(editChar(e.target.firstChild));
+        dispatch(editChar({name: name, value: htmlType === "number" ? Number(currentValue) : currentValue}));
         changeLocked(true);
     };
+
+    const handleCancel = () => {
+        changeLocked(true);
+        setCurrentValue(storedValue);
+    }
 
     useEffect(() => {
         if (locked === false) ref.current.focus();
@@ -35,14 +40,14 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
                     ref={ref}
                     className={`p-1 w-0 flex-1 ${htmlType === 'number' && `text-center ${noArrows}`}`} 
                     type={htmlType} step="1" name={name} disabled={locked}
-                    value={currentValue} onChange={(e) => setCurrentValue(e.target.value)}
+                    value={locked ? storedValue : currentValue} onChange={(e) => setCurrentValue(e.target.value)}
                 />
                 <div className="absolute right-0">
                     {locked && <IconButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
                     {!locked &&
                         <div>
                             <IconButton size={15} handler={handleSave} icon="validate" />
-                            <IconButton size={15} handler={() => changeLocked(true)} icon="close" />
+                            <IconButton size={15} handler={handleCancel} icon="close" />
                         </div>
                     }
                 </div>

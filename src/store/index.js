@@ -10,4 +10,8 @@ const store = createStore(
     enhancer,
 );
 
+store.subscribe(() => {
+    localStorage.setItem('character', JSON.stringify(store.getState().character));
+});
+
 export default store;
