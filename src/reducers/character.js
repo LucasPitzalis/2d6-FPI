@@ -37,7 +37,11 @@ const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case EDIT_CHAR: return {...state, [action.property]: action.value};
         case EDIT_EXPERIENCE: return {...state, experience: action.experience};
-        case EDIT_ABILITIES: return {...state, abilities: action.abilities};
+        case EDIT_ABILITIES: return {
+            ...state, abilities: action.abilities, 
+            healthPoints: Math.min(action.abilities.con * 10, state.healthPoints),
+            energyPoints: Math.min(action.abilities.wis * 10, state.energyPoints),
+        };
         default: return state;
     }
 };

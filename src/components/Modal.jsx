@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import EditExperience from './character/EditExperience';
 import IconButton from './buttons/IconButton';
+import AvatarModal from './character/AvatarModal';
 
 export default function Modal() {
     const { modal } = useSelector((state) => state.app);
@@ -23,6 +24,10 @@ export default function Modal() {
             case 'editExperience':
                 setModalContent(<EditExperience />);
                 setModalTitle('Modifier l\'expérience')
+                break;
+            case 'avatar':
+                setModalContent(<AvatarModal />);
+                setModalTitle('Ajouter/modifier l\'avatar');
                 break;
             default: break;
         }

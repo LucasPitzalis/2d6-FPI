@@ -27,5 +27,6 @@ export function getLevel(xp) {
 }
 
 export function minXp(level) {
+    if (level === 1) return 0;
     return levelsTable[levelsTable.findIndex((levelObject) => levelObject.level === level) - 1].nextLevelXp;
 }

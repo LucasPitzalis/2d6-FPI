@@ -8,6 +8,7 @@ import StaticField from "./StaticField";
 import { maxWeight } from "../../utils/characterStats";
 import WantedIndex from "./WantedIndex";
 import CharacterControls from "./CharacterControls";
+import Avatar from "./Avatar";
 
 export default function Character() {
     return (
@@ -16,7 +17,7 @@ export default function Character() {
                 <div className="flex flex-col space-y-0.5 justify-between w-full lg:w-1/2">
                     <SectionTitle title="état civil" />
                     <LockedInput label="nom" name="name" isTitle />
-                    <div className="w-full max-w-80 aspect-avatar border-2 border-black rounded" />
+                    <Avatar />
                     <Measurements />
                     <Job />
                     <LockedInput label="ordre" name="order" />

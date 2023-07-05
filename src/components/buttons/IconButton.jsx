@@ -1,7 +1,7 @@
 import { X, Edit, Check } from 'lucide-react';
 import PropTypes from 'prop-types';
 
-export default function IconButton({ handler, size, icon, hidden }) {
+export default function IconButton({ handler, size, icon, hidden, background }) {
     function getIcon() {
         switch (icon) {
             case "validate": return <Check size={size}/>;
@@ -12,7 +12,7 @@ export default function IconButton({ handler, size, icon, hidden }) {
     }
 
     return (
-        <button onClick={handler} className={hidden ? 'hidden group-hover:block' : ''}>
+        <button onClick={handler} className={`rounded-full p-0.5 ${background !== '' && `bg-${background}`} ${hidden ? 'hidden group-hover:block' : ''}`}>
             {getIcon()}
         </button>
     );
@@ -21,11 +21,13 @@ export default function IconButton({ handler, size, icon, hidden }) {
 IconButton.propTypes = {
     handler: PropTypes.func.isRequired,
     icon: PropTypes.string.isRequired,
+    background: PropTypes.string,
     hidden: PropTypes.bool,
     size: PropTypes.number,
 };
 
 IconButton.defaultProps = {
+    background: '',
     size: 20,
     hidden: false,
 }
