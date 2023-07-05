@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import IconButton from '../buttons/IconButton';
 
 
-export default function LockedInput({label, name, htmlType, isTitle, styles, vertical, regex }) {
+export default function LockedInput({label, name, htmlType, isTitle, styles, vertical, regex, center }) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
     const storedValue = useSelector((state) => state.character[name]);
@@ -38,7 +38,7 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
             <form className="group relative flex flex-1">
                 <input 
                     ref={ref}
-                    className={`p-1 w-0 flex-1 ${htmlType === 'number' && `text-center ${noArrows}`}`} 
+                    className={`p-1 w-0 flex-1 ${htmlType === 'number' && noArrows} ${center && 'text-center'}`} 
                     type={htmlType} step="1" name={name} disabled={locked}
                     value={locked ? storedValue : currentValue} onChange={(e) => regex.test(e.target.value) && setCurrentValue(e.target.value)}
                 />
@@ -64,6 +64,7 @@ LockedInput.propTypes = {
     styles: PropTypes.string,
     vertical: PropTypes.bool,
     regex: PropTypes.instanceOf(RegExp),
+    center: PropTypes.bool,
 }
 
 LockedInput.defaultProps = {
@@ -71,5 +72,6 @@ LockedInput.defaultProps = {
     isTitle: false,
     styles: '',
     vertical: false,
+    center: false,
     regex: /.*/,
 }

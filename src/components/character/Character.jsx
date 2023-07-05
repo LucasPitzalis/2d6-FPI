@@ -32,7 +32,7 @@ export default function Character() {
                     <LockedInput label="conséquence" name="mentalConsequences" />
                     <Stats />
                     <div className="flex space-x-0.5">
-                        <StaticField label="poids max" name="maxWeight" styles="w-1/3" value={maxWeight()} vertical />
+                        <StaticField label="poids max (kg)" name="maxWeight" styles="w-1/3" value={maxWeight()} vertical />
                         <WantedIndex />
                     </div>
                 </div>
