@@ -5,23 +5,18 @@ import SectionTitle from "../SectionTitle";
 import LockedInput from "./LockedInput";
 import Stats from "./Stats";
 import StaticField from "./StaticField";
-import { abilityPointsLeft, maxWeight } from "../../utils/characterStats";
-import { handleModal } from "../../actions/app";
-import { useDispatch } from "react-redux";
-import SimpleButton from "../buttons/SimpleButton";
-import Warning from "../ui-elements/Warning";
+import { maxWeight } from "../../utils/characterStats";
 import WantedIndex from "./WantedIndex";
+import CharacterControls from "./CharacterControls";
 
 export default function Character() {
-    const dispatch = useDispatch();
-
     return (
         <>
             <div className="flex space-y-4 flex-col lg:space-x-2 lg:space-y-0 lg:flex-row">
                 <div className="flex flex-col space-y-0.5 justify-between w-full lg:w-1/2">
                     <SectionTitle title="état civil" />
                     <LockedInput label="nom" name="name" isTitle />
-                    <div className="w-full aspect-avatar border-2 border-black rounded" />
+                    <div className="w-full max-w-80 aspect-avatar border-2 border-black rounded" />
                     <Measurements />
                     <Job />
                     <LockedInput label="ordre" name="order" />
@@ -41,13 +36,7 @@ export default function Character() {
                     </div>
                 </div>
             </div>
-            <div className="flex mt-1 justify-center space-x-2">
-                <div className="relative">
-                    <SimpleButton handler={() => dispatch(handleModal('editAbilities')) } text="Editer les caractéristiques" />
-                    {abilityPointsLeft() !== 0 && <Warning isRed={abilityPointsLeft() < 0} />}
-                </div>
-                <SimpleButton handler={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
-            </div>
+            <CharacterControls />
         </>
     );
 }
