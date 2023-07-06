@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
-import { editChar } from "../../actions/character";
+import { editField } from "../../actions/app";
 import SimpleButton from "../buttons/SimpleButton";
 
 export default function AvatarModal() {
@@ -12,7 +12,7 @@ export default function AvatarModal() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(editChar({name: 'avatar', value: currentValue}));
+        dispatch(editField({name: 'character.avatar', value: currentValue}));
         dispatch(handleModal(false))
     }
 

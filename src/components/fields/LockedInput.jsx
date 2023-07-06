@@ -1,25 +1,26 @@
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { editChar } from '../../actions/character';
-import FieldLabel from '../FieldLabel';
-import SheetField from '../SheetField';
+import { editField } from '../../actions/app';
+import FieldLabel from './FieldLabel';
+import SheetField from './SheetField';
 import { noArrows } from '../../utils/styles';
 import { useEffect } from 'react';
 import IconButton from '../buttons/IconButton';
+import { getProperty } from '../../utils/functions';
 
 
 export default function LockedInput({label, name, htmlType, isTitle, styles, vertical, regex, center }) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
-    const storedValue = useSelector((state) => state.character[name]);
+    const storedValue = useSelector((state) => getProperty(state, name));
     const ref = useRef(null);
 
     const [currentValue, setCurrentValue] = useState(storedValue);
 
     const handleSave = (e) => {
         e.preventDefault();
-        dispatch(editChar({name: name, value: htmlType === "number" ? Number(currentValue) : currentValue}));
+        dispatch(editField({name: name, value: htmlType === "number" ? Number(currentValue) : currentValue}));
         changeLocked(true);
     };
 
@@ -34,7 +35,7 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
 
     return (
         <SheetField {...{isTitle, styles, vertical}} >
-            <FieldLabel {...{label, name}} />
+            {label && <FieldLabel {...{label, name}} />}
             <form className="group relative flex flex-1">
                 <input 
                     ref={ref}
@@ -57,7 +58,7 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
 }
 
 LockedInput.propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     name: PropTypes.string.isRequired,
     htmlType: PropTypes.string,
     isTitle: PropTypes.bool,
@@ -68,6 +69,7 @@ LockedInput.propTypes = {
 }
 
 LockedInput.defaultProps = {
+    label: false,
     htmlType: 'text',
     isTitle: false,
     styles: '',

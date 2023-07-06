@@ -3,7 +3,7 @@ import { handleModal } from "../../actions/app";
 import SimpleButton from "../buttons/SimpleButton";
 import Warning from "../ui-elements/Warning";
 import { abilityPointsLeft, maxEp, maxHp } from "../../utils/characterStats";
-import { editChar } from "../../actions/character";
+import { editField } from "../../actions/app";
 
 export default function CharacterControls() {
     const dispatch = useDispatch();
@@ -15,8 +15,8 @@ export default function CharacterControls() {
                 {abilityPointsLeft() !== 0 && <Warning isRed={abilityPointsLeft() < 0} />}
             </div>
             <SimpleButton handler={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
-            <SimpleButton handler={() => dispatch(editChar({name: 'healthPoints', value: maxHp()}))}  text="Soigner tous les PV" />
-            <SimpleButton handler={() => dispatch(editChar({name: 'energyPoints', value: maxEp()}))}  text="Soigner tous les PE" />
+            <SimpleButton handler={() => dispatch(editField({name: 'character.healthPoints', value: maxHp()}))}  text="Soigner tous les PV" />
+            <SimpleButton handler={() => dispatch(editField({name: 'character.energyPoints', value: maxEp()}))}  text="Soigner tous les PE" />
         </div>
     );
 }

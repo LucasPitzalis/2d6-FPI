@@ -1,5 +1,5 @@
-import { EDIT_CHAR, EDIT_EXPERIENCE, EDIT_ABILITIES } from "../actions/character";
-import store from "../store";
+import { EDIT_EXPERIENCE, EDIT_ABILITIES } from "../actions/character";
+import { EDIT_FIELD } from "../actions/app";
 
 const initialState = localStorage.getItem('character') 
     ? JSON.parse(localStorage.getItem('character')) 
@@ -35,7 +35,11 @@ const initialState = localStorage.getItem('character')
   
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case EDIT_CHAR: return {...state, [action.property]: action.value};
+        case EDIT_FIELD: 
+            if (action.reducer === 'character') {
+                return {...state, [action.property]: action.value}
+            }
+            break;
         case EDIT_EXPERIENCE: return {...state, experience: action.experience};
         case EDIT_ABILITIES: return {
             ...state, abilities: action.abilities, 

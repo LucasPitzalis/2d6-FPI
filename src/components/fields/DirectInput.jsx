@@ -1,21 +1,22 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { editChar } from '../../actions/character';
-import FieldLabel from '../FieldLabel';
-import SheetField from '../SheetField';
+import { editField } from '../../actions/app';
+import { getProperty } from '../../utils/functions';
+import FieldLabel from './FieldLabel';
+import SheetField from './SheetField';
 
 export default function DirectInput({name, htmlType, isTitle, styles, vertical, label, limit}) {
     const dispatch = useDispatch();
-    const stateValue = useSelector((state) => state.character[name]);
+    const stateValue = useSelector((state) => getProperty(state, name));
 
     const handleChange = (e) => {
         if (htmlType === 'number' && e.target.value > limit) return;
-        dispatch(editChar(e.target));
+        dispatch(editField(e.target));
     };
 
     return (
         <SheetField {...{isTitle, styles, vertical}} >
-            <FieldLabel {...{label, name}} />
+            {label && <FieldLabel {...{label, name}} />}
             <div className="flex">
                 <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} step="1" name={name} value={htmlType === "number" ? Number(stateValue) : stateValue} onChange={(e) => handleChange(e)}/>
                 {limit !== null && <span className="leading-5 font-bold italic p-1">/ { limit }</span>}
@@ -25,7 +26,7 @@ export default function DirectInput({name, htmlType, isTitle, styles, vertical, 
 }
 
 DirectInput.propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     name: PropTypes.string.isRequired,
     htmlType: PropTypes.string,
     isTitle: PropTypes.bool,
@@ -35,6 +36,7 @@ DirectInput.propTypes = {
 }
 
 DirectInput.defaultProps = {
+    label: false,
     htmlType: 'text',
     isTitle: false,
     styles: '',

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import FieldLabel from '../FieldLabel';
-import SheetField from '../SheetField';
+import FieldLabel from './FieldLabel';
+import SheetField from './SheetField';
 
-export default function StaticField({ name, label, value ,isTitle, styles, vertical }) {
+export default function StaticField({ name, label, value, isTitle, styles, vertical }) {
     return (
         <SheetField {...{isTitle, styles, vertical}}>
-            <FieldLabel { ...{name, label}}/>
+            {label && <FieldLabel { ...{name, label}}/>}
             <p className={`p-1 ${typeof(value) === 'number' && 'text-center'}`}>{ value }</p>
         </SheetField>
     );
@@ -13,7 +13,7 @@ export default function StaticField({ name, label, value ,isTitle, styles, verti
 
 StaticField.propTypes = {
     name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -25,6 +25,7 @@ StaticField.propTypes = {
 
 
 StaticField.defaultProps = {
+    label: false,
     isTitle: false,
     styles: '',
     vertical: false,
