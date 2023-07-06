@@ -5,7 +5,7 @@ import SheetField from './SheetField';
 export default function StaticField({ name, label, value, isTitle, styles, vertical }) {
     return (
         <SheetField {...{isTitle, styles, vertical}}>
-            {label && <FieldLabel { ...{name, label}}/>}
+            {label !=='' && <FieldLabel { ...{name, label}}/>}
             <p className={`p-1 ${typeof(value) === 'number' && 'text-center'}`}>{ value }</p>
         </SheetField>
     );
@@ -25,7 +25,7 @@ StaticField.propTypes = {
 
 
 StaticField.defaultProps = {
-    label: false,
+    label: '',
     isTitle: false,
     styles: '',
     vertical: false,

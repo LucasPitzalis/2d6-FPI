@@ -11,12 +11,12 @@ export const handleModal = (value) => {
 }
 
 export const editField = (target) => {
-    const pathSplit = target.name.split(".");
+    const reducerIndex = target.name.indexOf(".");
 
     return {
         type: EDIT_FIELD,
-        reducer: pathSplit[0],
-        property: pathSplit[1],
+        reducer: target.name.slice(0, reducerIndex),
+        property: target.name.slice(reducerIndex + 1),
         value: target.value,
     };
 }

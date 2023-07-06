@@ -9,7 +9,7 @@ export default function Footer() {
                     <NavLink
                         key={route.name}
                         to={route.path}
-                        className={({ isActive }) => (isActive && 'font-bold')}
+                        className={({ isActive }) => (isActive ? 'font-bold' : '')}
                     >
                         {route.nameFr}
                     </NavLink>

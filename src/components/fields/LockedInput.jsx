@@ -10,7 +10,7 @@ import IconButton from '../buttons/IconButton';
 import { getProperty } from '../../utils/functions';
 
 
-export default function LockedInput({label, name, htmlType, isTitle, styles, vertical, regex, center }) {
+export default function LockedInput({ label, name, htmlType, isTitle, styles, vertical, regex, center }) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
     const storedValue = useSelector((state) => getProperty(state, name));
@@ -33,9 +33,13 @@ export default function LockedInput({label, name, htmlType, isTitle, styles, ver
         if (locked === false) ref.current.focus();
     }, [locked]);
 
+    function getLabel() {
+        if (label !== '') return <FieldLabel {...{label, name}} />;
+    }
+
     return (
         <SheetField {...{isTitle, styles, vertical}} >
-            {label && <FieldLabel {...{label, name}} />}
+            {getLabel()}
             <form className="group relative flex flex-1">
                 <input 
                     ref={ref}
@@ -69,7 +73,7 @@ LockedInput.propTypes = {
 }
 
 LockedInput.defaultProps = {
-    label: false,
+    label: '',
     htmlType: 'text',
     isTitle: false,
     styles: '',
