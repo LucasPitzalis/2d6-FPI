@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-import Character from "./character/Character";
+import routes from "../utils/routes";
+import Footer from "./Footer";
 import Modal from "./Modal";
 
 function App() {
@@ -11,12 +13,13 @@ function App() {
       <div className="flex flex-1 items-center">
         <main className="lg:w-a4 bg-white p-4">
           <Routes>
-            <Route path="/*" element={<Character />} />
+            {routes.map((route) => <Route key={route.name} path={route.path} element={route.element()} />)}
+            <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
           { modal && <Modal /> }
         </main>
       </div>
-      <footer className="h-20 w-full bg-white mt-4">PH footer</footer>
+      <Footer />
     </div>
   )
 }
