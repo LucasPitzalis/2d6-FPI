@@ -17,12 +17,13 @@ export default function ContactList({ type }) {
             <div className="flex flex-col space-y-1">
                 {list.map((contact) => {
                     return (
-                    <div className="flex space-x-1" key={contact.id}>
-                        <LockedInput objectId={contact.id} name={contact.name} styles={'w-1/4'} />
-                        <LockedInput objectId={contact.id} name={contact.function} styles={'w-1/4'} />
-                        <LockedInput objectId={contact.id} name={contact.aptitudes} styles={'w-1/4'} />
-                        <LockedInput objectId={contact.id} name={contact.conditions} styles={'w-1/4'} />
-                    </div>
+                        <div className="flex space-x-1" key={`contact${contact.id}`}>
+                            {
+                                Object.keys(contact)
+                                    .filter((key) => key !== 'id' && key !== 'type')
+                                    .map((key) => <LockedInput key={key} name={`contacts.list.${contact.id}.${key}`} styles={'w-1/4'} />)
+                            }
+                        </div>
                 )})}
             </div>
         </div>
