@@ -1,24 +1,31 @@
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from '../../actions/contacts';
+import IconButton from '../buttons/IconButton';
 import LockedInput from '../fields/LockedInput';
 
 export default function ContactList({ type }) {
     const headerStyles = 'bg-black rounded font-bold text-white w-1/4 text-center text-base truncate p-1';
     const list = useSelector((state) => state.contacts[type]);
+    const dispatch = useDispatch();
 
     function renderList() {
         let contact;
         const renderedList = [];
         for (let i = 0; i < list.length; i++) {
             contact = list[i];
+            const id = contact.id;
             renderedList.push((
-                <div className="flex space-x-1" key={`${type}${contact.id}`}>
+                <div className="group/item relative flex space-x-1" key={`${type}${id}`}>
                     {
                        Object.keys(contact)
                            .filter((key) => key !== 'id')
                            .map((key) => <LockedInput key={key} name={`contacts.${type}.${i}.${key}`} styles={'w-1/4'} />)
                     }
-               </div>
+                    <div className="absolute top-1 -left-6 hidden group-hover/item:block">
+                        <IconButton hidden size={15} handler={() => dispatch(deleteContact(type, id))} icon="delete" group={'item'} />
+                    </div>
+                </div>
             )) 
         }
         return renderedList;

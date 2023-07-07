@@ -40,14 +40,14 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
     return (
         <SheetField {...{isTitle, styles, vertical}} >
             {getLabel()}
-            <form className="group relative flex flex-1">
+            <form className="group/edit relative flex flex-1">
                 <input 
                     ref={ref}
-                    className={`p-1 w-0 flex-1 ${htmlType === 'number' && noArrows} ${center && 'text-center'}`} 
+                    className={`p-1 w-0 flex-1 ${htmlType === 'number' ? noArrows : ''} ${center ? 'text-center' : ''}`} 
                     type={htmlType} step="1" name={name} disabled={locked}
                     value={locked ? storedValue : currentValue} onChange={(e) => regex.test(e.target.value) && setCurrentValue(e.target.value)}
                 />
-                <div className="absolute right-0">
+                <div className="absolute right-0 hidden group-hover/edit:block">
                     {locked && <IconButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
                     {!locked &&
                         <div>

@@ -7,9 +7,10 @@ export default function HoverableButton({ handler, size, icon }) {
     const [hover, setHover] = useState(false);
 
     function getIcon() {
+        const props = {size: size, color: hover ? 'white' : 'black'};
         switch (icon) {
-            case "+": return <PlusCircle size={size} color={hover ? 'white' : 'black'} />;
-            case "-": return <MinusCircle size={size} color={hover ? 'white' : 'black'} />;
+            case "+": return <PlusCircle {...props}/>;
+            case "-": return <MinusCircle {...props}/>;
             default: break;
         }
     }

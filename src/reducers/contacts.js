@@ -1,4 +1,5 @@
 import { EDIT_FIELD } from "../actions/app";
+import { DELETE_CONTACT } from "../actions/contacts";
 
 const initialState = localStorage.getItem('contacts') 
     ? JSON.parse(localStorage.getItem('contacts')) 
@@ -19,6 +20,7 @@ const reducer = (state = initialState, action = {}) => {
     }
 
     switch (action.type) {
+        case DELETE_CONTACT: return {...state, [action.target.list]: state[action.target.list].filter((contact) => contact.id !== action.target.id)};
         default: return state;
     }
 };
