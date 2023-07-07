@@ -34,12 +34,10 @@ const initialState = localStorage.getItem('character')
     };
   
 const reducer = (state = initialState, action = {}) => {
+    // Actions out of switch statement because they have additional conditions
+    if (action.type === EDIT_FIELD && action.reducer === 'character') return {...state, [action.property]: action.value};
+
     switch (action.type) {
-        case EDIT_FIELD: 
-            if (action.reducer === 'character') {
-                return {...state, [action.property]: action.value}
-            }
-            break;
         case EDIT_EXPERIENCE: return {...state, experience: action.experience};
         case EDIT_ABILITIES: return {
             ...state, abilities: action.abilities, 
