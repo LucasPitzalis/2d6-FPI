@@ -12,6 +12,7 @@ const store = createStore(
 
 store.subscribe(() => {
     localStorage.setItem('character', JSON.stringify(store.getState().character));
+    localStorage.setItem('contacts', JSON.stringify(store.getState().contacts));
 });
 
 export default store;

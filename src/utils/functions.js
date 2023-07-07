@@ -31,3 +31,14 @@ export function getAbilityNameFr(ability, long = false) {
 export function sumProperties(object) {
     return Object.keys(object).reduce((acc, property) => acc + object[property], 0);
 }
+
+export function generateId(array) {
+    const usedIDs = new Set(array.map(obj => obj.id));
+  
+    for (let i = 0; i <= array.length; i++) {
+        if (!usedIDs.has(i)) {
+            return i;
+        }
+    }
+}
+  

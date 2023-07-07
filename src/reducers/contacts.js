@@ -1,13 +1,12 @@
 import { EDIT_FIELD } from "../actions/app";
-import { DELETE_CONTACT } from "../actions/contacts";
+import { ADD_CONTACT, DELETE_CONTACT } from "../actions/contacts";
+import { generateId } from "../utils/functions";
 
 const initialState = localStorage.getItem('contacts') 
     ? JSON.parse(localStorage.getItem('contacts')) 
-    : { relative: [
-            {id: 0, name: 'foufoum', function: 'soeur', aptitudes: 'MI !!', conditions: 'la caliner'},
-            {id: 1, name: 'klu', function: 'soeur', aptitudes: 'MI !!', conditions: 'la caliner'},
-            {id: 2, name: 'foufie', function: 'soeur', aptitudes: 'MI !!', conditions: 'la caliner'},
-        ],
+    : { relatives: [],
+        friends: [],
+        enemies: [],
     };
   
 const reducer = (state = initialState, action = {}) => {
@@ -21,6 +20,7 @@ const reducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
         case DELETE_CONTACT: return {...state, [action.target.list]: state[action.target.list].filter((contact) => contact.id !== action.target.id)};
+        case ADD_CONTACT: return {...state, [action.list]: [...state[action.list], {id: generateId(state[action.list]), name: '', function: '', aptitudes: '', conditions: ''}]};
         default: return state;
     }
 };

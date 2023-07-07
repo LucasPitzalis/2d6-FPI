@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from '../../actions/contacts';
+import { addContact, deleteContact } from '../../actions/contacts';
+import HoverableButton from '../buttons/HoverableButton';
 import IconButton from '../buttons/IconButton';
 import LockedInput from '../fields/LockedInput';
 
@@ -41,6 +42,10 @@ export default function ContactList({ type }) {
             </div>
             <div className="flex flex-col space-y-1">
                 {renderList()}
+            </div>
+            <div className="flex justify-left space-x-2 items-center">
+                <HoverableButton icon="+" handler={() => dispatch(addContact(type))} />
+                <span>Ajouter un contact dans cette catégorie</span>
             </div>
         </div>
     );

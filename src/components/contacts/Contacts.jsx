@@ -6,9 +6,11 @@ export default function Contacts() {
         <div className="flex space-y-2 flex-col">
             <SectionTitle title="Contacts" />
             <SectionTitle title="Famille" />
-            <ContactList type="relative" />
+            <ContactList type="relatives" />
             <SectionTitle title="amis" />
+            <ContactList type="friends" />
             <SectionTitle title="ennemis" />
+            <ContactList type="enemies" />
         </div>
     );
 }
