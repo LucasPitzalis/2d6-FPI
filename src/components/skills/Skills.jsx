@@ -21,15 +21,13 @@ export default function Skills() {
     }
 
     return (
-        <>
+        <div className="flex flex-col space-y-1">
             <SectionTitle title="Compétences" />
-            <div className="flex flex-col space-y-1">
-                {renderList()}
-                <div className="flex justify-left space-x-2 items-center">
-                    <HoverableButton icon="+" handler={() => console.log("bouton ajout contact")} />
-                    <span>Ajouter une compétence</span>
-                </div>
+            {renderList()}
+            <div className="flex justify-left space-x-2 items-center">
+                <HoverableButton icon="+" handler={() => console.log("bouton ajout contact")} />
+                <span>Ajouter une compétence</span>
             </div>
-        </>
+        </div>
     );
 }

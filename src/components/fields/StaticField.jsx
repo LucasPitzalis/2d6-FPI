@@ -6,7 +6,7 @@ export default function StaticField({ name, label, value, isTitle, styles, verti
     return (
         <SheetField {...{isTitle, styles, vertical}}>
             {label !=='' && <FieldLabel { ...{name, label}}/>}
-            <p className={`p-1 ${typeof(value) === 'number' && 'text-center'}`}>{ value }</p>
+            <p className={`flex-1 p-1 ${typeof(value) === 'number' ? 'text-center' : ''}`}>{ value }</p>
         </SheetField>
     );
 }
