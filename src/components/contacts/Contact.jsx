@@ -15,7 +15,7 @@ export default function Contact({ contact, type, index }) {
                     .map((key) => <LockedInput key={key} name={`contacts.${type}.${index}.${key}`} styles={'w-1/4'} />)
             }
             <div className="absolute top-1 -left-6 hidden group-hover/item:block">
-                <IconButton hidden size={15} handler={() => dispatch(deleteContact(type, contact.id))} icon="delete" group={'item'} />
+                <IconButton hidden size={15} handler={() => dispatch(deleteContact(type, index))} icon="delete" group={'item'} />
             </div>
         </div>
     );
@@ -24,7 +24,6 @@ export default function Contact({ contact, type, index }) {
 
 Contact.propTypes = {
     contact: PropTypes.shape({
-        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         function: PropTypes.string.isRequired,
         aptitudes: PropTypes.string.isRequired,

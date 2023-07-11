@@ -15,7 +15,7 @@ export default function Skills() {
         const renderedList = [];
         for (let i = 0; i < skills.length; i++) {
             skill = skills[i];
-            renderedList.push(<Skill skill={skill} index={i} key={`${skill.id}`} />); 
+            renderedList.push(<Skill skill={skill} index={i} key={i} />); 
         }
         return renderedList;
     }

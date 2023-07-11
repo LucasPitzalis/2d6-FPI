@@ -10,9 +10,9 @@ export const addContact = (list) => {
     }
 }
 
-export const deleteContact = (list, id) => {
+export const deleteContact = (list, index) => {
     return {
         type: DELETE_CONTACT,
-        target: {list: list, id: id},
+        target: {list: list, index: index},
     }
 }

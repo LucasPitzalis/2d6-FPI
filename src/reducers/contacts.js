@@ -1,6 +1,6 @@
 import { EDIT_FIELD } from "../actions/app";
 import { ADD_CONTACT, DELETE_CONTACT } from "../actions/contacts";
-import { generateId } from "../utils/functions";
+import { removeByIndex } from "../utils/functions";
 
 const initialState = localStorage.getItem('contacts') 
     ? JSON.parse(localStorage.getItem('contacts')) 
@@ -19,8 +19,8 @@ const reducer = (state = initialState, action = {}) => {
     }
 
     switch (action.type) {
-        case DELETE_CONTACT: return {...state, [action.target.list]: state[action.target.list].filter((contact) => contact.id !== action.target.id)};
-        case ADD_CONTACT: return {...state, [action.list]: [...state[action.list], {id: generateId(state[action.list]), name: '', function: '', aptitudes: '', conditions: ''}]};
+        case DELETE_CONTACT: return {...state, [action.target.list]: removeByIndex(state[action.target.list], action.target.index)};
+        case ADD_CONTACT: return {...state, [action.list]: [...state[action.list], {name: '', function: '', aptitudes: '', conditions: ''}]};
         default: return state;
     }
 };

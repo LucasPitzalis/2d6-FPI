@@ -14,7 +14,7 @@ export default function ContactList({ type }) {
         const renderedList = [];
         for (let i = 0; i < list.length; i++) {
             contact = list[i];
-            renderedList.push(<Contact type={type} index={i} contact={contact} key={`${type}${contact.id}`} />); 
+            renderedList.push(<Contact type={type} index={i} contact={contact} key={`${type}${i}`} />); 
         }
         return renderedList;
     }
