@@ -8,10 +8,10 @@ export default function Avatar() {
     const dispatch = useDispatch();
 
     return (
-        <div className="flex justify-center items-center flex-grow max-w-sm aspect-avatar border-2 border-black rounded group relative">
+        <div className="group/edit flex justify-center items-center flex-grow max-w-sm aspect-avatar border-2 border-black rounded group relative">
             {avatar === '' && <span>Pas d&apos;avatar</span>}
             {avatar !== '' && <img src={avatar} alt="avatar du personnage" />}
-            <div className="absolute right-0 top-0">
+            <div className="hidden group-hover/edit:block absolute right-0 top-0">
                 <IconButton hidden background="white" size={15} handler={() => dispatch(handleModal("avatar"))} icon="edit" />
             </div>
         </div>

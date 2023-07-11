@@ -10,7 +10,7 @@ import IconButton from '../buttons/IconButton';
 import { getProperty } from '../../utils/functions';
 
 
-export default function LockedInput({ label, name, htmlType, isTitle, styles, vertical, regex, center }) {
+export default function LockedInput({ label, name, htmlType, isTitle, styles, vertical, regex, center, multiline }) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
     const storedValue = useSelector((state) => getProperty(state, name));
@@ -37,17 +37,19 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
         if (label !== '') return <FieldLabel {...{label, name}} />;
     }
 
+    const inputProps = {
+        ref: ref,
+        rows: 1,
+        className: `min-h-fit p-1 w-0 flex-1 ${htmlType === 'number' ? noArrows : ''} ${center ? 'text-center' : ''}`, 
+        type: htmlType, step: "1", name: name, disabled: locked,
+        value: locked ? storedValue : currentValue, onChange: (e) => regex.test(e.target.value) && setCurrentValue(e.target.value),
+    }
+
     return (
         <SheetField {...{isTitle, styles, vertical}} >
             {getLabel()}
             <form className="group/edit relative flex flex-1">
-                <textarea 
-                    ref={ref}
-                    rows={1}
-                    className={`min-h-fit p-1 w-0 flex-1 ${htmlType === 'number' ? noArrows : ''} ${center ? 'text-center' : ''}`} 
-                    type={htmlType} step="1" name={name} disabled={locked}
-                    value={locked ? storedValue : currentValue} onChange={(e) => regex.test(e.target.value) && setCurrentValue(e.target.value)}
-                />
+                {multiline ? <textarea {...inputProps} /> : <input {...inputProps} />}
                 <div className="absolute right-0 hidden group-hover/edit:block">
                     {locked && <IconButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
                     {!locked &&
@@ -71,6 +73,7 @@ LockedInput.propTypes = {
     vertical: PropTypes.bool,
     regex: PropTypes.instanceOf(RegExp),
     center: PropTypes.bool,
+    multiline: PropTypes.bool,
 }
 
 LockedInput.defaultProps = {
@@ -81,4 +84,5 @@ LockedInput.defaultProps = {
     vertical: false,
     center: false,
     regex: /.*/,
+    multiline: false,
 }

@@ -12,7 +12,7 @@ export default function Contact({ contact, type, index }) {
             {
                 Object.keys(contact)
                     .filter((key) => key !== 'id')
-                    .map((key) => <LockedInput key={key} name={`contacts.${type}.${index}.${key}`} styles={'w-1/4'} />)
+                    .map((key) => <LockedInput key={key} name={`contacts.${type}.${index}.${key}`} styles={'w-1/4'} multiline />)
             }
             <div className="absolute top-1 -left-6 hidden group-hover/item:block">
                 <IconButton hidden size={15} handler={() => dispatch(deleteContact(type, index))} icon="delete" group={'item'} />
