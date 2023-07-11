@@ -8,7 +8,7 @@ export default function Contact({ contact, type, index }) {
     const dispatch = useDispatch();
 
     return (
-        <div className="group/item relative flex space-x-1" key={`${type}${contact.id}`}>
+        <div className="group/item relative flex space-x-1">
             {
                 Object.keys(contact)
                     .filter((key) => key !== 'id')
