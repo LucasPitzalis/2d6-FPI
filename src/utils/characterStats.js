@@ -8,6 +8,8 @@ store.subscribe(() => {
     currentState = store.getState();
 });
 
+export const abilityStrings = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
 export function atk() {
     const { str, dex } = currentState.character.abilities;
     return str + dex;

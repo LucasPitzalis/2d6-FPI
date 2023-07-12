@@ -1,8 +1,5 @@
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import HoverableButton from '../buttons/HoverableButton';
-import LockedInput from '../fields/LockedInput';
-import StaticField from '../fields/StaticField';
 import SectionTitle from '../SectionTitle';
 import Skill from './Skill';
 
@@ -15,7 +12,7 @@ export default function Skills() {
         const renderedList = [];
         for (let i = 0; i < skills.length; i++) {
             skill = skills[i];
-            renderedList.push(<Skill skill={skill} index={i} key={i} />); 
+            renderedList.push(<Skill skill={skill} index={i} key={`skill${i}`} />); 
         }
         return renderedList;
     }

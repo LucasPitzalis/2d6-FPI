@@ -34,7 +34,7 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
     }, [locked]);
 
     function getLabel() {
-        if (label !== '') return <FieldLabel {...{label, name}} />;
+        if (label !== '') return <FieldLabel {...{label, name, vertical}} />;
     }
 
     const inputProps = {

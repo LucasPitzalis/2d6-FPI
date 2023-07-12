@@ -12,10 +12,7 @@ SheetField.propTypes = {
     isTitle: PropTypes.bool,
     styles: PropTypes.string,
     vertical: PropTypes.bool,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.element),
-        PropTypes.element,
-    ]).isRequired,
+    children: PropTypes.array.isRequired,
 };
 
 SheetField.defaultProps = {

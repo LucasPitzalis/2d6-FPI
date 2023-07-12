@@ -42,7 +42,7 @@ export function generateId(array) {
     }
 }
 
-export function removeByIndex(array, index) {
+export function removeIndex(array, index) {
     return [...array.slice(0, index), ...array.slice(index + 1)];
 }
   
