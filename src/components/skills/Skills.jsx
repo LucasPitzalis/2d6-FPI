@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { addNewSkill } from '../../actions/skills';
+import { currentLevel } from '../../utils/characterStats';
 import HoverableButton from '../buttons/HoverableButton';
 import SectionTitle from '../SectionTitle';
 import Skill from './Skill';
@@ -18,13 +20,15 @@ export default function Skills() {
     }
 
     return (
-        <div className="flex flex-col min-w-[80%] space-y-1">
+        <div className="flex flex-col">
             <SectionTitle title="Compétences" />
             {renderList()}
-            <div className="flex justify-left space-x-1 items-center">
-                <HoverableButton icon="+" handler={() => console.log("bouton ajout contact")} />
-                <span>Ajouter une compétence</span>
-            </div>
+            {skills.length < currentLevel().skillPts &&
+                <div className="flex justify-left space-x-1 mt-2 items-center">
+                    <HoverableButton icon="+" handler={() => dispatch(addNewSkill())} />
+                    <span>Ajouter une compétence - <span className="italic">{currentLevel().skillPts - skills.length} point(s) restant(s)</span></span>
+                </div>
+            }
         </div>
     );
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editExperience } from "../../actions/character";
+import { currentLevel } from "../../utils/characterStats";
 import { getLevel, minXp } from "../../utils/levels";
 import SimpleButton from "../buttons/SimpleButton";
 
@@ -9,9 +10,8 @@ export default function EditExperience() {
     const { experience } = useSelector((state) => state.character);
     const [method, setMethod] = useState("addXp");
     const [xpToAdd, setXpToAdd] = useState(0);
-    
-    const currentLevel = getLevel(experience);
-    const [targetLevel, setTargetLevel] = useState(currentLevel.level);
+
+    const [targetLevel, setTargetLevel] = useState(currentLevel().level);
 
     const reachedLevel = getLevel(experience + xpToAdd);
 
@@ -22,7 +22,7 @@ export default function EditExperience() {
     const isDisabled = () => {
         switch (method) {
             case "addXp": return xpToAdd < 1;
-            case "goToLevel": return targetLevel === currentLevel.level;
+            case "goToLevel": return targetLevel === currentLevel().level;
             default: break;
         }
     }
@@ -61,7 +61,7 @@ export default function EditExperience() {
                             if (e.target.value >= 0) setXpToAdd(Number(e.target.value));
                         }}
                     />
-                    {method === "addXp" && reachedLevel.level - currentLevel.level > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel.level})</span>}
+                    {method === "addXp" && reachedLevel.level - currentLevel().level > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel.level})</span>}
                 </div>
             </div>
             <div>

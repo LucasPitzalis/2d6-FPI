@@ -10,6 +10,8 @@ store.subscribe(() => {
 
 export const abilityStrings = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
+export const currentLevel = () => getLevel(currentState.character.experience);
+
 export function atk() {
     const { str, dex } = currentState.character.abilities;
     return str + dex;

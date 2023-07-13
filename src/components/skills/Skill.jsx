@@ -13,7 +13,7 @@ export default function Skill({ skill, index }) {
     const dispatch = useDispatch();
 
     return (
-        <div className="flex flex-col lg:flex-row space-y-0.5 lg:space-y-0 lg:space-x-0.5">
+        <div className="flex flex-col py-2 lg:flex-row space-y-0.5 lg:space-y-0 lg:space-x-0.5 border-t border-gray-400">
             <div className="flex flex-col justify-between space-y-0.5 w-full lg:w-3/5">
                 <div className="flex space-x-0.5">
                     <LockedInput label="nom" name={`skills.${index}.name`} styles={'w-2/3'} />

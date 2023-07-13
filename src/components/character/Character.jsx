@@ -13,8 +13,8 @@ import Avatar from "./Avatar";
 export default function Character() {
     return (
         <>
-            <div className="flex space-y-4 flex-col lg:space-x-2 lg:space-y-0 lg:flex-row">
-                <div className="flex flex-col space-y-0.5 justify-between w-full lg:w-1/2">
+            <div className="flex space-y-4 flex-col md:space-x-2 md:space-y-0 md:flex-row">
+                <div className="flex flex-col space-y-0.5 justify-between w-full md:w-1/2">
                     <SectionTitle title="état civil" />
                     <LockedInput label="nom" name="character.name" isTitle />
                     <Avatar />
@@ -23,7 +23,7 @@ export default function Character() {
                     <LockedInput label="ordre" name="character.order" />
                     <LockedInput label="religion" name="character.religion" />
                 </div>
-                <div className="flex flex-col space-y-0.5 justify-between w-full lg:w-1/2">
+                <div className="flex flex-col space-y-0.5 justify-between w-full md:w-1/2">
                     <SectionTitle title="statistiques et état du personnage" />
                     <Level />
                     <LockedInput label="état physique" name="character.physicalCondition" />

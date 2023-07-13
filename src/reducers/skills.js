@@ -1,9 +1,10 @@
 import { EDIT_FIELD } from "../actions/app";
-import { ADD_NEW_SPEC, ADD_SPEC_USE } from "../actions/skills";
+import { ADD_NEW_SKILL, ADD_NEW_SPEC, ADD_SPEC_USE } from "../actions/skills";
+import { currentLevel } from "../utils/characterStats";
 
 const initialState = localStorage.getItem('skills') 
     ? JSON.parse(localStorage.getItem('skills')) 
-    : [{name: "Compétence test", description: "description", ability1: "str", ability2: "int", specs: [{name: "particularité 1", bonus: 2, uses: 4}]}];
+    : [];
 
 const reducer = (state = initialState, action = {}) => {
     // Actions out of switch statement because they have additional conditions
@@ -21,7 +22,8 @@ const reducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
         case ADD_SPEC_USE: return handleAddSpecUse(state, action);
-        case ADD_NEW_SPEC: return handleAddNewSpec(state, action.skillIndex)
+        case ADD_NEW_SPEC: return handleAddNewSpec(state, action.skillIndex);
+        case ADD_NEW_SKILL: return handleAddNewSkill(state);
         default: return state;
     }
 };
@@ -41,7 +43,15 @@ function handleAddNewSpec(state, skillIndex) {
     if (state[skillIndex].specs.length >= 2) return state;
 
     const newState = [...state];
-    newState[skillIndex].specs.push({name: "", bonus: 0, uses: 0});
+    newState[skillIndex].specs.push({name: '', bonus: 0, uses: 0});
+    return newState;
+}
+
+function handleAddNewSkill(state) {
+    if (state.length >= currentLevel().skillPts) return state;
+
+    const newState = [...state];
+    newState.push({name: '', description: '', ability1: 'str', ability2: 'con', specs: []});
     return newState;
 }
 

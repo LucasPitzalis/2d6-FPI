@@ -32,7 +32,7 @@ export default function Specs({ specs, skillIndex }) {
             }
         }
         if (specs.length < 2) render.push(
-            <div className="w-full md:w-1/2 lg:w-full flex space-x-0.5 items-center md:justify-center lg:justify-start" key="addSpec">
+            <div className="md:w-1/2 lg:w-full flex flex-1 space-x-0.5 items-center md:justify-center lg:justify-start" key="addSpec">
                 <HoverableButton icon="+" handler={() => dispatch(addNewSpec(skillIndex))}/>
                 <span>Ajouter une particularité</span>
             </div>
@@ -51,7 +51,7 @@ export default function Specs({ specs, skillIndex }) {
     }
 
     return (
-        <div className="flex flex-wrap space-y-0.5 lg:w-2/5">
+        <div className="flex flex-col md:flex-row md:space-x-1 lg:flex-col lg:space-x-0 space-y-0.5 lg:w-2/5">
             {renderSpecs()}
         </div>
     );

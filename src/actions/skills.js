@@ -31,7 +31,6 @@ export const deleteSpec = () => {
 export const addNewSkill = () => {
     return {
         type: ADD_NEW_SKILL,
-
     }
 }
 
