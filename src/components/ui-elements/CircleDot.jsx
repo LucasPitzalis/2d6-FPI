@@ -15,6 +15,6 @@ CircleDot.propTypes = {
 };
 
 CircleDot.defaultProps = {
-    size: 15,
+    size: 13,
     checked: false,
 }

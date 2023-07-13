@@ -1,5 +1,5 @@
 import { EDIT_FIELD } from "../actions/app";
-import { ADD_SPEC_USE } from "../actions/skills";
+import { ADD_NEW_SPEC, ADD_SPEC_USE } from "../actions/skills";
 
 const initialState = localStorage.getItem('skills') 
     ? JSON.parse(localStorage.getItem('skills')) 
@@ -21,16 +21,27 @@ const reducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
         case ADD_SPEC_USE: return handleAddSpecUse(state, action);
+        case ADD_NEW_SPEC: return handleAddNewSpec(state, action.skillIndex)
         default: return state;
     }
 };
 
 function handleAddSpecUse(state, action) {
+    const { bonus, uses } = state[action.skillIndex].specs[action.specIndex];
+    if (bonus >= 7) return state;
+
     const newState = [...state];
     const newSpecs = [...state[action.skillIndex].specs];
-    const { bonus, uses } = state[action.skillIndex].specs[action.specIndex];
-    if (bonus < 7) newSpecs[action.specIndex] = {...state[action.skillIndex].specs[action.specIndex], uses: uses < 4 ? uses + 1 : 0, bonus: uses < 4 ? bonus : bonus + 1};
+    newSpecs[action.specIndex] = {...state[action.skillIndex].specs[action.specIndex], uses: uses < 4 ? uses + 1 : 0, bonus: uses < 4 ? bonus : bonus + 1};
     newState[action.skillIndex] = {...state[action.skillIndex], specs: newSpecs};
+    return newState;
+}
+
+function handleAddNewSpec(state, skillIndex) {
+    if (state[skillIndex].specs.length >= 2) return state;
+
+    const newState = [...state];
+    newState[skillIndex].specs.push({name: "", bonus: 0, uses: 0});
     return newState;
 }
 

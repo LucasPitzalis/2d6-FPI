@@ -15,7 +15,7 @@ export default function WantedIndex() {
 
     return (
         <SheetField styles="w-2/3" vertical>
-            <FieldLabel label="indice de recherche" name="character.wantedIndex" />
+            <FieldLabel label="indice de recherche" name="character.wantedIndex" vertical />
             <div className="flex flex-1 justify-center items-center">
                 <StarRatings
                     rating={wantedIndex}

@@ -34,12 +34,12 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
     }, [locked]);
 
     function getLabel() {
-        if (label !== '') return <FieldLabel {...{label, name, vertical}} />;
+        if (label !== '') return <FieldLabel {...{label, name, vertical, styles: multiline ? 'h-full' : ''}} />;
     }
 
     const inputProps = {
         ref: ref,
-        rows: 1,
+        rows: 2,
         className: `min-h-fit p-1 w-0 flex-1 ${htmlType === 'number' ? noArrows : ''} ${center ? 'text-center' : ''}`, 
         type: htmlType, step: "1", name: name, disabled: locked,
         value: locked ? storedValue : currentValue, onChange: (e) => regex.test(e.target.value) && setCurrentValue(e.target.value),
