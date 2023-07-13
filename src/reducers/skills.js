@@ -1,6 +1,7 @@
 import { EDIT_FIELD } from "../actions/app";
-import { ADD_NEW_SKILL, ADD_NEW_SPEC, ADD_SPEC_USE } from "../actions/skills";
+import { ADD_NEW_SKILL, ADD_NEW_SPEC, ADD_SPEC_USE, DELETE_SKILL, DELETE_SPEC } from "../actions/skills";
 import { currentLevel } from "../utils/characterStats";
+import { removeIndex } from "../utils/functions";
 
 const initialState = localStorage.getItem('skills') 
     ? JSON.parse(localStorage.getItem('skills')) 
@@ -24,6 +25,8 @@ const reducer = (state = initialState, action = {}) => {
         case ADD_SPEC_USE: return handleAddSpecUse(state, action);
         case ADD_NEW_SPEC: return handleAddNewSpec(state, action.skillIndex);
         case ADD_NEW_SKILL: return handleAddNewSkill(state);
+        case DELETE_SKILL: return removeIndex(state, action.index);
+        case DELETE_SPEC: return handleDeleteSpec(state, action.skillIndex, action.specIndex);
         default: return state;
     }
 };
@@ -52,6 +55,12 @@ function handleAddNewSkill(state) {
 
     const newState = [...state];
     newState.push({name: '', description: '', ability1: 'str', ability2: 'con', specs: []});
+    return newState;
+}
+
+function handleDeleteSpec(state, skillIndex, specIndex) {
+    const newState = [...state];
+    newState[skillIndex] = {...state[skillIndex], specs: removeIndex(state[skillIndex].specs, specIndex)};
     return newState;
 }
 

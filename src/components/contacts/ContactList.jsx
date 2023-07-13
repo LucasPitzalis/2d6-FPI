@@ -4,7 +4,7 @@ import { addContact } from '../../actions/contacts';
 import HoverableButton from '../buttons/HoverableButton';
 import Contact from './Contact';
 
-export default function ContactList({ type }) {
+export default function ContactList({ type, deleteMode }) {
     const headerStyles = 'bg-black rounded font-bold text-white w-1/4 text-center text-base truncate p-1';
     const list = useSelector((state) => state.contacts[type]);
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function ContactList({ type }) {
         const renderedList = [];
         for (let i = 0; i < list.length; i++) {
             contact = list[i];
-            renderedList.push(<Contact type={type} index={i} contact={contact} key={`${type}${i}`} />); 
+            renderedList.push(<Contact type={type} index={i} contact={contact} key={`${type}${i}`} deleteMode={deleteMode} />); 
         }
         return renderedList;
     }
@@ -40,4 +40,5 @@ export default function ContactList({ type }) {
 
 ContactList.propTypes = {
     type: PropTypes.string.isRequired,
+    deleteMode: PropTypes.bool.isRequired,
 };

@@ -21,10 +21,11 @@ export const addNewSpec = (skillIndex) => {
     }
 }
 
-export const deleteSpec = () => {
+export const deleteSpec = (target) => {
     return {
         type: DELETE_SPEC,
-
+        skillIndex: target.skillIndex,
+        specIndex: target.specIndex,
     }
 }
 
@@ -34,9 +35,9 @@ export const addNewSkill = () => {
     }
 }
 
-export const deleteSkill = () => {
+export const deleteSkill = (index) => {
     return {
         type: DELETE_SKILL,
-
+        index: index,
     }
 }

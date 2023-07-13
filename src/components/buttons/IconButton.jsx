@@ -2,7 +2,7 @@ import { Trash2 } from 'lucide-react';
 import { X, Edit, Check } from 'lucide-react';
 import PropTypes from 'prop-types';
 
-export default function IconButton({ handler, size, icon, background}) {
+export default function IconButton({ handler, size, icon, styles}) {
     function getIcon() {
         const props = {size: size};
         switch (icon) {
@@ -15,7 +15,7 @@ export default function IconButton({ handler, size, icon, background}) {
     }
 
     return (
-        <button onClick={handler} className={`rounded-full p-0.5 ${background !== '' && `bg-${background}`}`}>
+        <button onClick={handler} className={`rounded-full p-0.5 ${styles}`}>
             {getIcon()}
         </button>
     );
@@ -24,11 +24,11 @@ export default function IconButton({ handler, size, icon, background}) {
 IconButton.propTypes = {
     handler: PropTypes.func.isRequired,
     icon: PropTypes.string.isRequired,
-    background: PropTypes.string,
+    styles: PropTypes.string,
     size: PropTypes.number,
 };
 
 IconButton.defaultProps = {
-    background: '',
+    styles: '',
     size: 20,
 }
