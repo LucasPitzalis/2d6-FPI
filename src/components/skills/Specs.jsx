@@ -5,20 +5,22 @@ import CircleDot from "../ui-elements/CircleDot";
 import PropTypes from 'prop-types';
 import { addNewSpec, addSpecUse, deleteSpec } from "../../actions/skills";
 import { useDispatch } from "react-redux";
-import IconButton from "../buttons/IconButton";
-import { useState } from "react";
+import DeletableItem from "../DeletableItem";
 
 
 export default function Specs({ specs, skillIndex, deleteMode }) {
     const dispatch = useDispatch();
-    const [highlight, setHighlight] = useState(false);
 
     function renderSpecs() {
         const render = [];
         for (let i = 0; i < 2; i++) {
             if (specs[i]) {
                 render.push(
-                    <div className={`w-full md:w-1/2 lg:w-full flex space-x-0.5 relative ${highlight === i ? 'p-0.5 border-2 border-red-500' : ''}`} key={i}>
+                    <DeletableItem 
+                        deleteMode={deleteMode} 
+                        handler={() => dispatch(deleteSpec({skillIndex: skillIndex, specIndex: i}))} 
+                        styles="w-full md:w-1/2 lg:w-full space-x-0.5" key={i}
+                    >
                         <LockedInput name={`skills.${skillIndex}.specs.${i}.name`} styles="w-2/3"></LockedInput>
                         <div className="w-1/3">
                             {specs[i].bonus < 7 && (
@@ -30,20 +32,7 @@ export default function Specs({ specs, skillIndex, deleteMode }) {
                             </div>)}
                             <StaticField name={`skills.${skillIndex}.specs.${i}.bonus`} value={`${specs[i].bonus} / 7`} styles="text-center text-xs" />
                         </div>
-                        {deleteMode &&
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group/delete" 
-                                onMouseOver={() => setHighlight(i)}
-                                onMouseOut={() => setHighlight(false)}
-                            >
-                                <IconButton 
-                                    styles={'bg-red-500 p-1 text-white hover:scale-110'} 
-                                    size={15} 
-                                    handler={() => dispatch(deleteSpec({skillIndex: skillIndex, specIndex: i}))} 
-                                    icon="delete" 
-                                />
-                            </div>
-                        }
-                    </div>
+                    </DeletableItem>
                 )
             }
         }
