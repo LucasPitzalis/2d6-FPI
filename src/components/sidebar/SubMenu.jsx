@@ -13,13 +13,13 @@ export default function SubMenu(props) {
             >
                 <div className="flex justify-between w-full items-center">
                     <h3 className="text-lg">{props.title}</h3>
-                    <span className={`duration-300 ${isCollapsed ? 'rotate-180' : ''}`}>
+                    <span className={`duration-300 ${!isCollapsed ? 'rotate-180' : ''}`}>
                         <ChevronUp />
                     </span> 
                 </div>
             </div>
             <div
-                className={`ml-4 ${isCollapsed ? 'hidden' : ''}`}
+                className={`ml-4 ${!isCollapsed ? 'hidden' : ''}`}
             >
                 {props.children}
             </div>

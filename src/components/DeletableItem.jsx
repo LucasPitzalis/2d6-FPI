@@ -10,7 +10,7 @@ export default function DeletableItem(props) {
         <div className={`flex-1 flex relative outline-offset-1 outline-2 outline-red-500 ${highlight ? 'outline' : ''} ${props.styles}`}>
             {props.children}
             {props.deleteMode &&
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group/delete" 
+                <div className="absolute -top-2 -left-3 group/delete" 
                     onMouseOver={() => setHighlight(true)}
                     onMouseOut={() => setHighlight(false)}
                 >
