@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-export default function SimpleButton({ text, isDisabled, btnType, handler, styles }) {
+export default function SimpleButton({ text, isDisabled, btnType, handler, background, styles }) {
     return (
         <button 
             type={btnType}
-            className={`rounded-full bg-teal-800 font-bold mt-2 text-white py-1 px-3 
+            className={`rounded-full font-bold mt-2 text-white py-1 px-3 
                 outline hover:outline-2 hover:outline-amber-500
-                disabled:outline-none disabled:bg-gray-500 disabled:italic disabled:font-normal ${styles}`}
+                disabled:outline-none disabled:bg-gray-500 disabled:italic disabled:font-normal ${background} ${styles}`}
             disabled={isDisabled}
             onClick={handler}
         >
@@ -21,10 +21,12 @@ SimpleButton.propTypes = {
     btnType: PropTypes.string,
     handler: PropTypes.func,
     styles: PropTypes.string,
+    background: PropTypes.string,
 };
 
 SimpleButton.defaultProps = {
     isDisabled: false,
     btnType: 'button',
     styles: '',
+    background: 'bg-teal-800',
 }

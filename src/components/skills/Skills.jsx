@@ -39,7 +39,7 @@ export default function Skills() {
                     <SimpleButton
                         handler={() => setDeleteMode(!deleteMode)} 
                         text={`${deleteMode ? 'Désactiver' : 'Activer'} le mode suppression`} 
-                        styles={deleteMode ? 'bg-red-500' : ''}
+                        background={deleteMode ? 'bg-red-500' : 'bg-teal-800'}
                     />
                 </div>
             </div>

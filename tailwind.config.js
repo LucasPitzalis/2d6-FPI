@@ -16,6 +16,9 @@ export default {
       height: {
         a4: '297mm',
       },
+      screens: {
+        'md': '794px',
+      },
     },
   },
   plugins: [],
