@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import EditAbilities from './character/EditAbilities';
-import { handleModal } from '../actions/app';
+import EditAbilities from './EditAbilities';
+import { handleModal } from '../../actions/app';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import EditExperience from './character/EditExperience';
-import IconButton from './buttons/IconButton';
-import AvatarModal from './character/AvatarModal';
+import EditExperience from './EditExperience';
+import IconButton from '../buttons/IconButton';
+import AvatarModal from './AvatarModal';
+import SaveModal from './SaveModal';
 
 export default function Modal() {
     const { modal } = useSelector((state) => state.app);
@@ -28,6 +29,11 @@ export default function Modal() {
             case 'avatar':
                 setModalContent(<AvatarModal />);
                 setModalTitle('Ajouter/modifier l\'avatar');
+                break;
+            case 'importSheet':
+            case 'newSheet':
+                setModalContent(<SaveModal action={modal} />);
+                setModalTitle('Avertissement');
                 break;
             default: break;
         }

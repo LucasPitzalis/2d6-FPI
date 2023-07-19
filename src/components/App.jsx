@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import routes from "../utils/routes";
 import Footer from "./Footer";
-import Modal from "./Modal";
+import Modal from "./modals/Modal";
 import SideBar from "./sidebar/SideBar";
 
 function App() {

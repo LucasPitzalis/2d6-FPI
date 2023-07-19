@@ -10,7 +10,7 @@ export default function DirectInput({name, htmlType, isTitle, styles, vertical, 
     const stateValue = useSelector((state) => getProperty(state, name));
 
     const handleChange = (e) => {
-        if (htmlType === 'number' && e.target.value > limit) return;
+        if (htmlType === 'number' && limit !== null && e.target.value > limit) return;
         dispatch(editField(e.target));
     };
 
@@ -18,7 +18,7 @@ export default function DirectInput({name, htmlType, isTitle, styles, vertical, 
         <SheetField {...{isTitle, styles, vertical}} >
             {label !== '' && <FieldLabel {...{label, name, vertical}} />}
             <div className="flex">
-                <input className={`p-1 w-0 flex-1 ${htmlType === 'number' && 'text-center'}`} type={htmlType} step="1" name={name} value={htmlType === "number" ? Number(stateValue) : stateValue} onChange={(e) => handleChange(e)}/>
+                <input className={`p-1 w-full flex-1 ${htmlType === 'number' ? 'text-center' : ''}`} type={htmlType} step="1" name={name} value={htmlType === "number" ? Number(stateValue) : stateValue} onChange={(e) => handleChange(e)}/>
                 {limit !== null && <span className="leading-5 font-bold italic p-1">/ { limit }</span>}
             </div>
         </SheetField>

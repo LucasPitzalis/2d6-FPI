@@ -1,13 +1,13 @@
-import { legacy_createStore as createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
-
+import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import reducer from '../reducers';
-
-const enhancer = devToolsEnhancer();
+import { composeWithDevTools } from '@redux-devtools/extension';
+import saveMiddleware from '../middlewares/save';
 
 const store = createStore(
     reducer,
-    enhancer,
+    composeWithDevTools(applyMiddleware(
+        saveMiddleware,
+    )),
 );
 
 store.subscribe(() => {

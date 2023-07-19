@@ -12,7 +12,7 @@ export default function Avatar() {
             {avatar === '' && <span>Pas d&apos;avatar</span>}
             {avatar !== '' && <img src={avatar} alt="avatar du personnage" />}
             <div className="hidden group-hover/edit:block absolute right-0 top-0">
-                <IconButton hidden background="white" size={15} handler={() => dispatch(handleModal("avatar"))} icon="edit" />
+                <IconButton hidden styles="bg-white" size={15} handler={() => dispatch(handleModal("avatar"))} icon="edit" />
             </div>
         </div>
     );

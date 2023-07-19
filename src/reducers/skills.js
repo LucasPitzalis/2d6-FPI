@@ -1,4 +1,5 @@
-import { EDIT_FIELD } from "../actions/app";
+import { CREATE_NEW_CHARACTER, EDIT_FIELD } from "../actions/app";
+import { LOAD_SHEET } from "../actions/save";
 import { ADD_NEW_SKILL, ADD_NEW_SPEC, ADD_SPEC_USE, DELETE_SKILL, DELETE_SPEC } from "../actions/skills";
 import { currentLevel } from "../utils/characterStats";
 import { removeIndex } from "../utils/functions";
@@ -27,6 +28,8 @@ const reducer = (state = initialState, action = {}) => {
         case ADD_NEW_SKILL: return handleAddNewSkill(state);
         case DELETE_SKILL: return removeIndex(state, action.index);
         case DELETE_SPEC: return handleDeleteSpec(state, action.skillIndex, action.specIndex);
+        case LOAD_SHEET: return {...action.sheet.skills};
+        case CREATE_NEW_CHARACTER: return [];
         default: return state;
     }
 };

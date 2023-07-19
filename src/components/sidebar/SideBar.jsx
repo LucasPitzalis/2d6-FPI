@@ -1,7 +1,9 @@
-import { Menu } from "lucide-react";
-import { Download, Upload, UserPlus } from "lucide-react";
+import { Download, Upload, UserPlus, Menu } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { handleModal } from "../../actions/app";
+import { exportSheet } from "../../actions/save";
 import routes from "../../utils/routes";
 import IconButton from "../buttons/IconButton";
 import SideBarButton from "./SideBarButton";
@@ -9,18 +11,7 @@ import SubMenu from "./SubMenu";
 
 export default function SideBar() {
     const [isOpen, setIsOpen] = useState(false);
-
-    // <script type="text/javascript">
-    // function dropdown() {
-    //     document.querySelector("#submenu").classNameList.toggle("hidden");
-    //     document.querySelector("#arrow").classNameList.toggle("rotate-0");
-    // }
-    // dropdown();
-
-    // function openSidebar() {
-    //     document.querySelector(".sidebar").classNameList.toggle("hidden");
-    // }
-    // </script>
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -41,7 +32,7 @@ export default function SideBar() {
                     </div>
                     <div className="my-2 bg-gray-600 h-[1px]"></div>
                 </div>
-                <SubMenu title="Fiche">
+                <SubMenu title="Fiche" defaultCollapsed>
                     {routes.map((route) => 
                         <NavLink
                             key={route.name}
@@ -53,9 +44,9 @@ export default function SideBar() {
                     )}
                 </SubMenu>
                 <SubMenu title={"Outils"}>
-                    <SideBarButton icon={<Upload />} text="Exporter" />
-                    <SideBarButton icon={<Download />} text="Importer" />
-                    <SideBarButton icon={<UserPlus />} text="Nouveau personnage" />
+                    <SideBarButton icon={<Upload />} text="Exporter" handler={() => dispatch(exportSheet())} />
+                    <SideBarButton icon={<Download />} text="Importer" handler={() => dispatch(handleModal("importSheet"))} />
+                    <SideBarButton icon={<UserPlus />} text="Nouveau personnage" handler={() => dispatch(handleModal("newSheet"))} />
                 </SubMenu>
             </div>
         </>

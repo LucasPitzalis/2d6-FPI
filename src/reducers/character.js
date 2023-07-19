@@ -1,37 +1,40 @@
 import { EDIT_EXPERIENCE, EDIT_ABILITIES } from "../actions/character";
-import { EDIT_FIELD } from "../actions/app";
+import { CREATE_NEW_CHARACTER, EDIT_FIELD } from "../actions/app";
+import { LOAD_SHEET } from "../actions/save";
+
+const newCharacter = {
+    name: '',
+    avatar: '',
+    age: '',
+    height: '',
+    weight: '',
+    job1: '',
+    job2: '',
+    difficulty1: '',
+    difficulty2: '',
+    order: '',
+    religion: '',
+    experience: 0,
+    physicalCondition: '',
+    physicalConsequences: '',
+    mentalCondition: '',
+    mentalConsequences: '',
+    abilities: {
+        str: 0,
+        dex: 0,
+        con: 0,
+        int: 0,
+        wis: 0,
+        cha: 0,
+    },
+    healthPoints: 0,
+    energyPoints: 0,
+    wantedIndex: 0,
+};
 
 const initialState = localStorage.getItem('character') 
     ? JSON.parse(localStorage.getItem('character')) 
-    : {
-        name: '',
-        avatar: '',
-        age: '',
-        height: '',
-        weight: '',
-        job1: '',
-        job2: '',
-        difficulty1: '',
-        difficulty2: '',
-        order: '',
-        religion: '',
-        experience: 0,
-        physicalCondition: '',
-        physicalConsequences: '',
-        mentalCondition: '',
-        mentalConsequences: '',
-        abilities: {
-            str: 0,
-            dex: 0,
-            con: 0,
-            int: 0,
-            wis: 0,
-            cha: 0,
-        },
-        healthPoints: 0,
-        energyPoints: 0,
-        wantedIndex: 0,
-    };
+    : newCharacter;
   
 const reducer = (state = initialState, action = {}) => {
     // Actions out of switch statement because they have additional conditions
@@ -44,6 +47,8 @@ const reducer = (state = initialState, action = {}) => {
             healthPoints: Math.min(action.abilities.con * 10, state.healthPoints),
             energyPoints: Math.min(action.abilities.wis * 10, state.energyPoints),
         };
+        case LOAD_SHEET: return {...action.sheet.character};
+        case CREATE_NEW_CHARACTER: return {...newCharacter};
         default: return state;
     }
 };

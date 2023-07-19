@@ -1,6 +1,13 @@
 // Action type
 export const HANDLE_MODAL = 'HANDLE_MODAL';
 export const EDIT_FIELD = 'EDIT_FIELD';
+export const CREATE_NEW_CHARACTER = 'CREATE_NEW_CHARACTER';
+
+export const createNewCharacter = () => {
+    return {
+        type: CREATE_NEW_CHARACTER,
+    }
+}
 
 // Action creator
 export const handleModal = (value) => {

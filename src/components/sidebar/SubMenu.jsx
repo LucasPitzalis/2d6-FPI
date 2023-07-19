@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 export default function SubMenu(props) {
-    const [isCollapsed, setCollapsed] = useState(false);
+    const [isCollapsed, setCollapsed] = useState(props.defaultCollapsed);
 
     return (
         <div className="ml-4">
@@ -30,4 +30,9 @@ export default function SubMenu(props) {
 SubMenu.propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.array.isRequired,
+    defaultCollapsed: PropTypes.bool,
 };
+
+SubMenu.defaultProps = {
+    defaultCollapsed: false,
+}
