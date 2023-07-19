@@ -5,6 +5,7 @@ import { currentLevel } from '../../utils/characterStats';
 import HoverableButton from '../buttons/HoverableButton';
 import SimpleButton from '../buttons/SimpleButton';
 import SectionTitle from '../SectionTitle';
+import Warning from '../ui-elements/Warning';
 import Skill from './Skill';
 
 export default function Skills() {
@@ -30,7 +31,8 @@ export default function Skills() {
                 {skills.length < currentLevel().skillPts &&
                     <div className="flex justify-left space-x-1 mt-2 items-center">
                         <HoverableButton icon="+" handler={() => dispatch(addNewSkill())} />
-                        <span>Ajouter une compétence - <span className="italic">{currentLevel().skillPts - skills.length} point(s) restant(s)</span></span>
+                        <span>Ajouter une compétence - <span className="italic font-bold">{currentLevel().skillPts - skills.length} point(s) restant(s)</span></span>
+                        <Warning />
                     </div>
                 }
             </div>

@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types';
 
-export default function Warning({ isRed }) {
+export default function Warning({ isRed, isFloat }) {
     return (
-        <span className={`font-bold text-white h-4 w-4 text-center rounded-full absolute top-0 right-0 text-xs ${isRed ? 'bg-red-700' : 'bg-amber-600'}`}>
+        <div className={`text-xs font-bold text-white text-center h-4 w-[17px] rounded-full ${isFloat ? 'absolute top-0 -right-1' : 'mx-1'} ${isRed ? 'bg-red-700' : 'bg-amber-600'}`}>
             !
-        </span>
+        </div>
     );
 }
 
 Warning.propTypes = {
     isRed: PropTypes.bool,
+    isFloat: PropTypes.bool,
 };
 
 Warning.defaultProps = {
     isRed: false,
+    isFloat: false,
 }

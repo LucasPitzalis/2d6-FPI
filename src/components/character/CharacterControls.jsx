@@ -12,7 +12,7 @@ export default function CharacterControls() {
         <div className="flex flex-wrap mt-1 justify-center space-x-2">
             <div className="relative">
                 <SimpleButton handler={() => dispatch(handleModal('editAbilities')) } text="Editer les caractéristiques" />
-                {abilityPointsLeft() !== 0 && <Warning isRed={abilityPointsLeft() < 0} />}
+                {abilityPointsLeft() !== 0 && <Warning isFloat isRed={abilityPointsLeft() < 0} />}
             </div>
             <SimpleButton handler={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
             <SimpleButton handler={() => dispatch(editField({name: 'character.healthPoints', value: maxHp()}))}  text="Soigner tous les PV" />
