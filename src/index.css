@@ -10,3 +10,11 @@
         @apply border border-gray-500 bg-gray-100;
     }
 }
+
+:root {
+    --toastify-color-dark: #111827;
+}
+
+.Toastify__toast {
+    font-weight: bold;
+}

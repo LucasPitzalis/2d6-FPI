@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { ToastContainer, Zoom } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import routes from "../utils/routes";
 import Footer from "./Footer";
 import Modal from "./modals/Modal";
@@ -8,6 +10,11 @@ import SideBar from "./sidebar/SideBar";
 
 function App() {
   const { modal } = useSelector((state) => state.app);
+  const characterName = useSelector((state) => state.character.name);
+
+  useEffect(() => {
+    document.title = 'Fiche 2d6' + (characterName !== '' ? ` : ${characterName}` : '');
+  }, [characterName]);
 
   return (
     <div className="bg-black h-full w-full min-h-screen min-w-screen text-sm flex items-center justify-between flex-col">
@@ -24,6 +31,12 @@ function App() {
         </div>
       </div>
       {/* <Footer /> */}
+      <ToastContainer
+        autoClose={3000}
+        transition={Zoom}
+        theme={"dark"}
+        hideProgressBar
+      />
     </div>
   )
 }

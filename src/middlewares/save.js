@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { EXPORT_SHEET, IMPORT_SHEET, loadSheet } from "../actions/save";
 
 const saveMiddleware = (store) => (next) => (action) => {
@@ -19,11 +20,10 @@ const saveMiddleware = (store) => (next) => (action) => {
             const writable = await handle.createWritable();
             await writable.write( sheet );
             writable.close();
-            // TODO info bubble réussite
+            toast.success("Exportation réussie !");
         }
         catch (error) {
-            // TODO info bubble echec
-            alert(error);
+            toast.error("Erreur lors de l'exportation");
         }
     }
 
@@ -34,10 +34,9 @@ const saveMiddleware = (store) => (next) => (action) => {
             const sheet = JSON.parse(await file.text());
 
             store.dispatch(loadSheet(sheet));
-            // TODO info bubble réussite
+            toast.success("Importation réussie !");
         } catch (error) {
-            // TODO info bubble echec
-            alert(error);
+            toast.error("Erreur lors de l'importation");
         }
     }
 
