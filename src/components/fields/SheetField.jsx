@@ -17,6 +17,5 @@ SheetField.propTypes = {
 
 SheetField.defaultProps = {
     isTitle: false,
-    styles: '',
     vertical: false,
 }

@@ -65,7 +65,13 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
 }
 
 LockedInput.propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            icon: PropTypes.object,
+        }),
+        PropTypes.string,
+    ]).isRequired,
     name: PropTypes.string.isRequired,
     htmlType: PropTypes.string,
     isTitle: PropTypes.bool,
@@ -77,10 +83,8 @@ LockedInput.propTypes = {
 }
 
 LockedInput.defaultProps = {
-    label: '',
     htmlType: 'text',
     isTitle: false,
-    styles: '',
     vertical: false,
     center: false,
     regex: /.*/,

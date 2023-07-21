@@ -13,7 +13,13 @@ export default function StaticField({ name, label, value, isTitle, styles, verti
 
 StaticField.propTypes = {
     name: PropTypes.string.isRequired,
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            icon: PropTypes.object,
+        }),
+        PropTypes.string,
+    ]).isRequired,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -25,7 +31,6 @@ StaticField.propTypes = {
 
 
 StaticField.defaultProps = {
-    label: '',
     isTitle: false,
     styles: '',
     vertical: false,

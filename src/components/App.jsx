@@ -13,7 +13,7 @@ function App() {
   const characterName = useSelector((state) => state.character.name);
 
   useEffect(() => {
-    document.title = 'Fiche Dice' + (characterName !== '' ? ` : ${characterName}` : '');
+    document.title = 'Fiche 2d6' + (characterName !== '' ? ` : ${characterName}` : '');
   }, [characterName]);
 
   return (

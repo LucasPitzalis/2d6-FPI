@@ -26,7 +26,13 @@ export default function DirectInput({name, htmlType, isTitle, styles, vertical, 
 }
 
 DirectInput.propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            icon: PropTypes.object,
+        }),
+        PropTypes.string,
+    ]).isRequired,
     name: PropTypes.string.isRequired,
     htmlType: PropTypes.string,
     isTitle: PropTypes.bool,
@@ -36,10 +42,8 @@ DirectInput.propTypes = {
 }
 
 DirectInput.defaultProps = {
-    label: '',
     htmlType: 'text',
     isTitle: false,
-    styles: '',
     vertical: false,
     limit: null,
 }
