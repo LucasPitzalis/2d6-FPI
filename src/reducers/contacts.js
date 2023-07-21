@@ -3,12 +3,15 @@ import { ADD_CONTACT, DELETE_CONTACT } from "../actions/contacts";
 import { LOAD_SHEET } from "../actions/save";
 import { removeIndex } from "../utils/functions";
 
+const newList = { 
+    relatives: [],
+    friends: [],
+    enemies: [],
+}
+
 const initialState = localStorage.getItem('contacts') 
     ? JSON.parse(localStorage.getItem('contacts')) 
-    : { relatives: [],
-        friends: [],
-        enemies: [],
-    };
+    : {...newList};
   
 const reducer = (state = initialState, action = {}) => {
     // Actions out of switch statement because they have additional conditions
@@ -23,7 +26,7 @@ const reducer = (state = initialState, action = {}) => {
         case DELETE_CONTACT: return {...state, [action.target.list]: removeIndex(state[action.target.list], action.target.index)};
         case ADD_CONTACT: return {...state, [action.list]: [...state[action.list], {name: '', function: '', aptitudes: '', conditions: ''}]};
         case LOAD_SHEET: return {...action.sheet.contacts};
-        case CREATE_NEW_CHARACTER: return [];
+        case CREATE_NEW_CHARACTER: return {...newList};
         default: return state;
     }
 };
