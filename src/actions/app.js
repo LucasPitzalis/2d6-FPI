@@ -18,6 +18,7 @@ export const handleModal = (value) => {
 }
 
 export const editField = (target) => {
+    console.log(target);
     const reducerIndex = target.name.indexOf(".");
 
     return {
