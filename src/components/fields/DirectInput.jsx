@@ -5,12 +5,12 @@ import { getProperty } from '../../utils/functions';
 import FieldLabel from './FieldLabel';
 import SheetField from './SheetField';
 
-export default function DirectInput({name, htmlType, isTitle, styles, vertical, label, limit}) {
+export default function DirectInput({name, htmlType, isTitle, styles, vertical, label, limit, regex}) {
     const dispatch = useDispatch();
     const stateValue = useSelector((state) => getProperty(state, name));
 
     const handleChange = (e) => {
-        if (htmlType === 'number' && limit !== null && e.target.value > limit) return;
+        if ((htmlType === 'number' && limit !== null && e.target.value > limit) || !regex.test(e.target.value)) return;
         dispatch(editField(e.target));
     };
 
@@ -39,6 +39,7 @@ DirectInput.propTypes = {
     styles: PropTypes.string,
     vertical: PropTypes.bool,
     limit: PropTypes.number,
+    regex: PropTypes.instanceOf(RegExp),
 }
 
 DirectInput.defaultProps = {
@@ -46,4 +47,5 @@ DirectInput.defaultProps = {
     isTitle: false,
     vertical: false,
     limit: null,
+    regex: /.*/,
 }

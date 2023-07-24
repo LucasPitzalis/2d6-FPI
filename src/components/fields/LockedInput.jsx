@@ -10,7 +10,7 @@ import IconButton from '../buttons/IconButton';
 import { getProperty } from '../../utils/functions';
 
 
-export default function LockedInput({ label, name, htmlType, isTitle, styles, vertical, regex, center, multiline, prefix }) {
+export default function LockedInput({ label, name, htmlType, isTitle, styles, vertical, regex, center, multiline, prefix, saveAction }) {
     const [locked, changeLocked] = useState(true);
     const dispatch = useDispatch();
     const storedValue = useSelector((state) => getProperty(state, name));
@@ -20,7 +20,8 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
 
     const handleSave = (e) => {
         e.preventDefault();
-        dispatch(editField({name: name, value: htmlType === "number" ? Number(currentValue) : currentValue}));
+        if (!saveAction) dispatch(editField({name: name, value: htmlType === "number" ? Number(currentValue) : currentValue}));
+        else saveAction;
         changeLocked(true);
     };
 
@@ -48,10 +49,10 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
     return (
         <SheetField {...{isTitle, styles, vertical}} >
             {label && getLabel()}
-            <form className="group/edit relative flex flex-1 justify-center items-center space-x-1">
+            <form className="group/edit relative flex flex-1 h-full justify-center items-center space-x-1">
                 {prefix && <span className='ml-2'>{ prefix }</span>}
                 {multiline ? <textarea {...inputProps} rows={multiline} /> : <input {...inputProps} />}
-                <div className="absolute right-0 hidden group-hover/edit:block">
+                <div className="absolute right-0 top-0 hidden group-hover/edit:block">
                     {locked && <IconButton hidden size={15} handler={() => changeLocked(false)} icon="edit" />}
                     {!locked &&
                         <div>
@@ -85,6 +86,7 @@ LockedInput.propTypes = {
         PropTypes.number,
     ]),
     prefix: PropTypes.string,
+    saveAction: PropTypes.func,
 }
 
 LockedInput.defaultProps = {

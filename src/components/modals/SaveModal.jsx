@@ -27,7 +27,7 @@ export default function SaveModal({ action }) {
             <p className="italic text-xs">Pour enregistrer votre personnage, allez dans <span className="font-bold">Outils &gt; Exporter</span></p>
             <div className="flex justify-center space-x-4">
                 <SimpleButton btnType="submit" text={"Confirmer"} />
-                <SimpleButton btnType="button" text={"Annuler"} />
+                <SimpleButton btnType="button" text={"Annuler"} handler={() => dispatch(handleModal(false))} />
             </div>
         </form>
     );

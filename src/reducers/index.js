@@ -5,6 +5,7 @@ import contactsReducer from './contacts';
 import skillsReducer from './skills';
 import itemsReducer from './items';
 import appReducer from './app';
+import letterReducer from './letter';
 
 const rootReducer = combineReducers({
     app: appReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     skills: skillsReducer,
     items: itemsReducer,
     contacts: contactsReducer,
+    letter: letterReducer,
 });
 
 export default rootReducer;

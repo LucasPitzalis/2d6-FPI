@@ -6,7 +6,9 @@ const saveMiddleware = (store) => (next) => (action) => {
         const sheet = new Blob([JSON.stringify({
             character: store.getState().character,
             skills: store.getState().skills,
+            items: store.getState().items,
             contacts: store.getState().contacts,
+            letter: store.getState().letter,
         }, null, 2)], { type: 'application/json' });
         
         try {

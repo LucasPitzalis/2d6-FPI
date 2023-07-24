@@ -8,6 +8,9 @@ const initialState = localStorage.getItem('skills')
     ? JSON.parse(localStorage.getItem('skills')) 
     : [];
 
+const newSkill = {name: '', description: '', ability1: 'str', ability2: 'con', specs: []};
+const newSpec = {name: '', bonus: 0, uses: 0};
+
 const reducer = (state = initialState, action = {}) => {
     // Actions out of switch statement because they have additional conditions
     if (action.type === EDIT_FIELD && action.reducer === 'skills') {
@@ -28,7 +31,7 @@ const reducer = (state = initialState, action = {}) => {
         case ADD_NEW_SKILL: return handleAddNewSkill(state);
         case DELETE_SKILL: return removeIndex(state, action.index);
         case DELETE_SPEC: return handleDeleteSpec(state, action.skillIndex, action.specIndex);
-        case LOAD_SHEET: return {...action.sheet.skills};
+        case LOAD_SHEET: return [...action.sheet.skills];
         case CREATE_NEW_CHARACTER: return [];
         default: return state;
     }
@@ -49,7 +52,7 @@ function handleAddNewSpec(state, skillIndex) {
     if (state[skillIndex].specs.length >= 2) return state;
 
     const newState = [...state];
-    newState[skillIndex].specs.push({name: '', bonus: 0, uses: 0});
+    newState[skillIndex].specs.push({...newSpec});
     return newState;
 }
 
@@ -57,7 +60,7 @@ function handleAddNewSkill(state) {
     if (state.length >= currentLevel().skillPts) return state;
 
     const newState = [...state];
-    newState.push({name: '', description: '', ability1: 'str', ability2: 'con', specs: []});
+    newState.push({...newSkill});
     return newState;
 }
 

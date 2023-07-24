@@ -26,7 +26,7 @@ export default function Skill({ skill, index, deleteMode }) {
                     <StaticField name={`skills.${index}.bonus`} value={abilities[skill.ability1] + abilities[skill.ability2]} styles={'w-1/3'}/>
                 </div>
                 <div className="flex space-x-0.5">
-                    <LockedInput label="info" name={`skills.${index}.description`} multiline styles={'w-2/3'} />
+                    <LockedInput label="info" name={`skills.${index}.description`} multiline={2} styles={'w-2/3'} />
                     <SheetField vertical styles={'w-1/3 justify-center'}>
                         <span className="text-xs">Carac. associées</span>
                         <div className="flex space-x-0.5 items-center">

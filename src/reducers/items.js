@@ -9,7 +9,7 @@ const initialState = localStorage.getItem('items')
 
 const newItem = { name: '', type: '', 
     bonusDesc: '', bonusValue: 0, malusDesc: '', malusValue: 0, 
-    resistance: '', dmg: '', armor: '',
+    resistance: '', dmg: '', armor: 0,
     reserve: '', reloadPrice: '', kilometers: '',
     quality: "1", price: '', weight: '',
     matType: '', matQty: '',
@@ -25,13 +25,19 @@ const reducer = (state = initialState, action = {}) => {
     }
 
     switch (action.type) {
-        case ADD_NEW_ITEM: return [...state, newItem];
+        case ADD_NEW_ITEM: return handleAddNewItem(state);
         case DELETE_ITEM: return removeIndex(state, action.index);
-        case LOAD_SHEET: return {...action.sheet.items};
+        case LOAD_SHEET: return [...action.sheet.items];
         case CREATE_NEW_CHARACTER: return [];
         default: return state;
     }
 };
+
+function handleAddNewItem(state) {
+    const newState = [...state];
+    newState.push({...newItem});
+    return newState;
+}
 
 export default reducer;
 

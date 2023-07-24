@@ -11,7 +11,7 @@ import DirectInput from "../fields/DirectInput";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
-
+    
     return (
         <DeletableItem 
             handler={() => dispatch(deleteItem(index))}
@@ -22,12 +22,12 @@ export default function Item({ item, index, deleteMode }) {
                 <LockedInput label="nom" name={`items.${index}.name`} />
                 <LockedInput label="type" name={`items.${index}.type`} />
                 <div className="flex space-x-0.5">
-                    <LockedInput multiline={3} label="bonus" name={`items.${index}.bonusDesc`} styles={'w-5/6'} />
-                    <LockedInput prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-1/6'} />
+                    <LockedInput multiline={3} label="bonus" name={`items.${index}.bonusDesc`} styles={'w-full'} />
+                    <LockedInput prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-14'} regex={/^[0-9]\d*$/} />
                 </div>
                 <div className="flex space-x-0.5">
-                    <LockedInput multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-5/6'} />
-                    <LockedInput prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-1/6'} />
+                    <LockedInput multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-full'} />
+                    <LockedInput prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-14'} regex={/^[0-9]\d*$/} />
                 </div>
                 <SheetField>
                     <FieldLabel name={`items.${index}.quality`} label="qualité" />
@@ -38,7 +38,7 @@ export default function Item({ item, index, deleteMode }) {
             </div>
             <div className="flex flex-col justify-between space-y-0.5 w-full lg:w-2/5 relative">
                 <div className="flex space-x-0.5">
-                    <DirectInput label="pr" name={`items.${index}.resistance`} htmlType="number" styles={'w-1/3'}/>
+                    <DirectInput label="pr" name={`items.${index}.resistance`} htmlType="number" styles={'w-1/3'} regex={/^[0-9]\d*$/} />
                     <LockedInput label="réservoir" name={`items.${index}.reserve`} styles={'w-2/3'}/>
                 </div>
                 <div className="flex space-x-0.5">
@@ -68,7 +68,7 @@ Item.propTypes = {
         malusValue: PropTypes.number.isRequired, 
         resistance: PropTypes.string.isRequired, 
         dmg: PropTypes.string.isRequired,
-        armor: PropTypes.string.isRequired,
+        armor: PropTypes.number.isRequired,
         reserve: PropTypes.string.isRequired, 
         reloadPrice: PropTypes.string.isRequired, 
         kilometers: PropTypes.string.isRequired,
