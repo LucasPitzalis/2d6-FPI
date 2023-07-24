@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import routes from "../utils/routes";
-import Footer from "./Footer";
+import routes from "../config/routes";
 import Modal from "./modals/Modal";
 import SideBar from "./sidebar/SideBar";
 
@@ -30,7 +29,6 @@ function App() {
           </main>
         </div>
       </div>
-      {/* <Footer /> */}
       <ToastContainer
         autoClose={3000}
         transition={Zoom}

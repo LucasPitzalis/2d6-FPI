@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { handleModal } from "../../actions/app";
 import SimpleButton from "../buttons/SimpleButton";
 import Warning from "../ui-elements/Warning";
-import { abilityPointsLeft, maxEp, maxHp } from "../../utils/characterStats";
+import { abilityPointsLeft, maxEp, maxHp } from "../../features/characterStats";
 import { editField } from "../../actions/app";
 
 export default function CharacterControls() {

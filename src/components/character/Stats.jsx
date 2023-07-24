@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import StaticField from "../fields/StaticField";
-import { atk, def, wil, maxHp, maxEp } from "../../utils/characterStats";
+import { atk, def, wil, maxHp, maxEp } from "../../features/characterStats";
 import DirectInput from "../fields/DirectInput";
 import { getAbilityNameFr } from "../../utils/functions";
 import AttackIcon from "../../icons/AttackIcon";

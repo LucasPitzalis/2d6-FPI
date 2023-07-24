@@ -5,7 +5,7 @@ import SectionTitle from "../SectionTitle";
 import LockedInput from "../fields/LockedInput";
 import Stats from "./Stats";
 import StaticField from "../fields/StaticField";
-import { maxWeight } from "../../utils/characterStats";
+import { maxWeight } from "../../features/characterStats";
 import WantedIndex from "./WantedIndex";
 import CharacterControls from "./CharacterControls";
 import Avatar from "./Avatar";

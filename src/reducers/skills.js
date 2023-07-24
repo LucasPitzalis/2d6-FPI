@@ -1,7 +1,7 @@
 import { CREATE_NEW_CHARACTER, EDIT_FIELD } from "../actions/app";
 import { LOAD_SHEET } from "../actions/save";
 import { ADD_NEW_SKILL, ADD_NEW_SPEC, ADD_SPEC_USE, DELETE_SKILL, DELETE_SPEC } from "../actions/skills";
-import { currentLevel } from "../utils/characterStats";
+import { currentLevel } from "../features/characterStats";
 import { removeIndex } from "../utils/functions";
 
 const initialState = localStorage.getItem('skills') 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editAbilities } from "../../actions/character";
-import { abilityPointsLeft } from "../../utils/characterStats";
+import { abilityPointsLeft } from "../../features/characterStats";
 import { getAbilityNameFr, sumProperties } from "../../utils/functions";
 import HoverableButton from "../buttons/HoverableButton";
 import SimpleButton from "../buttons/SimpleButton";

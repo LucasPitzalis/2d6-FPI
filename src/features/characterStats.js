@@ -1,6 +1,6 @@
 import store from "../store";
-import { sumProperties } from "./functions";
-import { getLevel } from "./levels";
+import { sumProperties } from "../utils/functions";
+import { getLevel } from "../data/levels";
 
 let currentState = store.getState();
 

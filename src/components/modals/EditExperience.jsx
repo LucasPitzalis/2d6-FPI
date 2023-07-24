@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editExperience } from "../../actions/character";
-import { currentLevel } from "../../utils/characterStats";
-import { getLevel, minXp } from "../../utils/levels";
+import { currentLevel } from "../../features/characterStats";
+import { getLevel, minXp } from "../../data/levels";
 import SimpleButton from "../buttons/SimpleButton";
 
 export default function EditExperience() {

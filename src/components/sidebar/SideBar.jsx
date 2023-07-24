@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { handleModal } from "../../actions/app";
 import { exportSheet } from "../../actions/save";
-import routes from "../../utils/routes";
+import routes from "../../config/routes";
 import IconButton from "../buttons/IconButton";
 import SideBarButton from "./SideBarButton";
 import SubMenu from "./SubMenu";

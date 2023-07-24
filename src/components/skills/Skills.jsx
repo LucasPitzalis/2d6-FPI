@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewSkill } from '../../actions/skills';
-import { currentLevel } from '../../utils/characterStats';
+import { currentLevel } from '../../features/characterStats';
 import HoverableButton from '../buttons/HoverableButton';
 import SimpleButton from '../buttons/SimpleButton';
 import SectionTitle from '../SectionTitle';

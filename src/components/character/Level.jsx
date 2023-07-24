@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { currentLevel } from "../../utils/characterStats";
+import { currentLevel } from "../../features/characterStats";
 import StaticField from "../fields/StaticField";
 
 export default function Level() {

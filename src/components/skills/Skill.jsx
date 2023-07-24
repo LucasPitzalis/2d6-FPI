@@ -3,7 +3,7 @@ import LockedInput from "../fields/LockedInput";
 import StaticField from "../fields/StaticField";
 import PropTypes from 'prop-types';
 import SheetField from "../fields/SheetField";
-import { abilityStrings } from "../../utils/characterStats";
+import { abilityStrings } from "../../features/characterStats";
 import { getAbilityNameFr } from "../../utils/functions";
 import { editField } from "../../actions/app";
 import Specs from "./Specs";
