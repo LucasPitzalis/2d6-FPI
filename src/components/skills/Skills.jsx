@@ -40,7 +40,7 @@ export default function Skills() {
                 <div className="relative">
                     <SimpleButton
                         handler={() => setDeleteMode(!deleteMode)} 
-                        text={`${deleteMode ? 'Désactiver' : 'Activer'} le mode suppression`} 
+                        text={deleteMode ? 'Désactiver le mode suppression' : 'Supprimer un élément'} 
                         background={deleteMode ? 'bg-red-500' : 'bg-teal-800'}
                     />
                 </div>

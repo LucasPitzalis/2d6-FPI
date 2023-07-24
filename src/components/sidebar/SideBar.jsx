@@ -23,7 +23,7 @@ export default function SideBar() {
                     <Menu />
                 </button>
             }
-            <div className={`z-10 fixed top-0 bottom-0 lg:static lg:h-screen p-2 w-[250px] overflow-y-auto text-center bg-gray-900 text-white font-bold duration-300
+            <div className={`z-10 fixed top-0 bottom-0 lg:h-screen p-2 w-[250px] overflow-y-auto text-center bg-gray-900 text-white font-bold duration-300
                 ${!isOpen ? '-translate-x-[250px] lg:translate-x-0' : ''}`}>
                 <div className="text-xl">
                     <div className="p-2.5 mt-1 flex items-center relative ">
