@@ -25,7 +25,7 @@ export default function CoverLetter() {
                 <LetterField text="Mon pire échec est" name="failure" />
                 <LetterField text="Mon plus grand talent est" name="talent" />
                 <LetterField text="Ma plus grande faiblesse est" name="weakness" />
-                {/* <p className="mt-2">Signature : <span>{name}</span></p> */}
+                <p className="mt-2">Signé : <span className="italic font-bold">{name}</span></p>
             </SheetField>
         </>
     );

@@ -21,6 +21,29 @@ export const levelsTable = [
     {level: 20, nextLevelXp: 'Niveau max !', abilityPts: 56, skillPts: 28},
 ];
 
+export const petLevelsTable = [
+    {level: 1, nextLevelXp: 230,},
+    {level: 2, nextLevelXp: 700,},
+    {level: 3, nextLevelXp: 1600,},
+    {level: 4, nextLevelXp: 4300,},
+    {level: 5, nextLevelXp: 5800,},
+    {level: 6, nextLevelXp: 8160,},
+    {level: 7, nextLevelXp: 10500,},
+    {level: 8, nextLevelXp: 12800,},
+    {level: 9, nextLevelXp: 18400,},
+    {level: 10, nextLevelXp: 21200,},
+    {level: 11, nextLevelXp: 24000,},
+    {level: 12, nextLevelXp: 26800,},
+    {level: 13, nextLevelXp: 29600,},
+    {level: 14, nextLevelXp: 37100,},
+    {level: 15, nextLevelXp: 40800,},
+    {level: 16, nextLevelXp: 44500,},
+    {level: 17, nextLevelXp: 48300,},
+    {level: 18, nextLevelXp: 52900,},
+    {level: 19, nextLevelXp: 62300,},
+    {level: 20, nextLevelXp: 'Niveau max !',},
+];
+
 export function getLevel(xp) {
     if (xp >= levelsTable.slice(-2)[0].nextLevelXp) return levelsTable.slice(-1)[0];
     return levelsTable.find((level) => level.nextLevelXp > xp);
