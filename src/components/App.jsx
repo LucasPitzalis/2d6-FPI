@@ -1,15 +1,27 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { setMobile } from "../actions/app";
 import routes from "../config/routes";
 import Modal from "./modals/Modal";
 import SideBar from "./sidebar/SideBar";
 
 function App() {
+  const dispatch = useDispatch();
   const { modal } = useSelector((state) => state.app);
   const characterName = useSelector((state) => state.character.name);
+
+  const updateMedia = () => {
+    dispatch(setMobile(window.innerWidth < 640))
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
 
   useEffect(() => {
     document.title = 'Fiche 2d6' + (characterName !== '' ? ` : ${characterName}` : '');

@@ -2,6 +2,14 @@
 export const HANDLE_MODAL = 'HANDLE_MODAL';
 export const EDIT_FIELD = 'EDIT_FIELD';
 export const CREATE_NEW_CHARACTER = 'CREATE_NEW_CHARACTER';
+export const SET_MOBILE = 'SET_MOBILE';
+
+export const setMobile = (value) => {
+    return {
+        type: SET_MOBILE,
+        value: value,
+    }
+}
 
 export const createNewCharacter = () => {
     return {

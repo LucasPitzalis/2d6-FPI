@@ -12,6 +12,7 @@ export default function EditAbilities() {
     const dispatch = useDispatch();
 
     const { abilities } = useSelector((state) => state.character);
+    const { isMobile } = useSelector((state) => state.app);
 
     const [abilityChange, setAbilityChange] = useState({str:0, dex:0, con:0, int:0, wis:0, cha:0});
     // const [unlimitedPts, toggleUnlimitedPts] = useState(false);
@@ -48,9 +49,9 @@ export default function EditAbilities() {
     }
 
     return (
-        <form className="flex flex-col space-y-2 align-start p-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col space-y-2 align-start mt-2 sm:p-2" onSubmit={handleSubmit}>
             <p>Points restants : <span className={`font-bold ${remainingPoints < 0 && 'text-red-600'}`}>{remainingPoints}</span></p>
-            <table className="table-auto text-center mt-2 border-separate border-spacing-x-10 border-spacing-y-2">
+            <table className="table-auto text-center mt-2 border-separate border-spacing-x-3 sm:border-spacing-x-10 border-spacing-y-2">
                 <thead>
                     <tr>
                         <th>Carac.</th>
@@ -71,8 +72,8 @@ export default function EditAbilities() {
                         </td>
                         <td>{abilities[ability] + abilityChange[ability]}</td>
                         <td>
-                            <HoverableButton icon="-" handler={() => handleMinus(ability)}/>
-                            <HoverableButton icon="+" handler={() => setAbilityChange({...abilityChange, [ability]: abilityChange[ability] + 1})} />
+                            <HoverableButton icon="-" size={isMobile ? 15 : 20} handler={() => handleMinus(ability)}/>
+                            <HoverableButton icon="+" size={isMobile ? 15 : 20} handler={() => setAbilityChange({...abilityChange, [ability]: abilityChange[ability] + 1})} />
                         </td>
                     </tr>
                 )})}
