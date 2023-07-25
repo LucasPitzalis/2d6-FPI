@@ -5,11 +5,11 @@ import Items from "../components/items/Items";
 import Skills from "../components/skills/Skills";
 
 const routes = [
-    {name: 'main', nameFr: 'Fiche principale', path: '/', element: Character},
-    {name: 'skills', nameFr: 'Compétences', path: '/competences', element: Skills},
-    {name: 'contacts', nameFr: 'Contacts', path: '/contacts', element: Contacts},
-    {name: 'items', nameFr: 'Objets', path: '/objets', element: Items},
-    {name: 'coverLetter', nameFr: 'Lettre de motivation', path: '/lettre-de-motivation', element: CoverLetter},
+    {name: 'main', nameFr: 'Fiche principale', path: '/', element: Character, sheet: true},
+    {name: 'skills', nameFr: 'Compétences', path: '/competences', element: Skills, sheet: true},
+    {name: 'contacts', nameFr: 'Contacts', path: '/contacts', element: Contacts, sheet: true},
+    {name: 'items', nameFr: 'Objets', path: '/objets', element: Items, sheet: true},
+    {name: 'coverLetter', nameFr: 'Lettre de motivation', path: '/lettre-de-motivation', element: CoverLetter, sheet: true},
 ]
 
 export default routes;

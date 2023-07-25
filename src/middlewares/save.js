@@ -1,5 +1,5 @@
-import { toast } from "react-toastify";
-import { EXPORT_SHEET, IMPORT_SHEET, loadSheet } from "../actions/save";
+import { toast } from 'react-toastify';
+import { EXPORT_SHEET, IMPORT_SHEET, loadSheet } from '../actions/save';
 
 const saveMiddleware = (store) => (next) => (action) => {
     async function saveSheet() {
@@ -22,10 +22,11 @@ const saveMiddleware = (store) => (next) => (action) => {
             const writable = await handle.createWritable();
             await writable.write( sheet );
             writable.close();
-            toast.success("Exportation réussie !");
+            toast.success('Exportation réussie !');
         }
         catch (error) {
-            toast.error("Erreur lors de l'exportation");
+            if (error.name === 'AbortError') return;
+            toast.error('Erreur lors de l\'exportation');
         }
     }
 
@@ -36,9 +37,10 @@ const saveMiddleware = (store) => (next) => (action) => {
             const sheet = JSON.parse(await file.text());
 
             store.dispatch(loadSheet(sheet));
-            toast.success("Importation réussie !");
+            toast.success('Importation réussie !');
         } catch (error) {
-            toast.error("Erreur lors de l'importation");
+            if (error.name === 'AbortError') return;
+            toast.error('Erreur lors de l\'importation');
         }
     }
 

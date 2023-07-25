@@ -33,8 +33,9 @@ export default function SideBar() {
                     <div className="my-2 bg-gray-600 h-[1px]"></div>
                 </div>
                 <SubMenu title="Fiche" defaultCollapsed>
-                    {routes.map((route) => 
+                    {routes.filter((route) => route.sheet).map((route) => 
                         <NavLink
+                            onClick={() => setIsOpen(false)}
                             key={route.name}
                             to={route.path}
                             className={({ isActive }) => (isActive ? 'italic' : '')}
