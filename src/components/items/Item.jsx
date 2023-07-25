@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LockedInput from "../fields/LockedInput";
 import PropTypes from 'prop-types';
 import SheetField from "../fields/SheetField";
@@ -11,7 +11,8 @@ import DirectInput from "../fields/DirectInput";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
-    
+    const { quality } = useSelector((state) => state.items[index]);
+
     return (
         <DeletableItem 
             handler={() => dispatch(deleteItem(index))}
@@ -23,11 +24,11 @@ export default function Item({ item, index, deleteMode }) {
                 <LockedInput label="type" name={`items.${index}.type`} />
                 <div className="flex space-x-0.5">
                     <LockedInput multiline={3} label="bonus" name={`items.${index}.bonusDesc`} styles={'w-full'} />
-                    <LockedInput prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-14'} regex={/^[0-9]\d*$/} />
+                    <LockedInput prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-14'} regex={new RegExp(`^[0-${quality}]d*$`)} />
                 </div>
                 <div className="flex space-x-0.5">
                     <LockedInput multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-full'} />
-                    <LockedInput prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-14'} regex={/^[0-9]\d*$/} />
+                    <LockedInput prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-14'} regex={new RegExp(`^[0-${quality}]d*$`)} />
                 </div>
                 <SheetField>
                     <FieldLabel name={`items.${index}.quality`} label="qualité" />
