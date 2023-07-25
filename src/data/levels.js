@@ -22,34 +22,36 @@ export const levelsTable = [
 ];
 
 export const petLevelsTable = [
-    {level: 1, nextLevelXp: 230,},
-    {level: 2, nextLevelXp: 700,},
-    {level: 3, nextLevelXp: 1600,},
-    {level: 4, nextLevelXp: 4300,},
-    {level: 5, nextLevelXp: 5800,},
-    {level: 6, nextLevelXp: 8160,},
-    {level: 7, nextLevelXp: 10500,},
-    {level: 8, nextLevelXp: 12800,},
-    {level: 9, nextLevelXp: 18400,},
-    {level: 10, nextLevelXp: 21200,},
-    {level: 11, nextLevelXp: 24000,},
-    {level: 12, nextLevelXp: 26800,},
-    {level: 13, nextLevelXp: 29600,},
-    {level: 14, nextLevelXp: 37100,},
-    {level: 15, nextLevelXp: 40800,},
-    {level: 16, nextLevelXp: 44500,},
-    {level: 17, nextLevelXp: 48300,},
-    {level: 18, nextLevelXp: 52900,},
-    {level: 19, nextLevelXp: 62300,},
-    {level: 20, nextLevelXp: 'Niveau max !',},
+    {level: 1, nextLevelXp: 230, hpEpDice: 4, skillDice: 2, hpEpLimit: 21, skillLimit: 7 },
+    {level: 2, nextLevelXp: 700, hpEpDice: 2, skillDice: 2, hpEpLimit: 28, skillLimit: 14 },
+    {level: 3, nextLevelXp: 1600, hpEpDice: 2, skillDice: 2, hpEpLimit: 35, skillLimit: 21 },
+    {level: 4, nextLevelXp: 4300, hpEpDice: 2, skillDice: 2, hpEpLimit: 42, skillLimit: 21},
+    {level: 5, nextLevelXp: 5800, hpEpDice: 4, skillDice: 4, hpEpLimit: 56, skillLimit: 28},
+    {level: 6, nextLevelXp: 8160, hpEpDice: 2, skillDice: 2, hpEpLimit: 63, skillLimit: 28},
+    {level: 7, nextLevelXp: 10500, hpEpDice: 2, skillDice: 2, hpEpLimit: 70, skillLimit: 35},
+    {level: 8, nextLevelXp: 12800, hpEpDice: 2, skillDice: 2, hpEpLimit: 77, skillLimit: 35},
+    {level: 9, nextLevelXp: 18400, hpEpDice: 2, skillDice: 2, hpEpLimit: 84, skillLimit: 35},
+    {level: 10, nextLevelXp: 21200, hpEpDice: 4, skillDice: 4, hpEpLimit: 98, skillLimit: 42},
+    {level: 11, nextLevelXp: 24000, hpEpDice: 2, skillDice: 2, hpEpLimit: 105, skillLimit: 42},
+    {level: 12, nextLevelXp: 26800, hpEpDice: 2, skillDice: 2, hpEpLimit: 112, skillLimit: 42},
+    {level: 13, nextLevelXp: 29600, hpEpDice: 2, skillDice: 2, hpEpLimit: 119, skillLimit: 49},
+    {level: 14, nextLevelXp: 37100, hpEpDice: 2, skillDice: 2, hpEpLimit: 126, skillLimit: 49},
+    {level: 15, nextLevelXp: 40800, hpEpDice: 4, skillDice: 4, hpEpLimit: 140, skillLimit: 56},
+    {level: 16, nextLevelXp: 44500, hpEpDice: 2, skillDice: 2, hpEpLimit: 147, skillLimit: 56},
+    {level: 17, nextLevelXp: 48300, hpEpDice: 2, skillDice: 2, hpEpLimit: 154, skillLimit: 63},
+    {level: 18, nextLevelXp: 52900, hpEpDice: 2, skillDice: 2, hpEpLimit: 161, skillLimit: 70},
+    {level: 19, nextLevelXp: 62300, hpEpDice: 2, skillDice: 2, hpEpLimit: 168, skillLimit: 70},
+    {level: 20, nextLevelXp: 'Niveau max !', hpEpDice: 6, skillDice: 6, hpEpLimit: 210, skillLimit: 77},
 ];
 
-export function getLevel(xp) {
-    if (xp >= levelsTable.slice(-2)[0].nextLevelXp) return levelsTable.slice(-1)[0];
-    return levelsTable.find((level) => level.nextLevelXp > xp);
+export function getLevel(xp, petIndex = false) {
+    const table = petIndex ? petLevelsTable : levelsTable;
+    if (xp >= table.slice(-2)[0].nextLevelXp) return table.slice(-1)[0];
+    return table.find((level) => level.nextLevelXp > xp);
 }
 
-export function minXp(level) {
+export function minXp(level, petIndex = false) {
+    const table = petIndex ? petLevelsTable : levelsTable;
     if (level === 1) return 0;
-    return levelsTable[levelsTable.findIndex((levelObject) => levelObject.level === level) - 1].nextLevelXp;
+    return table[table.findIndex((levelObject) => levelObject.level === level) - 1].nextLevelXp;
 }
