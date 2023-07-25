@@ -34,6 +34,10 @@ export default function LockedInput({ label, name, htmlType, isTitle, styles, ve
         if (locked === false) ref.current.focus();
     }, [locked]);
 
+    useEffect(() => {
+        setCurrentValue(storedValue);
+    }, [storedValue])
+
     function getLabel() {
         if (label !== '') return <FieldLabel {...{label, name, vertical, styles: multiline ? 'h-full' : ''}} />;
     }

@@ -11,7 +11,13 @@ import DirectInput from "../fields/DirectInput";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
-    const { quality } = useSelector((state) => state.items[index]);
+    const { quality, bonusValue, malusValue } = useSelector((state) => state.items[index]);
+
+    const handleQualityChange = (e) => {
+        if(e.target.value < bonusValue) dispatch(editField({name: `items.${index}.bonusValue`, value: Number(e.target.value)}));
+        if(e.target.value < malusValue) dispatch(editField({name: `items.${index}.malusValue`, value: Number(e.target.value)}));
+        dispatch(editField(e.target));
+    }
 
     return (
         <DeletableItem 
@@ -32,7 +38,7 @@ export default function Item({ item, index, deleteMode }) {
                 </div>
                 <SheetField>
                     <FieldLabel name={`items.${index}.quality`} label="qualité" />
-                    <select name={`items.${index}.quality`} value={item.quality} onChange={(e) => dispatch(editField(e.target))}>
+                    <select name={`items.${index}.quality`} value={item.quality} onChange={handleQualityChange}>
                         {qualityTable.map((quality) => <option key={quality.value} value={quality.value}>{quality.nameFr}</option>)}
                     </select>
                 </SheetField>
