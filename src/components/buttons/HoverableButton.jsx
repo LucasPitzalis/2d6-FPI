@@ -29,5 +29,5 @@ HoverableButton.propTypes = {
 };
 
 HoverableButton.defaultProps = {
-    size: 15,
+    size: 20,
 }

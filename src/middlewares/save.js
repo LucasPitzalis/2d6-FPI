@@ -7,6 +7,7 @@ const saveMiddleware = (store) => (next) => (action) => {
             character: store.getState().character,
             skills: store.getState().skills,
             items: store.getState().items,
+            pets: store.getState().pets,
             contacts: store.getState().contacts,
             letter: store.getState().letter,
         }, null, 2)], { type: 'application/json' });

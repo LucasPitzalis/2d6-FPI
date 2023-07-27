@@ -19,7 +19,7 @@ export default function Specs({ specs, skillIndex, deleteMode }) {
                     <DeletableItem 
                         deleteMode={deleteMode} 
                         handler={() => dispatch(deleteSpec({skillIndex: skillIndex, specIndex: i}))} 
-                        styles="w-full md:w-1/2 lg:w-full space-x-0.5" key={i}
+                        styles="w-full sm:w-1/2 md:w-full space-x-0.5" key={i}
                     >
                         <LockedInput name={`skills.${skillIndex}.specs.${i}.name`} styles="w-2/3"></LockedInput>
                         <div className="w-1/3">
@@ -37,7 +37,7 @@ export default function Specs({ specs, skillIndex, deleteMode }) {
             }
         }
         if (specs.length < 2) render.push(
-            <div className="md:w-1/2 lg:w-full flex flex-1 space-x-0.5 items-center md:justify-center lg:justify-start" key="addSpec">
+            <div className="sm:w-1/2 md:w-full flex flex-1 space-x-0.5 items-center sm:justify-center md:justify-start" key="addSpec">
                 <HoverableButton icon="+" handler={() => dispatch(addNewSpec(skillIndex))}/>
                 <span>Ajouter une particularité</span>
             </div>
@@ -56,7 +56,7 @@ export default function Specs({ specs, skillIndex, deleteMode }) {
     }
 
     return (
-        <div className="flex flex-col md:flex-row md:space-x-1 lg:flex-col lg:space-x-0 space-y-0.5 lg:w-2/5">
+        <div className="flex flex-col sm:flex-row sm:space-x-1 md:flex-col md:space-x-0 space-y-0.5 md:w-2/5">
             {renderSpecs()}
         </div>
     );

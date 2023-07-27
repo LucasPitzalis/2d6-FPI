@@ -18,9 +18,9 @@ export default function Skill({ skill, index, deleteMode }) {
         <DeletableItem 
             handler={() => dispatch(deleteSkill(index))}
             deleteMode={deleteMode}
-            styles="flex-col py-2 lg:flex-row space-y-0.5 lg:space-y-0 lg:space-x-0.5 border-t border-gray-400"
+            styles="flex-col py-2 md:flex-row space-y-0.5 md:space-y-0 md:space-x-0.5 border-t border-gray-400"
         >
-            <div className="flex flex-col justify-between space-y-0.5 w-full lg:w-3/5 relative">
+            <div className="flex flex-col justify-between space-y-0.5 w-full md:w-3/5 relative">
                 <div className="flex space-x-0.5">
                     <LockedInput label="nom" name={`skills.${index}.name`} styles={'w-2/3'} />
                     <StaticField name={`skills.${index}.bonus`} value={abilities[skill.ability1] + abilities[skill.ability2]} styles={'w-1/3'}/>
