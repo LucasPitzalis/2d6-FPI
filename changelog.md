@@ -1,5 +1,11 @@
 # Notes de changement
 
+## v0.3
+
+- Amélioration des transitions d'affichage en fonction de la taille d'écran
+- Correction d'un bug lors de l'ajout d'une spécificité créant des spécificités sur plusieurs compétences
+- Correction de l'affichage de l'avatar
+
 ## v0.2
 
 - Correction de l'erreur 404 lors du rafraichissement de la page
