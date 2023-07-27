@@ -11,15 +11,14 @@ const initialState = localStorage.getItem('pets')
 const newPet = { 
     name: '', experience: 0, hpEpPts: 0, skillPts: 0,
     maxHp: 0, maxEp: 0, healthPts: 0, energyPts: 0,
-    skills: {
-        atk: {desc: '', value: 0},
-        def: {desc: '', value: 0},
-        wil: {desc: '', value: 0},
-        spe: {desc: '', value: 0},
-    },
+    atkDesc: '', atkValue: 0, 
+    defDesc: '', defValue: 0,
+    wilDesc: '', wilValue: 0,
+    speDesc: '', speValue: 0,
     talent: '',
     weakness: '',
     desc: '',
+    avatar: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -28,7 +27,6 @@ const reducer = (state = initialState, action = {}) => {
         const newState = [...state];
         const [index, property] = action.property.split('.');
         newState[index] = {...newState[index], [property]: action.value};
-        console.log(newState)
         return newState;
     }
 
