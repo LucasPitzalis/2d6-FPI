@@ -8,5 +8,5 @@ store.subscribe(() => {
 });
 
 export function currentPetLevel(index) {
-    return getLevel(currentState.character.experience, index);
+    return getLevel(currentState.pets[index].experience, true);
 }

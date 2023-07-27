@@ -23,9 +23,9 @@ export default function Item({ item, index, deleteMode }) {
         <DeletableItem 
             handler={() => dispatch(deleteItem(index))}
             deleteMode={deleteMode}
-            styles="flex-col py-2 lg:flex-row space-y-0.5 lg:space-y-0 lg:space-x-1 border-t border-gray-400"
+            styles="flex-col py-2 sm:flex-row space-y-0.5 sm:space-y-0 sm:space-x-1 border-t border-gray-400"
         >
-            <div className="flex flex-col justify-between space-y-0.5 w-full lg:w-3/5 relative">
+            <div className="flex flex-col justify-between space-y-0.5 w-full sm:w-3/5">
                 <LockedInput label="nom" name={`items.${index}.name`} />
                 <LockedInput label="type" name={`items.${index}.type`} />
                 <div className="flex space-x-0.5">
@@ -43,7 +43,7 @@ export default function Item({ item, index, deleteMode }) {
                     </select>
                 </SheetField>
             </div>
-            <div className="flex flex-col justify-between space-y-0.5 w-full lg:w-2/5 relative">
+            <div className="flex flex-col justify-between space-y-0.5 w-full sm:w-2/5">
                 <div className="flex space-x-0.5">
                     <DirectInput label="pr" name={`items.${index}.resistance`} htmlType="number" styles={'w-1/3'} regex={/^[0-9]\d*$/} />
                     <LockedInput label="réservoir" name={`items.${index}.reserve`} styles={'w-2/3'}/>

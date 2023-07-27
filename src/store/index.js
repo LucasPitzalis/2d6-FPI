@@ -15,6 +15,7 @@ store.subscribe(() => {
     localStorage.setItem('contacts', JSON.stringify(store.getState().contacts));
     localStorage.setItem('skills', JSON.stringify(store.getState().skills));
     localStorage.setItem('items', JSON.stringify(store.getState().items));
+    localStorage.setItem('pets', JSON.stringify(store.getState().pets));
     localStorage.setItem('letter', JSON.stringify(store.getState().letter));
 });
 

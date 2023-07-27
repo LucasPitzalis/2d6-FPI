@@ -12,7 +12,7 @@ export default function LetterField({text, name}) {
     };
 
     return (
-        <div className="flex justify-center w-full flex-col lg:flex-row lg:items-center">
+        <div className="flex justify-center w-full flex-col sm:flex-row sm:items-center">
             <span>{text}</span>
             <input 
                 className="p-1 flex-1 font-bold" placeholder="..."

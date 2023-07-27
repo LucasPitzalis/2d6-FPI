@@ -44,8 +44,8 @@ export const petLevelsTable = [
     {level: 20, nextLevelXp: 'Niveau max !', hpEpDice: 6, skillDice: 6, hpEpLimit: 210, skillLimit: 77},
 ];
 
-export function getLevel(xp, petIndex = false) {
-    const table = petIndex ? petLevelsTable : levelsTable;
+export function getLevel(xp, isPet = false) {
+    const table = isPet ? petLevelsTable : levelsTable;
     if (xp >= table.slice(-2)[0].nextLevelXp) return table.slice(-1)[0];
     return table.find((level) => level.nextLevelXp > xp);
 }
