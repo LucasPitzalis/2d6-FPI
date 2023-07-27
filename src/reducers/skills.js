@@ -52,12 +52,15 @@ function handleAddNewSpec(state, skillIndex) {
     if (state[skillIndex].specs.length >= 2) return state;
 
     const newState = [...state];
-    newState[skillIndex].specs.push({...newSpec});
+    const newSpecs = [...state[skillIndex].specs];
+    newSpecs.push({...newSpec});
+    newState[skillIndex].specs = newSpecs;
     return newState;
 }
 
 function handleAddNewSkill(state) {
     if (state.length >= currentLevel().skillPts) return state;
+    console.log(newSkill);
 
     const newState = [...state];
     newState.push({...newSkill});
