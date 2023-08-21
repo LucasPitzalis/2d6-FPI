@@ -1,12 +1,12 @@
 import { Download, Upload, UserPlus, Menu } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { handleModal } from "../../actions/app";
 import { exportSheet } from "../../actions/save";
 import routes from "../../config/routes";
 import IconButton from "../buttons/IconButton";
 import SideBarButton from "./SideBarButton";
+import SideBarLink from "./SieBarLink";
 import SubMenu from "./SubMenu";
 
 export default function SideBar() {
@@ -34,14 +34,7 @@ export default function SideBar() {
                 </div>
                 <SubMenu title="Fiche" defaultCollapsed>
                     {routes.filter((route) => route.sheet).map((route) => 
-                        <NavLink
-                            onClick={() => setIsOpen(false)}
-                            key={route.name}
-                            to={route.path}
-                            className={({ isActive }) => (isActive ? 'italic' : '')}
-                        >
-                            <span className="p-2.5 flex items-center justify-start text-left rounded-md duration-300 cursor-pointer hover:bg-blue-600">{route.nameFr}</span>
-                        </NavLink>
+                        <SideBarLink onClickHandler={() => setIsOpen(false)} title={route.nameFr} route={route.path} key={route.name}/>
                     )}
                 </SubMenu>
                 <SubMenu title={"Outils"} defaultCollapsed>

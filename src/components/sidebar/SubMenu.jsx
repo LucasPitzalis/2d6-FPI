@@ -12,7 +12,7 @@ export default function SubMenu(props) {
                 onClick={() => setCollapsed(!isCollapsed)}
             >
                 <div className="flex justify-between w-full items-center">
-                    <h3 className="text-lg">{props.title}</h3>
+                    <h3 className="text-lg">{props.title}<span>{props.icon}</span></h3>
                     <span className={`duration-300 ${!isCollapsed ? 'rotate-180' : ''}`}>
                         <ChevronUp />
                     </span> 
@@ -30,6 +30,7 @@ export default function SubMenu(props) {
 SubMenu.propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.array.isRequired,
+    icon: PropTypes.element,
     defaultCollapsed: PropTypes.bool,
 };
 
