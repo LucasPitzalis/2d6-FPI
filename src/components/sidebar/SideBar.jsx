@@ -6,7 +6,7 @@ import { exportSheet } from "../../actions/save";
 import routes from "../../config/routes";
 import IconButton from "../buttons/IconButton";
 import SideBarButton from "./SideBarButton";
-import SideBarLink from "./SieBarLink";
+import SideBarLink from "./SideBarLink";
 import SubMenu from "./SubMenu";
 
 export default function SideBar() {
@@ -42,6 +42,9 @@ export default function SideBar() {
                     <SideBarButton icon={<Download />} text="Importer" handler={() => dispatch(handleModal("importSheet"))} />
                     <SideBarButton icon={<UserPlus />} text="Nouveau personnage" handler={() => dispatch(handleModal("newSheet"))} />
                 </SubMenu>
+                <h3 className="ml-4 text-lg">
+                    <SideBarLink onClickHandler={() => setIsOpen(false)} title="À propos" route="/a-propos" />
+                </h3>   
             </div>
         </>
     );
