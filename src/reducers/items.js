@@ -9,7 +9,7 @@ const initialState = localStorage.getItem('items')
 
 const newItem = { name: '', type: '', 
     bonusDesc: '', bonusValue: 0, malusDesc: '', malusValue: 0, 
-    resistance: '', dmg: '', armor: 0,
+    resistance: 0, dmg: '', armor: 0,
     reserve: '', reloadPrice: '', kilometers: '',
     quality: "1", price: '', weight: '',
     matType: '', matQty: '',

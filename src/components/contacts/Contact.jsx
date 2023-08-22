@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../actions/contacts';
 import DeletableItem from '../DeletableItem';
-import LockedInput from '../fields/LockedInput';
+import InputField from '../fields/InputField';
 
 export default function Contact({ contact, type, index, deleteMode }) {
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function Contact({ contact, type, index, deleteMode }) {
         {
             Object.keys(contact)
                 .filter((key) => key !== 'id')
-                .map((key) => <LockedInput key={key} name={`contacts.${type}.${index}.${key}`} styles={'w-1/4'} multiline={2} />)
+                .map((key) => <InputField key={key} name={`contacts.${type}.${index}.${key}`} styles={'w-1/4'} multiline={2} />)
         }
         </DeletableItem>
     );
