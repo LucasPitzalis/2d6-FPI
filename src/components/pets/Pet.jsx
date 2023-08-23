@@ -13,6 +13,7 @@ import SpecialIcon from "../../icons/SpecialIcon";
 
 export default function Pet({ index, deleteMode }) {
     const dispatch = useDispatch();
+    const pet = useSelector((state) => state.pets[index])
 
     return (
         <DeletableItem 
@@ -28,7 +29,7 @@ export default function Pet({ index, deleteMode }) {
                     </div>
                     <div className="flex space-x-0.5">
                         <StaticField label="niv." name={`pets.${index}.level`} value={currentPetLevel(index).level} styles={'w-40'} />
-                        <InputField label="xp acquis" name={`pets.${index}.experience`} center styles={'w-full'} htmlType="number" />
+                        <StaticField label="xp acquis" name={`pets.${index}.experience`} center styles={'w-full'} value={pet.experience} />
                         <StaticField label="xp prochain" name={`pets.${index}.xpToReach`} value={currentPetLevel(index).nextLevelXp} styles={'w-full'} />
                     </div>
                 </div>

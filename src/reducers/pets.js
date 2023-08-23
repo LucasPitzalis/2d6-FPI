@@ -1,5 +1,5 @@
 import { CREATE_NEW_CHARACTER, EDIT_FIELD } from "../actions/app";
-import { ADD_NEW_PET } from "../actions/pets";
+import { ADD_NEW_PET, EDIT_PET_EXPERIENCE } from "../actions/pets";
 
 import { LOAD_SHEET } from "../actions/save";
 import { removeIndex } from "../utils/functions";
@@ -32,6 +32,7 @@ const reducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
         case ADD_NEW_PET: return handleAddNewPet(state);
+        case EDIT_PET_EXPERIENCE: return handleEditPetExperience(state, action.petIndex, action.experience)
         case LOAD_SHEET: return [...action.sheet.items];
         case CREATE_NEW_CHARACTER: return [];
         default: return state;
@@ -41,6 +42,14 @@ const reducer = (state = initialState, action = {}) => {
 function handleAddNewPet(state) {
     const newState = [...state];
     newState.push({...newPet});
+    return newState;
+}
+
+function handleEditPetExperience(state, petIndex, experience) {
+    const newState = [...state];
+    newState[petIndex].experience = experience;
+
+    // TODO rolls ?
     return newState;
 }
 

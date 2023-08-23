@@ -47,13 +47,13 @@ export const petLevelsTable = [
 ];
 
 export function getLevel(xp, isPet = false) {
-    const table = !isPet ? levelsTable : petLevelsTable;
+    const table = !properFalse(isPet) ? levelsTable : petLevelsTable;
     if (xp >= table.slice(-2)[0].nextLevelXp) return table.slice(-1)[0];
     return table.find((level) => level.nextLevelXp > xp);
 }
 
 export function minXp(level, petIndex = false) {
-    const table = properFalse(petIndex) ? levelsTable : petLevelsTable;
+    const table = !properFalse(petIndex) ? levelsTable : petLevelsTable;
     if (level === 1) return 0;
     return table[table.findIndex((levelObject) => levelObject.level === level) - 1].nextLevelXp;
 }
