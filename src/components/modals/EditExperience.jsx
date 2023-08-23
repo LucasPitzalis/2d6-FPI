@@ -30,8 +30,6 @@ export default function EditExperience() {
         setMethod(e.target.value);
     }
 
-    console.log(petIndex)
-
     const isDisabled = () => {
         switch (method) {
             case "addXp": return xpToAdd < 1;
@@ -62,7 +60,7 @@ export default function EditExperience() {
             {isPet &&
                 <>
                     <h4 className="font-bold">Sélection du familier :</h4>
-                    <select onChange={(e) => setPetIndex(e.target.value)} >
+                    <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
                         {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
                     </select>
                 </>
