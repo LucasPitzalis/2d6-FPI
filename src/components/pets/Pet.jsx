@@ -11,7 +11,7 @@ import DefenseIcon from "../../icons/DefenseIcon";
 import WillIcon from "../../icons/WillIcon";
 import SpecialIcon from "../../icons/SpecialIcon";
 
-export default function Pet({ pet, index, deleteMode }) {
+export default function Pet({ index, deleteMode }) {
     const dispatch = useDispatch();
 
     return (

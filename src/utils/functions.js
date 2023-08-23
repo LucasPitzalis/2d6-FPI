@@ -32,6 +32,10 @@ export function sumProperties(object) {
     return Object.keys(object).reduce((acc, property) => acc + object[property], 0);
 }
 
+export function properFalse(value) {
+    return value !== false;
+}
+
 export function generateId(array) {
     const usedIDs = new Set(array.map(obj => obj.id));
   

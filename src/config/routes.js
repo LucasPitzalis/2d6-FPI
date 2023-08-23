@@ -11,7 +11,7 @@ const routes = [
     {name: 'skills', nameFr: 'Compétences', path: '/competences', element: Skills, sheet: true},
     {name: 'contacts', nameFr: 'Contacts', path: '/contacts', element: Contacts, sheet: true},
     {name: 'items', nameFr: 'Objets', path: '/objets', element: Items, sheet: true},
-    {name: 'pets', nameFr: 'Familiers', path: '/familier', element: Pets, sheet: true},
+    {name: 'pets', nameFr: 'Familiers', path: '/familiers', element: Pets, sheet: true},
     {name: 'coverLetter', nameFr: 'Lettre de motivation', path: '/lettre-de-motivation', element: CoverLetter, sheet: true},
     {name: 'about', nameFr: 'À propos', path: '/a-propos', element: About, sheet: false}
 ]

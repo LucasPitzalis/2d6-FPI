@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewItem } from '../../actions/items';
 import HoverableButton from '../buttons/HoverableButton';
@@ -19,6 +19,10 @@ export default function Items() {
         return renderedList;
     }
 
+    useEffect(() => {
+        if(items.length === 0 && deleteMode) setDeleteMode(false);
+    }, [items.length, deleteMode]);
+
     return (
         <>
             <div className="flex flex-col">
@@ -32,6 +36,7 @@ export default function Items() {
                 <div className="flex flex-wrap mt-1 justify-center space-x-2">
                 <div className="relative">
                     <SimpleButton
+                        isDisabled={items.length === 0}
                         handler={() => setDeleteMode(!deleteMode)} 
                         text={deleteMode ? 'Désactiver le mode suppression' : 'Supprimer un élément'} 
                         background={deleteMode ? 'bg-red-500' : 'bg-teal-800'}

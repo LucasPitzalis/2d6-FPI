@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { handleModal } from "../../actions/app";
 import { addNewPet } from "../../actions/pets";
 import HoverableButton from "../buttons/HoverableButton";
 import SimpleButton from "../buttons/SimpleButton";
@@ -19,24 +20,28 @@ export default function Pets() {
         return renderedList;
     }
 
+    useEffect(() => {
+        if(pets.length === 0 && deleteMode) setDeleteMode(false);
+    }, [pets.length, deleteMode]);
+
     return (
         <>
             <div className="flex flex-col">
-                <SectionTitle title="Familiers et PNJ" />
+                <SectionTitle title="Familiers" />
                 {renderList()}
-                <div className="flex justify-left space-x-1 mt-2 items-center">
+                <div className="flex justify-left space-x-1 mt-2 pets-center">
                     <HoverableButton icon="+" handler={() => dispatch(addNewPet())} />
-                    <span>Ajouter un familier/PNJ</span>
+                    <span>Ajouter un familier</span>
                 </div>
             </div>
-                <div className="flex flex-wrap mt-1 justify-center space-x-2">
-                <div className="relative">
-                    <SimpleButton
-                        handler={() => setDeleteMode(!deleteMode)} 
-                        text={deleteMode ? 'Désactiver le mode suppression' : 'Supprimer un élément'} 
-                        background={deleteMode ? 'bg-red-500' : 'bg-teal-800'}
-                    />
-                </div>
+            <div className="flex flex-wrap mt-1 justify-center space-x-2">
+                <SimpleButton
+                    isDisabled={pets.length === 0}
+                    handler={() => setDeleteMode(!deleteMode)} 
+                    text={deleteMode ? 'Désactiver le mode suppression' : 'Supprimer un élément'} 
+                    background={deleteMode ? 'bg-red-500' : 'bg-teal-800'}
+                />
+                <SimpleButton isDisabled={pets.length === 0} handler={() => dispatch(handleModal('editExperience')) } text="Editer l'expérience" />
             </div>
         </>
     );

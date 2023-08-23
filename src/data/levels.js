@@ -1,3 +1,5 @@
+import { properFalse } from "../utils/functions";
+
 export const levelsTable = [
     {level: 1, nextLevelXp: 700, abilityPts: 12, skillPts: 4},
     {level: 2, nextLevelXp: 2100, abilityPts: 14, skillPts: 5},
@@ -45,13 +47,13 @@ export const petLevelsTable = [
 ];
 
 export function getLevel(xp, isPet = false) {
-    const table = isPet ? petLevelsTable : levelsTable;
+    const table = !isPet ? levelsTable : petLevelsTable;
     if (xp >= table.slice(-2)[0].nextLevelXp) return table.slice(-1)[0];
     return table.find((level) => level.nextLevelXp > xp);
 }
 
 export function minXp(level, petIndex = false) {
-    const table = petIndex ? petLevelsTable : levelsTable;
+    const table = properFalse(petIndex) ? levelsTable : petLevelsTable;
     if (level === 1) return 0;
     return table[table.findIndex((levelObject) => levelObject.level === level) - 1].nextLevelXp;
 }
