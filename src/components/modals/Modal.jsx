@@ -8,6 +8,7 @@ import EditExperience from './EditExperience';
 import IconButton from '../buttons/IconButton';
 import AvatarModal from './AvatarModal';
 import SaveModal from './SaveModal';
+import EditPetRolls from './EditPetRolls';
 
 export default function Modal() {
     const { modal } = useSelector((state) => state.app);
@@ -21,11 +22,15 @@ export default function Modal() {
         switch (modal) {
             case 'editAbilities': 
                 setModalContent(<EditAbilities />);
-                setModalTitle('Modifier les caractéristiques')
+                setModalTitle('Modifier les caractéristiques');
                 break;
             case 'editExperience':
                 setModalContent(<EditExperience />);
-                setModalTitle('Modifier l\'expérience')
+                setModalTitle('Modifier l\'expérience');
+                break;
+            case 'editPetRolls':
+                setModalContent(<EditPetRolls />);
+                setModalTitle('Jets de niveaux des familiers');
                 break;
             case 'avatar':
                 setModalContent(<AvatarModal />);

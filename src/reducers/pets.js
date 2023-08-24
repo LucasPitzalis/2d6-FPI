@@ -19,6 +19,7 @@ const newPet = {
     weakness: '',
     desc: '',
     avatar: '',
+    levelRolls: [],
     isUnfolded: true,
 };
 
