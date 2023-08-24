@@ -1,9 +1,18 @@
 import { ChevronUp } from 'lucide-react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 export default function SubMenu(props) {
     const [isCollapsed, setCollapsed] = useState(props.defaultCollapsed);
+
+    const contentRef = useRef(null);
+    const [contentHeight, setContentHeight] = useState(0);
+
+    // set contentHeight after first render to make sure contentRef is initialized (not null)
+    useEffect(() => {
+        setContentHeight(contentRef.current.scrollHeight);
+    }, [contentRef]);
 
     return (
         <div className="ml-4">
@@ -19,7 +28,8 @@ export default function SubMenu(props) {
                 </div>
             </div>
             <div
-                className={`ml-4 ${!isCollapsed ? 'hidden' : ''}`}
+                className={`ml-4 ${!isCollapsed ? 'max-h-0' : `max-h-[${contentHeight}px]`} transition-all duration-400 ease-in-out overflow-hidden`}
+                ref={contentRef}
             >
                 {props.children}
             </div>

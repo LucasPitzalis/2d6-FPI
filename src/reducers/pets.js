@@ -19,6 +19,7 @@ const newPet = {
     weakness: '',
     desc: '',
     avatar: '',
+    isUnfolded: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
