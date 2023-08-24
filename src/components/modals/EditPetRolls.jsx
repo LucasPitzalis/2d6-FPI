@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getLevel } from "../../data/levels";
+import { getLevel, petLevelsTable } from "../../data/levels";
+import { currentPetLevel } from "../../features/petStats";
 import { rollDice } from "../../utils/functions";
 import SimpleButton from "../buttons/SimpleButton";
 
@@ -10,7 +11,7 @@ export default function EditPetRolls() {
     const pets = useSelector((state) => state.pets);
     const [rolls, setRolls] = useState(pets[petIndex].levelRolls);
 
-    const pendingRolls = (pet) => getLevel(pet.experience, true).level - pet.levelRolls.length;
+    const pendingRolls = (pet) => getLevel(pet.experience, true).level - rolls.length;
 
     useEffect(() => setRolls(pets[petIndex].levelRolls), [petIndex])
 
@@ -21,7 +22,8 @@ export default function EditPetRolls() {
     function rollPendingLevels() {
         const newRolls = [...rolls];
         for(let i = 1; i <= pendingRolls(pets[petIndex]); i++) {
-            newRolls.push({hpEp: rollDice(), skillPts: rollDice()})
+            const currentLevel = currentPetLevel(petIndex).level + i - pendingRolls(pets[petIndex]);
+            newRolls.push({hpEp: rollDice(petLevelsTable[currentLevel - 1].hpEpDice), skillPts: rollDice(petLevelsTable[currentLevel - 1].skillDice)})
         }
         setRolls(newRolls);
     }
@@ -34,14 +36,18 @@ export default function EditPetRolls() {
                     {pets.map((pet, index) => 
                         <option key={index} value={index}>
                             {`n°${index + 1} : ${pet.name}`}
-                            {pendingRolls(pet) && ` (${pendingRolls(pet)} niv. en attente)`}
+                            {pendingRolls(pet) !== 0 && ` (${pendingRolls(pet)} niv. en attente)`}
                         </option>
                     )}
                 </select>
             </div>
-            <div className="flex flex-wrap flex-col justify-center space-x-2">
-                <SimpleButton text={"Lancer les dés"} handler={rollPendingLevels} />
-                {rolls.length !== 0 && rolls.map((roll, index) => <span key={`level${index + 1}`}>{`Niv. ${index + 1} : Pts de PV/PE : ${roll.hpEp} - Pts de compétences : ${roll.skillPts}`}</span>)}
+            <div className="flex flex-wrap flex-col justify-center items-center space-x-2">
+                <SimpleButton text={"Lancer les dés"} handler={rollPendingLevels} isDisabled={!pendingRolls(pets[petIndex])} />
+                {rolls.length !== 0 && rolls.map((roll, index) => 
+                    <span key={`level${index + 1}`}>
+                        {`Niv. ${index + 1} : Pts de PV/PE : ${roll.hpEp} - Pts de compétences : ${roll.skillPts}`}
+                    </span>
+                )}
             </div>
         </form>
     );
