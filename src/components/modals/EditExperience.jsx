@@ -58,12 +58,12 @@ export default function EditExperience() {
     return (
         <form className="flex flex-col space-y-1 p-2" onSubmit={handleSubmit}>
             {isPet &&
-                <>
+                <div className="relative border-b border-gray-400 pb-2 flex flex-col justify-between space-y-1">
                     <h4 className="font-bold">Sélection du familier :</h4>
                     <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
                         {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
                     </select>
-                </>
+                </div>
             }
             <h4 className="font-bold">Choix de la méthode :</h4>
             <div>

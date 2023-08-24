@@ -50,3 +50,10 @@ export function removeIndex(array, index) {
     return [...array.slice(0, index), ...array.slice(index + 1)];
 }
   
+export function rollDice(diceAmount = 2, diceSize = 6) {
+    let result = 0;
+    for(let i = 1; i <= diceAmount; i++) {
+        result += Math.ceil(Math.random()* diceSize);
+    }
+    return result;
+}

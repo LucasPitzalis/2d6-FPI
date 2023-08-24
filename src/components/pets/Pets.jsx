@@ -35,7 +35,7 @@ export default function Pets() {
             <div className="flex flex-col">
                 <SectionTitle title="Familiers" />
                 {renderList()}
-                <div className="flex justify-left space-x-1 mt-2 pets-center">
+                <div className="flex justify-left space-x-1 mt-2 items-center">
                     <HoverableButton icon="+" handler={() => dispatch(addNewPet())} />
                     <span>Ajouter un familier</span>
                 </div>
