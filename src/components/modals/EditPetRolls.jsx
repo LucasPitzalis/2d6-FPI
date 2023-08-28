@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { handleModal } from "../../actions/app";
+import { editPetRolls } from "../../actions/pets";
 import { getLevel, petLevelsTable } from "../../data/levels";
 import { currentPetLevel } from "../../features/petStats";
 import { rollDice } from "../../utils/functions";
 import SimpleButton from "../buttons/SimpleButton";
 
 export default function EditPetRolls() {
+    const dispatch = useDispatch();
+
     const [petIndex, setPetIndex] = useState(0);
 
     const pets = useSelector((state) => state.pets);
@@ -17,6 +22,8 @@ export default function EditPetRolls() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(editPetRolls(rolls, petIndex));
+        dispatch(handleModal(false));
     }
 
     function rollPendingLevels() {
@@ -38,7 +45,7 @@ export default function EditPetRolls() {
     }
 
     return (
-        <form className="flex flex-col p-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col p-2 pb-0" onSubmit={handleSubmit}>
             <div className="relative border-b border-gray-400 pb-2 flex flex-col justify-between space-y-1">
                 <h4 className="font-bold">Sélection du familier :</h4>
                 <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
@@ -78,6 +85,11 @@ export default function EditPetRolls() {
                     )}
                 </div>
             </div>
+            {rolls.length !== 0 && 
+                <div className="flex justify-center mt-1">
+                    <SimpleButton btnType="submit" text={"Enregistrer"} />
+                </div>
+            }
         </form>
     );
 }

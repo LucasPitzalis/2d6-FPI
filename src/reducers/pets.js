@@ -1,7 +1,8 @@
 import { CREATE_NEW_CHARACTER, EDIT_FIELD } from "../actions/app";
-import { ADD_NEW_PET, DELETE_PET, EDIT_PET_EXPERIENCE } from "../actions/pets";
+import { ADD_NEW_PET, DELETE_PET, EDIT_PET_EXPERIENCE, EDIT_PET_ROLLS } from "../actions/pets";
 
 import { LOAD_SHEET } from "../actions/save";
+import { getLevel } from "../data/levels";
 import { removeIndex } from "../utils/functions";
 
 const initialState = localStorage.getItem('pets') 
@@ -36,6 +37,7 @@ const reducer = (state = initialState, action = {}) => {
         case ADD_NEW_PET: return handleAddNewPet(state);
         case DELETE_PET: return removeIndex(state, action.index);
         case EDIT_PET_EXPERIENCE: return handleEditPetExperience(state, action.petIndex, action.experience);
+        case EDIT_PET_ROLLS: return handleEditPetRolls(state, action.petIndex, action.rolls);
         case LOAD_SHEET: return [...action.sheet.items];
         case CREATE_NEW_CHARACTER: return [];
         default: return state;
@@ -52,7 +54,17 @@ function handleEditPetExperience(state, petIndex, experience) {
     const newState = [...state];
     newState[petIndex].experience = experience;
 
-    // TODO rolls ?
+    if(getLevel(experience, true).level < state[petIndex].levelRolls.length) {
+        newState[petIndex].levelRolls = state[petIndex].levelRolls.slice(0, getLevel(experience, true).level);
+    }
+
+    return newState;
+}
+
+function handleEditPetRolls(state, petIndex, rolls) {
+    const newState = [...state];
+    newState[petIndex].levelRolls = rolls;
+
     return newState;
 }
 
