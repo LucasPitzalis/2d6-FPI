@@ -58,7 +58,7 @@ export default function EditPetRolls() {
                             <div className="min-w-[40px] flex justify-center items-center font-bold flex-nowrap">{`Niv. ${index + 1} :`}</div>
                             <div className="flex flex-wrap justify-center items-center gap-y-1 gap-x-2">
                                 <div className="flex flex-nowrap justify-center items-center">
-                                    <span>Pts PV/PE</span>
+                                    <span>Pts PV/PE <span className="text-xs">({petLevelsTable[index].hpEpDice}d6)</span></span>
                                     <input 
                                         className="ml-1 w-12 text-center border border-black rounded disabled:inactive" 
                                         type="number" name={`${index}.hpEp`} step="1" 
@@ -66,7 +66,7 @@ export default function EditPetRolls() {
                                     />
                                 </div>
                                 <div className="flex flex-nowrap justify-center items-center">
-                                    <span>Pts comp.</span>
+                                    <span>Pts comp. <span className="text-xs">({petLevelsTable[index].skillDice}d6)</span></span>
                                     <input 
                                         className="ml-1 w-12 text-center border border-black rounded disabled:inactive" 
                                         type="number" name={`${index}.skill`} step="1" 
