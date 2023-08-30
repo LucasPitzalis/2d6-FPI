@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editAbilities } from "../../actions/character";
 import { abilityPointsLeft } from "../../features/characterStats";

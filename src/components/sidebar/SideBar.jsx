@@ -32,12 +32,12 @@ export default function SideBar() {
                     </div>
                     <div className="my-2 bg-gray-600 h-[1px]"></div>
                 </div>
-                <SubMenu title="Fiche" defaultCollapsed>
+                <SubMenu title="Fiche" defaultOpen>
                     {routes.filter((route) => route.sheet).map((route) => 
                         <SideBarLink onClickHandler={() => setIsOpen(false)} title={route.nameFr} route={route.path} key={route.name}/>
                     )}
                 </SubMenu>
-                <SubMenu title={"Outils"} defaultCollapsed>
+                <SubMenu title={"Outils"} defaultOpen>
                     <SideBarButton icon={<Upload />} text="Exporter" handler={() => dispatch(exportSheet())} />
                     <SideBarButton icon={<Download />} text="Importer" handler={() => dispatch(handleModal("importSheet"))} />
                     <SideBarButton icon={<UserPlus />} text="Nouveau personnage" handler={() => dispatch(handleModal("newSheet"))} />
