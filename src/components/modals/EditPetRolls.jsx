@@ -40,7 +40,7 @@ export default function EditPetRolls() {
         const diceAmount = petLevelsTable[index][`${property}Dice`];
         if(e.target.value > diceAmount * 6 || e.target.value < diceAmount) return;
         const newRolls = [...rolls];
-        newRolls[index] = {...rolls[index], [property]: e.target.value};
+        newRolls[index] = {...rolls[index], [property]: Number(e.target.value)};
         setRolls(newRolls);
     }
 
@@ -59,37 +59,47 @@ export default function EditPetRolls() {
             </div>
             <div className="flex flex-wrap flex-col justify-center items-center">
                 <SimpleButton text={"Lancer les dés"} handler={rollPendingLevels} isDisabled={currentPetLevel(petIndex).level === rolls.length} />
-                <div className="flex flex-col justify-center items-center mt-1 [&>*:not(:last-child)]:pb-1 [&>*:not(:last-child)]:border-b [&>*:not(:last-child)]:border-gray-400">
-                    {rolls.length !== 0 && rolls.map((roll, index) => 
-                        <div key={`level${index + 1}`} className="flex space-x-2 pt-1">
-                            <div className="min-w-[40px] flex justify-center items-center font-bold flex-nowrap">{`Niv. ${index + 1} :`}</div>
-                            <div className="flex flex-wrap justify-center items-center gap-y-1 gap-x-2">
-                                <div className="flex flex-nowrap justify-center items-center">
-                                    <span>Pts PV/PE <span className="text-xs">({petLevelsTable[index].hpEpDice}d6)</span></span>
+                <table className="mt-1 w-full border-spacing-x-3 border-spacing-y-2 text-center">
+                    <thead>
+                        <tr className="border-b border-gray-400">
+                            <th>Niv.</th>
+                            <th>Pts de PV/PE</th>
+                            <th>Pts de comp.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rolls.length !== 0 && rolls.map((roll, index) => (
+                            <tr key={`level${index + 1}`} className="border-b border-gray-400">
+                                <td>{index + 1}</td>
+                                <td>
+                                    <span className="text-xs">{petLevelsTable[index].hpEpDice}d6 :</span>
                                     <input 
                                         className="ml-1 w-12 text-center border border-black rounded disabled:inactive" 
                                         type="number" name={`${index}.hpEp`} step="1" 
                                         value={roll.hpEp} onChange={updateRoll}
                                     />
-                                </div>
-                                <div className="flex flex-nowrap justify-center items-center">
-                                    <span>Pts comp. <span className="text-xs">({petLevelsTable[index].skillDice}d6)</span></span>
+                                </td>
+                                <td>
+                                    <span className="text-xs">{petLevelsTable[index].hpEpDice}d6 :</span>
                                     <input 
                                         className="ml-1 w-12 text-center border border-black rounded disabled:inactive" 
                                         type="number" name={`${index}.skill`} step="1" 
                                         value={roll.skill} onChange={updateRoll}
                                     />
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                                </td>
+                            </tr>
+                        ))}
+                        <tr className="font-bold">
+                            <td>Total</td>
+                            <td>{rolls.reduce((sum, roll) => sum + Number(roll.hpEp), 0)}</td>
+                            <td>{rolls.reduce((sum, roll) => sum + Number(roll.skill), 0)}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            {rolls.length !== 0 && 
-                <div className="flex justify-center mt-1">
-                    <SimpleButton btnType="submit" text={"Enregistrer"} />
-                </div>
-            }
+            <div className="flex justify-center mt-1">
+                <SimpleButton btnType="submit" text={"Enregistrer"} isDisabled={rolls.length === 0} />
+            </div>
         </form>
     );
 }

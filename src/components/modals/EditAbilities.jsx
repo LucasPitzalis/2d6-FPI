@@ -51,9 +51,9 @@ export default function EditAbilities() {
     return (
         <form className="flex flex-col space-y-2 align-start mt-2 sm:p-2" onSubmit={handleSubmit}>
             <p>Points restants : <span className={`font-bold ${remainingPoints < 0 && 'text-red-600'}`}>{remainingPoints}</span></p>
-            <table className="table-auto text-center mt-2 border-separate border-spacing-x-3 sm:border-spacing-x-10 border-spacing-y-2">
+            <table className="table-auto text-center mt-2">
                 <thead>
-                    <tr>
+                    <tr className="border-b border-gray-400">
                         <th>Carac.</th>
                         <th>Valeur<br />initiale</th>
                         <th></th>
@@ -61,7 +61,7 @@ export default function EditAbilities() {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="[&>*:not(:last-child)]:border-b [&>*:not(:last-child)]:border-gray-400">
                 {Object.keys(abilities).map((ability) => { return (
                     <tr key={ability}>
                         <td>{getAbilityNameFr(ability)}</td>
