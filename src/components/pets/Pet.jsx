@@ -51,19 +51,19 @@ export default function Pet({ index, deleteMode }) {
                 <div className="flex flex-col justify-between space-y-0.5 w-full md:w-1/2">
                     <div className="flex space-x-0.5">
                         <InputField label={{text: 'attaque', icon: <AttackIcon />}} name={`pets.${index}.atkDesc`} styles={'w-full'} />
-                        <InputField name={`pets.${index}.atkValue`} htmlType="number" center styles={'w-12'} />
+                        <StaticField name={`pets.${index}.stats.atk`} htmlType="number" center styles={'w-12'} value={pet.stats.atk} />
                     </div>
                     <div className="flex space-x-0.5">
                         <InputField label={{text: 'défense', icon: <DefenseIcon />}} name={`pets.${index}.defDesc`} styles={'w-full'} />
-                        <InputField name={`pets.${index}.defValue`} htmlType="number" center styles={'w-12'} />
+                        <StaticField name={`pets.${index}.stats.def`} htmlType="number" center styles={'w-12'} value={pet.stats.def} />
                     </div>
                     <div className="flex space-x-0.5">
                         <InputField label={{text: 'volonté', icon: <WillIcon />}} name={`pets.${index}.wilDesc`} styles={'w-full'} />
-                        <InputField name={`pets.${index}.wilValue`} htmlType="number" center styles={'w-12'} />
+                        <StaticField name={`pets.${index}.stats.wil`} htmlType="number" center styles={'w-12'} value={pet.stats.wil} />
                     </div>
                     <div className="flex space-x-0.5">
                         <InputField label={{text: 'spécial', icon: <SpecialIcon />}} name={`pets.${index}.speDesc`} styles={'w-full'} />
-                        <InputField name={`pets.${index}.speValue`} htmlType="number" center styles={'w-12'} />
+                        <StaticField name={`pets.${index}.stats.spe`} htmlType="number" center styles={'w-12'} value={pet.stats.spe} />
                     </div>
                 </div>
             </div>

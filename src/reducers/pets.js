@@ -10,18 +10,26 @@ const initialState = localStorage.getItem('pets')
     : [];
 
 const newPet = { 
-    name: '', experience: 0, hpEpPts: 0, skillPts: 0,
-    maxHp: 0, maxEp: 0, healthPts: 0, energyPts: 0,
-    atkDesc: '', atkValue: 0, 
-    defDesc: '', defValue: 0,
-    wilDesc: '', wilValue: 0,
-    speDesc: '', speValue: 0,
+    name: '', experience: 0,
+    healthPts: 0, energyPts: 0,
+    stats: {
+        atk: 0,
+        def: 0,
+        wil: 0,
+        spe: 0,
+        maxHp: 0,
+        maxEp: 0,
+    },
+    atkDesc: '',
+    defDesc: '',
+    wilDesc: '',
+    speDesc: '',
     talent: '',
     weakness: '',
     desc: '',
     avatar: '',
     levelRolls: [],
-    isUnfolded: true,
+    isOpen: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
