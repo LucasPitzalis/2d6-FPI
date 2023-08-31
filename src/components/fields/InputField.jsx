@@ -6,7 +6,7 @@ import SheetField from './SheetField';
 import { getProperty } from '../../utils/functions';
 
 
-export default function InputField({ label, name, htmlType, isTitle, styles, vertical, regex, center, multiline, prefix, suffix, checkCondition }) {
+export default function InputField({ label, name, htmlType, isTitle, styles, vertical, regex, center, multiline, prefix, suffix, checkCondition, placeHolder }) {
     const dispatch = useDispatch();
     const currentValue = useSelector((state) => getProperty(state, name));
 
@@ -20,6 +20,7 @@ export default function InputField({ label, name, htmlType, isTitle, styles, ver
         className: `min-h-fit p-1 w-full flex-1 ${center ? 'text-center' : ''}`, 
         type: htmlType, step: "1", name: name,
         value: currentValue, onChange: (e) => regex.test(e.target.value) && checkCondition(e.target.value) && handleChange(e),
+        placeholder: placeHolder,
     }
 
     return (
@@ -27,7 +28,7 @@ export default function InputField({ label, name, htmlType, isTitle, styles, ver
             {label && <FieldLabel {...{label, name, vertical, styles: multiline ? 'h-full' : ''}} />}
             <form className="group/edit relative flex flex-1 h-full justify-center items-center space-x-1" onSubmit={(e) => e.preventDefault()}>
                 {prefix && <span className="leading-5 ml-2">{ prefix }</span>}
-                {multiline ? <textarea {...inputProps} rows={multiline} /> : <input {...inputProps} />}
+                {multiline ? <textarea {...inputProps} rows={multiline} /> : <input {...inputProps}/>}
                 {suffix && <span className="leading-5 font-bold italic p-1">{ suffix }</span>}
             </form>
         </SheetField>
@@ -56,6 +57,7 @@ InputField.propTypes = {
     prefix: PropTypes.string,
     suffix: PropTypes.string,
     checkCondition: PropTypes.func,
+    placeHolder: PropTypes.string,
 }
 
 InputField.defaultProps = {
@@ -66,4 +68,5 @@ InputField.defaultProps = {
     regex: /.*/,
     multiline: false,
     checkCondition: () => true,
+    placeHolder: '',
 }

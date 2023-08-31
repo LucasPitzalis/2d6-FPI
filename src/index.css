@@ -15,6 +15,9 @@
     td {
         @apply p-1;
     }
+    .dropdown {
+        @apply transition-all ease-in-out overflow-hidden;
+    }
 }
 
 :root {

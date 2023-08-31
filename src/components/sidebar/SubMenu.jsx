@@ -1,6 +1,6 @@
-import { ChevronUp } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useLayoutEffect, useState, useRef } from 'react';
+import DropdownChevron from '../ui-elements/DropdownChevron';
 
 export default function SubMenu({title, icon, children, defaultOpen}) {
     const [isOpen, setOpen] = useState(defaultOpen);
@@ -21,13 +21,11 @@ export default function SubMenu({title, icon, children, defaultOpen}) {
             >
                 <div className="flex justify-between w-full items-center">
                     <h3 className="text-lg">{title}<span>{icon}</span></h3>
-                    <span className={`duration-300 ${!isOpen ? 'rotate-180' : ''}`}>
-                        <ChevronUp />
-                    </span> 
+                    <DropdownChevron isDown={isOpen} />
                 </div>
             </div>
             <div
-                className={`ml-4 transition-all duration-400 ease-in-out overflow-hidden`}
+                className={`ml-4 dropdown`}
                 style={{maxHeight: !isOpen ? 0 : contentHeight}}
                 ref={contentRef}
             >

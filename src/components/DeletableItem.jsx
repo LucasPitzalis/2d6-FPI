@@ -30,7 +30,10 @@ DeletableItem.propTypes = {
     styles: PropTypes.string,
     deleteMode: PropTypes.bool.isRequired,
     handler: PropTypes.func.isRequired,
-    children: PropTypes.array.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]).isRequired,
 };
 
 DeletableItem.defaultProps = {
