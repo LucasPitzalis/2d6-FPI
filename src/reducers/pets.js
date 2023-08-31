@@ -29,7 +29,6 @@ const newPet = {
     desc: '',
     avatar: '',
     levelRolls: [],
-    isOpen: true,
 };
 
 const reducer = (state = initialState, action = {}) => {

@@ -80,7 +80,7 @@ export default function EditPetRolls() {
                                     />
                                 </td>
                                 <td>
-                                    <span className="text-xs">{petLevelsTable[index].hpEpDice}d6 :</span>
+                                    <span className="text-xs">{petLevelsTable[index].skillDice}d6 :</span>
                                     <input 
                                         className="ml-1 w-12 text-center border border-black rounded disabled:inactive" 
                                         type="number" name={`${index}.skill`} step="1" 

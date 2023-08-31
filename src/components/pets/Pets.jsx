@@ -8,6 +8,7 @@ import SimpleButton from "../buttons/SimpleButton";
 import SectionTitle from "../SectionTitle";
 import Warning from "../ui-elements/Warning";
 import Pet from "./Pet";
+import { sumProperties } from "../../utils/functions";
 
 export default function Pets() {
     const pets = useSelector((state) => state.pets);
@@ -27,8 +28,32 @@ export default function Pets() {
     }, [pets.length, deleteMode]);
 
     const petsWithPendingRolls = () => {
-        return pets.reduce((sum, pet) => sum + (pet.levelRolls.length < getLevel(pet.experience, true).level ? 1 : 0), 0)
-    };
+        const petIndexes = [];
+        for(let i = 0; i < pets.length; i++) {
+            const pet = pets[i];
+            if(pet.levelRolls.length < getLevel(pet.experience, true).level) petIndexes.push(i);
+        }
+        return petIndexes;
+    }
+
+    const petsWithPendingPoints = () => {
+        const petIndexes = [];
+        for(let i = 0; i < pets.length; i++) {
+            const pet = pets[i];
+            if(sumProperties(pet.stats) < pet.levelRolls.reduce((sum, roll) => sum + roll.hpEp + roll.skill, 0)) petIndexes.push(i);
+        }
+        return petIndexes;
+    }
+
+    const petsWithInvalidDistrib = () => {
+        const petIndexes = [];
+        for(let i = 0; i < pets.length; i++) {
+            const pet = pets[i];
+            const { maxHp, maxEp, atk, def, wil, spe } = pet.stats;
+            if(maxHp + maxEp > getLevel(pet.experience, true).hpEpLimit || atk + def + wil + spe > getLevel(pet.experience, true).skillLimit) petIndexes.push(i);
+        }
+        return petIndexes;
+    }
 
     return (
         <>
@@ -53,7 +78,14 @@ export default function Pets() {
                         isDisabled={pets.length === 0}
                         handler={() => dispatch(handleModal('editPetRolls')) } text="Jets de niveaux" 
                     />
-                    {petsWithPendingRolls() !== 0 && <Warning isFloat isRed={false} />}
+                    {petsWithPendingRolls().length !== 0 && <Warning isFloat isRed={false} />}
+                </div>
+                <div className="relative">
+                    <SimpleButton 
+                        isDisabled={pets.length === 0}
+                        handler={() => dispatch(handleModal('editPetAbilities')) } text="Distribution des points" 
+                    />
+                    {petsWithPendingPoints().length !== 0 && <Warning isFloat isRed={petsWithInvalidDistrib().length !== 0} />}
                 </div>
             </div>
         </>
