@@ -9,6 +9,7 @@ import SectionTitle from "../SectionTitle";
 import Warning from "../ui-elements/Warning";
 import Pet from "./Pet";
 import { sumProperties } from "../../utils/functions";
+import { petPoints } from "../../features/petStats";
 
 export default function Pets() {
     const pets = useSelector((state) => state.pets);
@@ -50,7 +51,16 @@ export default function Pets() {
         for(let i = 0; i < pets.length; i++) {
             const pet = pets[i];
             const { maxHp, maxEp, atk, def, wil, spe } = pet.stats;
-            if(maxHp + maxEp > getLevel(pet.experience, true).hpEpLimit || atk + def + wil + spe > getLevel(pet.experience, true).skillLimit) petIndexes.push(i);
+            if(
+                maxHp > getLevel(pet.experience, true).hpEpLimit ||
+                maxEp > getLevel(pet.experience, true).hpEpLimit ||
+                maxHp + maxEp > petPoints(i).hpEpPts.total ||
+                atk > getLevel(pet.experience, true).skillLimit ||
+                def > getLevel(pet.experience, true).skillLimit ||
+                wil > getLevel(pet.experience, true).skillLimit ||
+                spe > getLevel(pet.experience, true).skillLimit ||
+                atk + def + wil + spe > petPoints(i).skillPts.total
+            ) petIndexes.push(i);
         }
         return petIndexes;
     }
@@ -85,7 +95,7 @@ export default function Pets() {
                         isDisabled={pets.length === 0}
                         handler={() => dispatch(handleModal('editPetAbilities')) } text="Distribution des points" 
                     />
-                    {petsWithPendingPoints().length !== 0 && <Warning isFloat isRed={petsWithInvalidDistrib().length !== 0} />}
+                    {petsWithPendingPoints().length + petsWithInvalidDistrib().length !== 0 && <Warning isFloat isRed={petsWithInvalidDistrib().length !== 0} />}
                 </div>
             </div>
         </>

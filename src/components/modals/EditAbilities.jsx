@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editAbilities } from "../../actions/character";
 import { abilityPointsLeft } from "../../features/characterStats";
-import { getAbilityNameFr, sumProperties } from "../../utils/functions";
+import { getStatNameFr, sumProperties } from "../../utils/functions";
 import HoverableButton from "../buttons/HoverableButton";
 import SimpleButton from "../buttons/SimpleButton";
 
@@ -63,7 +63,7 @@ export default function EditAbilities() {
                 <tbody className="[&>*:not(:last-child)]:border-b [&>*:not(:last-child)]:border-gray-400">
                 {Object.keys(abilities).map((ability) => { return (
                     <tr key={ability}>
-                        <td>{getAbilityNameFr(ability)}</td>
+                        <td>{getStatNameFr(ability)}</td>
                         <td>{abilities[ability]}</td>
                         <td className={`text-xs leading-none ${!allowRemoval && abilityChange[ability] < 0 && 'text-red-600 font-bold' }`}>
                             <p>{abilityChange[ability] > -1 ? `+${abilityChange[ability]}` : abilityChange[ability]}</p>

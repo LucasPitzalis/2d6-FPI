@@ -9,7 +9,7 @@ import IconButton from '../buttons/IconButton';
 import AvatarModal from './AvatarModal';
 import SaveModal from './SaveModal';
 import EditPetRolls from './EditPetRolls';
-import EditPetAbilities from './EditPetAbilities';
+import EditPetStats from './EditPetStats';
 
 export default function Modal() {
     const { modal } = useSelector((state) => state.app);
@@ -34,7 +34,7 @@ export default function Modal() {
                 setModalTitle('Jets de niveaux des familiers');
                 break;
             case 'editPetAbilities':
-                setModalContent(<EditPetAbilities />);
+                setModalContent(<EditPetStats />);
                 setModalTitle('Distribution des points des familiers');
                 break;
             case 'avatar':

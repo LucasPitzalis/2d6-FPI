@@ -4,7 +4,7 @@ import StaticField from "../fields/StaticField";
 import PropTypes from 'prop-types';
 import SheetField from "../fields/SheetField";
 import { abilityStrings } from "../../features/characterStats";
-import { getAbilityNameFr } from "../../utils/functions";
+import { getStatNameFr } from "../../utils/functions";
 import { editField } from "../../actions/app";
 import Specs from "./Specs";
 import { deleteSkill } from "../../actions/skills";
@@ -34,7 +34,7 @@ export default function Skill({ skill, index, deleteMode }) {
                                 {abilityStrings
                                     .filter((ability) => ability !== skill.ability2)
                                     .map((ability) => (
-                                        <option key={ability} value={ability}>{getAbilityNameFr(ability)}</option>
+                                        <option key={ability} value={ability}>{getStatNameFr(ability)}</option>
                                     ))}
                             </select>
                             <span className="font-bold">+</span>
@@ -42,7 +42,7 @@ export default function Skill({ skill, index, deleteMode }) {
                                 {abilityStrings
                                     .filter((ability) => ability !== skill.ability1)
                                     .map((ability) => (
-                                        <option key={ability} value={ability}>{getAbilityNameFr(ability)}</option>
+                                        <option key={ability} value={ability}>{getStatNameFr(ability)}</option>
                                     ))}
                             </select>
                         </div>

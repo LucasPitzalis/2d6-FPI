@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import StaticField from "../fields/StaticField";
 import { atk, def, wil, maxHp, maxEp } from "../../features/characterStats";
 import InputField from "../fields/InputField";
-import { getAbilityNameFr } from "../../utils/functions";
+import { getStatNameFr } from "../../utils/functions";
 import AttackIcon from "../../icons/AttackIcon";
 import DefenseIcon from "../../icons/DefenseIcon";
 import WillIcon from "../../icons/WillIcon";
@@ -14,7 +14,7 @@ export default function Stats() {
         <>
             <div className="flex space-x-0.5">
                 {Object.keys(abilities).map((ability) => { return (
-                        <StaticField key={ability} label={getAbilityNameFr(ability)} name={`character.abilities.${ability}`} value={abilities[ability]} styles="w-1/6" vertical />
+                        <StaticField key={ability} label={getStatNameFr(ability)} name={`character.abilities.${ability}`} value={abilities[ability]} styles="w-1/6" vertical />
                 )})}
             </div>
             <div className="flex space-x-0.5">
