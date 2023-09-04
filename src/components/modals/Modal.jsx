@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import EditExperience from './EditExperience';
 import IconButton from '../buttons/IconButton';
 import AvatarModal from './AvatarModal';
-import SaveModal from './SaveModal';
+import SheetActionModal from './SheetActionModal';
 import EditPetRolls from './EditPetRolls';
 import EditPetStats from './EditPetStats';
 
@@ -42,8 +42,11 @@ export default function Modal() {
                 setModalTitle('Ajouter/modifier l\'avatar');
                 break;
             case 'importSheet':
+                setModalContent(<SheetActionModal action={modal} />);
+                setModalTitle('Importer une fiche de personnage');
+                break;
             case 'newSheet':
-                setModalContent(<SaveModal action={modal} />);
+                setModalContent(<SheetActionModal action={modal} />);
                 setModalTitle('Avertissement');
                 break;
             default: break;

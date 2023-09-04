@@ -43,6 +43,10 @@ export function properFalse(value) {
     return value !== false;
 }
 
+export function generateSheetFileName(string) {
+    return string !== '' ? string.replace(/[^a-z0-9]/gi, '_') + '.json' : 'perso2d6.json'
+}
+
 export function generateId(array) {
     const usedIDs = new Set(array.map(obj => obj.id));
   

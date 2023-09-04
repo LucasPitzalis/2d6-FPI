@@ -1,9 +1,10 @@
 import { Download, Upload, UserPlus, Menu } from "lucide-react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { handleModal } from "../../actions/app";
+import { useRef, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { handleModal, setExportBlobUrl } from "../../actions/app";
 import { exportSheet } from "../../actions/save";
 import routes from "../../config/routes";
+import { generateSheetFileName } from "../../utils/functions";
 import IconButton from "../buttons/IconButton";
 import SideBarButton from "./SideBarButton";
 import SideBarLink from "./SideBarLink";
@@ -12,6 +13,17 @@ import SubMenu from "./SubMenu";
 export default function SideBar() {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
+
+    const { exportBlobUrl } = useSelector((state) => state.app);
+    const characterName = useSelector((state) => state.character.name);
+    const exportLinkRef = useRef(null);
+
+    useEffect(() => {
+        if(exportBlobUrl !== null && exportLinkRef.current) {
+            exportLinkRef.current.click();
+            dispatch(setExportBlobUrl(null));
+        }
+    }, [exportBlobUrl]);
 
     return (
         <>
@@ -39,6 +51,7 @@ export default function SideBar() {
                 </SubMenu>
                 <SubMenu title={"Outils"} defaultOpen>
                     <SideBarButton icon={<Upload />} text="Exporter" handler={() => dispatch(exportSheet())} />
+                    <a className="hidden" href={exportBlobUrl} download={generateSheetFileName(characterName)} ref={exportLinkRef}/>
                     <SideBarButton icon={<Download />} text="Importer" handler={() => dispatch(handleModal("importSheet"))} />
                     <SideBarButton icon={<UserPlus />} text="Nouveau personnage" handler={() => dispatch(handleModal("newSheet"))} />
                 </SubMenu>
