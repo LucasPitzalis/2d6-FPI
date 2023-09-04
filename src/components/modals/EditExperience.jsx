@@ -5,15 +5,26 @@ import { editExperience } from "../../actions/character";
 import { currentLevel } from "../../features/characterStats";
 import { getLevel, minXp } from "../../data/levels";
 import SimpleButton from "../buttons/SimpleButton";
+import { currentPetLevel } from "../../features/petStats";
+import { editPetExperience } from "../../actions/pets";
+import { useLocation } from "react-router-dom";
+
 
 export default function EditExperience() {
-    const { experience } = useSelector((state) => state.character);
+    const location = useLocation();
+    const isPet = location.pathname === "/familiers";
+
+    const pets = useSelector((state) => state.pets);
+
+    const [petIndex, setPetIndex] = useState(isPet ? 0 : false);
+    const subjectCurrentLevel = !isPet ? currentLevel().level : currentPetLevel(petIndex).level;
+
     const [method, setMethod] = useState("addXp");
     const [xpToAdd, setXpToAdd] = useState(0);
+    const [targetLevel, setTargetLevel] = useState(subjectCurrentLevel);
 
-    const [targetLevel, setTargetLevel] = useState(currentLevel().level);
-
-    const reachedLevel = getLevel(experience + xpToAdd);
+    const { experience } = useSelector((state) => !isPet ? state.character : state.pets[petIndex]);
+    const reachedLevel = getLevel(experience + xpToAdd, petIndex);
 
     function selectMethod(e) {
         setMethod(e.target.value);
@@ -22,7 +33,7 @@ export default function EditExperience() {
     const isDisabled = () => {
         switch (method) {
             case "addXp": return xpToAdd < 1;
-            case "goToLevel": return targetLevel === currentLevel().level;
+            case "goToLevel": return targetLevel === (subjectCurrentLevel);
             default: break;
         }
     }
@@ -34,10 +45,10 @@ export default function EditExperience() {
         if (isDisabled()) return;
         switch (method) {
             case "addXp": 
-                dispatch(editExperience(experience + xpToAdd));
+                dispatch(!isPet ? editExperience(experience + xpToAdd) : editPetExperience(experience + xpToAdd, petIndex));
                 break;
             case "goToLevel": 
-                dispatch(editExperience(minXp(targetLevel)));
+                dispatch(!isPet ? editExperience(minXp(targetLevel)) : editPetExperience(minXp(targetLevel, petIndex), petIndex));
                 break;
             default: break;
         }
@@ -46,7 +57,15 @@ export default function EditExperience() {
 
     return (
         <form className="flex flex-col space-y-1 p-2" onSubmit={handleSubmit}>
-            <h4>Choix de la méthode :</h4>
+            {isPet &&
+                <div className="relative border-b border-gray-400 pb-2 flex flex-col justify-between space-y-1">
+                    <h4 className="font-bold">Sélection du familier :</h4>
+                    <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
+                        {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
+                    </select>
+                </div>
+            }
+            <h4 className="font-bold">Choix de la méthode :</h4>
             <div>
                 <div className="flex space-x-2">
                     <input defaultChecked type="radio" name="method" value="addXp" onClick={selectMethod}/>
@@ -61,7 +80,7 @@ export default function EditExperience() {
                             if (e.target.value >= 0) setXpToAdd(Number(e.target.value));
                         }}
                     />
-                    {method === "addXp" && reachedLevel.level - currentLevel().level > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel.level})</span>}
+                    {method === "addXp" && reachedLevel.level - subjectCurrentLevel > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel.level})</span>}
                 </div>
             </div>
             <div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewSkill } from '../../actions/skills';
 import { currentLevel } from '../../features/characterStats';
@@ -23,6 +23,10 @@ export default function Skills() {
         return renderedList;
     }
 
+    useEffect(() => {
+        if(skills.length === 0 && deleteMode) setDeleteMode(false);
+    }, [skills.length, deleteMode]);
+
     return (
         <>
             <div className="flex flex-col">
@@ -39,6 +43,7 @@ export default function Skills() {
                 <div className="flex flex-wrap mt-1 justify-center space-x-2">
                 <div className="relative">
                     <SimpleButton
+                        isDisabled={skills.length === 0}
                         handler={() => setDeleteMode(!deleteMode)} 
                         text={deleteMode ? 'Désactiver le mode suppression' : 'Supprimer un élément'} 
                         background={deleteMode ? 'bg-red-500' : 'bg-teal-800'}

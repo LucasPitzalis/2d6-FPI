@@ -1,27 +1,35 @@
-import { ChevronUp } from 'lucide-react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useLayoutEffect, useState, useRef } from 'react';
+import DropdownChevron from '../ui-elements/DropdownChevron';
 
-export default function SubMenu(props) {
-    const [isCollapsed, setCollapsed] = useState(props.defaultCollapsed);
+export default function SubMenu({title, icon, children, defaultOpen}) {
+    const [isOpen, setOpen] = useState(defaultOpen);
+
+    const contentRef = useRef(null);
+    const [contentHeight, setContentHeight] = useState(0);
+
+    // set contentHeight after first render to make sure contentRef is initialized (not null)
+    useLayoutEffect(() => {
+        setContentHeight(contentRef.current.scrollHeight);
+    }, [contentRef]);
 
     return (
         <div className="ml-4">
             <div
                 className="p-2.5 flex items-center rounded-md duration-300 cursor-pointer hover:bg-blue-600 text-white"
-                onClick={() => setCollapsed(!isCollapsed)}
+                onClick={() => setOpen(!isOpen)}
             >
                 <div className="flex justify-between w-full items-center">
-                    <h3 className="text-lg">{props.title}</h3>
-                    <span className={`duration-300 ${!isCollapsed ? 'rotate-180' : ''}`}>
-                        <ChevronUp />
-                    </span> 
+                    <h3 className="text-lg">{title}<span>{icon}</span></h3>
+                    <DropdownChevron isDown={isOpen} />
                 </div>
             </div>
             <div
-                className={`ml-4 ${!isCollapsed ? 'hidden' : ''}`}
+                className={`ml-4 dropdown`}
+                style={{maxHeight: !isOpen ? 0 : contentHeight}}
+                ref={contentRef}
             >
-                {props.children}
+                {children}
             </div>
         </div>
     );
@@ -30,9 +38,10 @@ export default function SubMenu(props) {
 SubMenu.propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.array.isRequired,
-    defaultCollapsed: PropTypes.bool,
+    icon: PropTypes.element,
+    defaultOpen: PropTypes.bool,
 };
 
 SubMenu.defaultProps = {
-    defaultCollapsed: false,
+    defaultOpen: false,
 }

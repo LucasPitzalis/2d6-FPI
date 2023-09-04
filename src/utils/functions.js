@@ -12,24 +12,35 @@ export function getProperty(obj, path) {
     return currentObj;
 }
 
-export function getAbilityNameFr(ability, long = false) {
-    let abilityFr;
+export function getStatNameFr(stat, long = false) {
+    let statFr;
 
-    switch (ability) {
-        case 'str': abilityFr = 'force'; break;
-        case 'dex': abilityFr = 'dexterité'; break;
-        case 'con': abilityFr = 'constitution'; break;
-        case 'int': abilityFr = 'intelligence'; break;
-        case 'wis': abilityFr = 'sagesse'; break;
-        case 'cha': abilityFr = 'charsime'; break;
+    switch (stat) {
+        case 'str': statFr = 'force'; break;
+        case 'dex': statFr = 'dexterité'; break;
+        case 'con': statFr = 'constitution'; break;
+        case 'int': statFr = 'intelligence'; break;
+        case 'wis': statFr = 'sagesse'; break;
+        case 'cha': statFr = 'charsime'; break;
+        case 'atk': return long ? 'attaque' : 'ATQ';
+        case 'def': return long ? 'défense' : 'DEF';
+        case 'wil': statFr = 'volonté'; break;
+        case 'spe': statFr = 'spécial'; break;
+        case 'maxHp': return 'PV';
+        case 'maxEp': return 'PE';
+
         default: break;
     }
 
-    return long ? abilityFr : abilityFr.slice(0, 3).toUpperCase();
+    return long ? statFr : statFr.slice(0, 3).toUpperCase();
 }
 
 export function sumProperties(object) {
     return Object.keys(object).reduce((acc, property) => acc + object[property], 0);
+}
+
+export function properFalse(value) {
+    return value !== false;
 }
 
 export function generateId(array) {
@@ -46,3 +57,10 @@ export function removeIndex(array, index) {
     return [...array.slice(0, index), ...array.slice(index + 1)];
 }
   
+export function rollDice(diceAmount = 2, diceSize = 6) {
+    let result = 0;
+    for(let i = 1; i <= diceAmount; i++) {
+        result += Math.ceil(Math.random()* diceSize);
+    }
+    return result;
+}

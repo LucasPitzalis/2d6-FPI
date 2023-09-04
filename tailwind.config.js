@@ -19,6 +19,9 @@ export default {
       screens: {
         'md': '794px',
       },
+      transitionProperty: {
+        'height': 'height',
+      }
     },
   },
   plugins: [],

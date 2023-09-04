@@ -1,12 +1,12 @@
 import { Download, Upload, UserPlus, Menu } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { handleModal } from "../../actions/app";
 import { exportSheet } from "../../actions/save";
 import routes from "../../config/routes";
 import IconButton from "../buttons/IconButton";
 import SideBarButton from "./SideBarButton";
+import SideBarLink from "./SideBarLink";
 import SubMenu from "./SubMenu";
 
 export default function SideBar() {
@@ -32,23 +32,19 @@ export default function SideBar() {
                     </div>
                     <div className="my-2 bg-gray-600 h-[1px]"></div>
                 </div>
-                <SubMenu title="Fiche" defaultCollapsed>
+                <SubMenu title="Fiche" defaultOpen>
                     {routes.filter((route) => route.sheet).map((route) => 
-                        <NavLink
-                            onClick={() => setIsOpen(false)}
-                            key={route.name}
-                            to={route.path}
-                            className={({ isActive }) => (isActive ? 'italic' : '')}
-                        >
-                            <span className="p-2.5 flex items-center justify-start text-left rounded-md duration-300 cursor-pointer hover:bg-blue-600">{route.nameFr}</span>
-                        </NavLink>
+                        <SideBarLink onClickHandler={() => setIsOpen(false)} title={route.nameFr} route={route.path} key={route.name}/>
                     )}
                 </SubMenu>
-                <SubMenu title={"Outils"} defaultCollapsed>
+                <SubMenu title={"Outils"} defaultOpen>
                     <SideBarButton icon={<Upload />} text="Exporter" handler={() => dispatch(exportSheet())} />
                     <SideBarButton icon={<Download />} text="Importer" handler={() => dispatch(handleModal("importSheet"))} />
                     <SideBarButton icon={<UserPlus />} text="Nouveau personnage" handler={() => dispatch(handleModal("newSheet"))} />
                 </SubMenu>
+                <h3 className="ml-4 text-lg">
+                    <SideBarLink onClickHandler={() => setIsOpen(false)} title="À propos" route="/a-propos" />
+                </h3>   
             </div>
         </>
     );
