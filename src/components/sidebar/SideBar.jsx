@@ -1,6 +1,7 @@
 import { Download, Upload, UserPlus, Menu } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { handleModal, setExportBlobUrl } from "../../actions/app";
 import { exportSheet } from "../../actions/save";
 import routes from "../../config/routes";
@@ -21,6 +22,7 @@ export default function SideBar() {
     useEffect(() => {
         if(exportBlobUrl !== null && exportLinkRef.current) {
             exportLinkRef.current.click();
+            URL.revokeObjectURL(exportBlobUrl);
             dispatch(setExportBlobUrl(null));
         }
     }, [exportBlobUrl]);

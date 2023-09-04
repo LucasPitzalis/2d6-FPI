@@ -26,10 +26,10 @@ const saveMiddleware = (store) => (next) => (action) => {
                 const writable = await handle.createWritable();
                 await writable.write( sheet );
                 writable.close();
+                toast.success('Exportation réussie !');
             } else {
                 store.dispatch(setExportBlobUrl(URL.createObjectURL(sheet)));
             }
-            toast.success('Exportation réussie !');
         }
         catch (error) {
             if (error.name === 'AbortError') return;
