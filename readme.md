@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <https://2d6-en-ligne.surge.sh/>
 
 # À propos de "2d6 en ligne"
 
+=======
+# À propos de "2d6 en ligne"
+
+<https://2d6-en-ligne.surge.sh/contacts>
+
+>>>>>>> ec44fe094b15226bb864fdba5d778cf5a1f8e669
 **2d6 en ligne** est un outil open source développé pour le jeu de rôle **2d6 One-One Versus System.**
 L'outil permet de créer, modifier, sauvegarder et faire évoluer vos personnages pour le jeu.
 Il est également prévu de pouvoir effectuer des jets de dés et de rejoindre des parties en ligne où les jets seront partagés à tous les joueurs d'un même salon.
