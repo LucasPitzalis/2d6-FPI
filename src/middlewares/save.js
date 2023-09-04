@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
+import { setExportBlobUrl } from '../actions/app';
 import { EXPORT_SHEET, IMPORT_SHEET, loadSheet } from '../actions/save';
+import { generateSheetFileName } from '../utils/functions';
 
 const saveMiddleware = (store) => (next) => (action) => {
     async function saveSheet() {
@@ -13,16 +15,20 @@ const saveMiddleware = (store) => (next) => (action) => {
         }, null, 2)], { type: 'application/json' });
         
         try {
-            const handle = await window.showSaveFilePicker({
-                types: [{
-                    description: '.json character sheet',
-                    accept: {'application/json': ['.json']},
-                }],
-                suggestedName: store.getState().character.name !== '' ? store.getState().character.name.replace(/[^a-z0-9]/gi, '_') + '.json' : 'perso2d6.json',
-              });
-            const writable = await handle.createWritable();
-            await writable.write( sheet );
-            writable.close();
+            if(window.showSaveFilePicker) {
+                const handle = await window.showSaveFilePicker({
+                    types: [{
+                        description: '.json character sheet',
+                        accept: {'application/json': ['.json']},
+                    }],
+                    suggestedName: generateSheetFileName(store.getState().character.name),
+                });
+                const writable = await handle.createWritable();
+                await writable.write( sheet );
+                writable.close();
+            } else {
+                store.dispatch(setExportBlobUrl(URL.createObjectURL(sheet)));
+            }
             toast.success('Exportation réussie !');
         }
         catch (error) {
@@ -31,10 +37,13 @@ const saveMiddleware = (store) => (next) => (action) => {
         }
     }
 
-    async function importSheet() {
+    async function importSheet(pFile) {
         try {
-            const [fileHandle] = await window.showOpenFilePicker();
-            const file = await fileHandle.getFile();
+            let file;
+            if(window.showOpenFilePicker) {
+                const [fileHandle] = await window.showOpenFilePicker();
+                file = await fileHandle.getFile();
+            } else file = pFile;
             const sheet = JSON.parse(await file.text());
 
             store.dispatch(loadSheet(sheet));
@@ -50,7 +59,7 @@ const saveMiddleware = (store) => (next) => (action) => {
             saveSheet();
             break;
         case IMPORT_SHEET:
-            importSheet();
+            importSheet(action.file);
             break;
         default:
     }

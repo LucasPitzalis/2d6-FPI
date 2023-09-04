@@ -15,8 +15,9 @@ export const exportSheet = () => {
     }
 }
 
-export const importSheet = () => {
+export const importSheet = (file) => {
     return {
         type: IMPORT_SHEET,
+        file: file,
     }
 }

@@ -17,6 +17,8 @@ export const createNewCharacter = () => {
     }
 }
 
+export const SET_EXPORT_BLOB_URL = 'SET_EXPORT_BLOB_URL';
+
 // Action creator
 export const handleModal = (value) => {
     return {
@@ -34,4 +36,11 @@ export const editField = (target) => {
         property: target.name.slice(reducerIndex + 1),
         value: target.value,
     };
+}
+
+export const setExportBlobUrl = (url) => {
+    return {
+        type: SET_EXPORT_BLOB_URL,
+        url: url,
+    }
 }
