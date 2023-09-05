@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import InputField from "../fields/InputField";
 import StaticField from "../fields/StaticField";
 import PropTypes from 'prop-types';
-import DeletableItem from "../DeletableItem";
+import DeletableItem from "../context/DeletableItem";
 import { deletePet } from "../../actions/pets";
 import { currentPetLevel } from "../../features/petStats";
 import Avatar from "../character/Avatar";
@@ -10,7 +10,7 @@ import AttackIcon from "../../icons/AttackIcon";
 import DefenseIcon from "../../icons/DefenseIcon";
 import WillIcon from "../../icons/WillIcon";
 import SpecialIcon from "../../icons/SpecialIcon";
-import DropdownItem from "../ui-elements/DropdownItem";
+import DropdownItem from "../context/DropdownItem";
 
 export default function Pet({ index, deleteMode }) {
     const dispatch = useDispatch();

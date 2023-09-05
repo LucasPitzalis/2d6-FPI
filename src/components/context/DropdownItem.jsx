@@ -1,4 +1,4 @@
-import DropdownChevron from "./DropdownChevron";
+import DropdownChevron from "../ui-elements/DropdownChevron";
 import PropTypes from 'prop-types';
 import { useState, useRef ,useLayoutEffect} from "react";
 
@@ -11,10 +11,10 @@ export default function DropdownItem({ header, children, defaultOpen}) {
     // set contentHeight after first render to make sure contentRef is initialized (not null)
     useLayoutEffect(() => {
         setContentHeight(contentRef.current.scrollHeight);
-    }, [contentRef]);
+    }, [contentRef, children]);
 
     return (
-        <>
+        <div className={`flex flex-col ${isOpen ? 'gap-y-1' : ''}`}>
             <div className="flex justify-between items-center bg-black w-full p-1">
                 <div className="flex flex-wrap gap-x-1 grow font-semibold">
                     { header }
@@ -24,17 +24,20 @@ export default function DropdownItem({ header, children, defaultOpen}) {
             <div 
                 style={{maxHeight: !isOpen ? 0 : contentHeight}}
                 ref={contentRef}
-                className="flex flex-col dropdown"
+                className={`flex flex-col dropdown ${isOpen ? 'gap-y-1' : 'overflow-hidden'}`}
             >
                 { children }
             </div>
-        </>
+        </div>
     );
 }
 
 DropdownItem.propTypes = {
     header: PropTypes.object.isRequired,
-    children: PropTypes.array.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]).isRequired,
     defaultOpen: PropTypes.bool,
 };
 

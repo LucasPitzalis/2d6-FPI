@@ -8,7 +8,7 @@ import { getStatNameFr } from "../../utils/functions";
 import { editField } from "../../actions/app";
 import Specs from "./Specs";
 import { deleteSkill } from "../../actions/skills";
-import DeletableItem from "../DeletableItem";
+import DeletableItem from "../context/DeletableItem";
 
 export default function Skill({ skill, index, deleteMode }) {
     const { abilities } = useSelector((state) => state.character);

@@ -1,5 +1,12 @@
 # Notes de changement
 
+## v0.4 (04/09/23)
+
+- Ajout d'une page "à propos"
+- Amélioration de la gestion de la saisie sur les différents champs de textes et suppression de l'édition des champs en deux étapes
+- Améliorations diverses d'interface (mise en page, animations, mode suppression, etc.)
+- Les méthodes d'import et export de fiche fonctionnent désormais sur tous les navigateurs, y compris sur mobile
+
 ## v0.3
 
 - Amélioration des transitions d'affichage en fonction de la taille d'écran
