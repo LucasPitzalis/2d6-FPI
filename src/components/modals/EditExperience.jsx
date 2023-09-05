@@ -33,7 +33,7 @@ export default function EditExperience() {
     const isDisabled = () => {
         switch (method) {
             case "addXp": return xpToAdd < 1;
-            case "goToLevel": return targetLevel === (subjectCurrentLevel);
+            case "goToLevel": return targetLevel === (subjectCurrentLevel) || targetLevel === '';
             default: break;
         }
     }
@@ -78,6 +78,7 @@ export default function EditExperience() {
                         type="number" name="xpToAdd" step="1" 
                         value={xpToAdd} onChange={(e) => {
                             if (e.target.value >= 0) setXpToAdd(Number(e.target.value));
+                            if(e.target.value === '') setXpToAdd(e.target.value);
                         }}
                     />
                     {method === "addXp" && reachedLevel.level - subjectCurrentLevel > 0 && <span className="italic text-gray-700">(niveau atteint: {reachedLevel.level})</span>}
@@ -94,6 +95,7 @@ export default function EditExperience() {
                     type="number" name="targetLevel" step="1" 
                     value={targetLevel} onChange={(e) => {
                         if (e.target.value >= 1 && e.target.value <= 20) setTargetLevel(Number(e.target.value));
+                        if(e.target.value === '') setTargetLevel(e.target.value);
                     }}
                 />
             </div>
