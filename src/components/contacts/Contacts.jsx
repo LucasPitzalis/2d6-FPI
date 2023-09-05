@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import SimpleButton from "../buttons/SimpleButton";
 import SectionTitle from "../SectionTitle";
+import DropdownItem from "../ui-elements/DropdownItem";
 import ContactList from "./ContactList";
 
 export default function Contacts() {
@@ -17,12 +18,21 @@ export default function Contacts() {
         <>
             <div className="flex space-y-2 flex-col">
                 <SectionTitle title="Contacts" />
-                <SectionTitle title="Famille" />
-                <ContactList type="relatives" deleteMode={deleteMode} />
-                <SectionTitle title="amis" />
-                <ContactList type="friends" deleteMode={deleteMode} />
-                <SectionTitle title="ennemis" />
-                <ContactList type="enemies" deleteMode={deleteMode} />
+                <DropdownItem header={
+                    <span className="text-white text-base pl-1">{`FAMILLE${relatives.length !== 0 ? ` (${relatives.length})` : ''}`}</span>
+                }>
+                    <ContactList type="relatives" deleteMode={deleteMode} />
+                </DropdownItem>
+                <DropdownItem header={
+                    <span className="text-white text-base pl-1">{`AMIS${friends.length !== 0 ? ` (${friends.length})` : ''}`}</span>
+                }>
+                    <ContactList type="friends" deleteMode={deleteMode} />
+                </DropdownItem>
+                <DropdownItem header={
+                    <span className="text-white text-base pl-1">{`ENNEMIS${enemies.length !== 0 ? ` (${enemies.length})` : ''}`}</span>
+                }>
+                    <ContactList type="enemies" deleteMode={deleteMode} />
+                </DropdownItem>
             </div>
             <div className="flex flex-wrap mt-1 justify-center space-x-2">
                 <div className="relative">

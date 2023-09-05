@@ -11,7 +11,7 @@ export default function DropdownItem({ header, children, defaultOpen}) {
     // set contentHeight after first render to make sure contentRef is initialized (not null)
     useLayoutEffect(() => {
         setContentHeight(contentRef.current.scrollHeight);
-    }, [contentRef]);
+    }, [contentRef, children]);
 
     return (
         <>
