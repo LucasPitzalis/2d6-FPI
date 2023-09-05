@@ -14,7 +14,7 @@ export default function DropdownItem({ header, children, defaultOpen}) {
     }, [contentRef, children]);
 
     return (
-        <>
+        <div className={`flex flex-col ${isOpen ? 'gap-y-1' : ''}`}>
             <div className="flex justify-between items-center bg-black w-full p-1">
                 <div className="flex flex-wrap gap-x-1 grow font-semibold">
                     { header }
@@ -24,11 +24,11 @@ export default function DropdownItem({ header, children, defaultOpen}) {
             <div 
                 style={{maxHeight: !isOpen ? 0 : contentHeight}}
                 ref={contentRef}
-                className="flex flex-col dropdown"
+                className={`flex flex-col dropdown ${isOpen ? 'gap-y-1' : 'overflow-hidden'}`}
             >
                 { children }
             </div>
-        </>
+        </div>
     );
 }
 

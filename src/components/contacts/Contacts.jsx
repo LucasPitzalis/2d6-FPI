@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import SimpleButton from "../buttons/SimpleButton";
 import SectionTitle from "../SectionTitle";
-import DropdownItem from "../context/DropdownItem";
 import ContactList from "./ContactList";
 
 export default function Contacts() {
     const [deleteMode, setDeleteMode] = useState(false);
-    const {relatives, friends, enemies} = useSelector((state) => state.contacts);
-    const contactsAmount = relatives.length + friends.length + enemies.length;
+    const contacts = useSelector((state) => state.contacts);
+    const contactsAmount = contacts.relatives.length + contacts.friends.length + contacts.enemies.length;
 
     useEffect(() => {
         if(contactsAmount === 0 && deleteMode) setDeleteMode(false);
@@ -19,21 +18,7 @@ export default function Contacts() {
             <div className="flex flex-col">
                 <SectionTitle title="Contacts" />
                 <div className="mt-2 space-y-1 flex flex-col">
-                    <DropdownItem defaultOpen header={
-                        <span className="text-white text-base pl-1">{`FAMILLE${relatives.length !== 0 ? ` (${relatives.length})` : ''}`}</span>
-                    }>
-                        <ContactList type="relatives" deleteMode={deleteMode} />
-                    </DropdownItem>
-                    <DropdownItem defaultOpen header={
-                        <span className="text-white text-base pl-1">{`AMIS${friends.length !== 0 ? ` (${friends.length})` : ''}`}</span>
-                    }>
-                        <ContactList type="friends" deleteMode={deleteMode} />
-                    </DropdownItem>
-                    <DropdownItem defaultOpen header={
-                        <span className="text-white text-base pl-1">{`ENNEMIS${enemies.length !== 0 ? ` (${enemies.length})` : ''}`}</span>
-                    }>
-                        <ContactList type="enemies" deleteMode={deleteMode} />
-                    </DropdownItem>
+                    {Object.keys(contacts).map((listName) => <ContactList key={listName} type={listName} deleteMode={deleteMode} />)}
                 </div>
             </div>
             <div className="flex flex-wrap mt-1 justify-center space-x-2">
