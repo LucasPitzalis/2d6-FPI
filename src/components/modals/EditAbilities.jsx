@@ -79,11 +79,6 @@ export default function EditAbilities() {
                 </tbody>
             </table>
             <div className="flex flex-col">
-                {/* // TODO ? add the option to allow for unlimited points
-                <div className="flex space-x-2">
-                    <input checked={unlimitedPts} onChange={() => toggleUnlimitedPts(!unlimitedPts)} type="checkbox" name="unlimitedPts"/>
-                    <label htmlFor="unlimitedPts">Points illimités</label>
-                </div> */}
                 <div className="flex space-x-2">
                     <input checked={allowRemoval} onChange={() => toggleAllowRemoval(!allowRemoval)} type="checkbox"/>
                     <label>Autoriser le retrait de points</label>

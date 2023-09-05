@@ -26,6 +26,24 @@ export default function SideBar() {
         }
     }, [exportBlobUrl, dispatch]);
 
+    const sideBarRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        if(isOpen) document.addEventListener('mousedown', handleClickOutside);
+        else document.removeEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+
+    }, [isOpen]);
+
     return (
         <>
             {!isOpen && 
@@ -37,7 +55,7 @@ export default function SideBar() {
                 </button>
             }
             <div className={`z-10 fixed top-0 bottom-0 lg:static lg:h-screen p-2 w-[250px] overflow-y-auto text-center bg-gray-900 text-white font-bold duration-300
-                ${!isOpen ? '-translate-x-[250px] lg:translate-x-0' : ''}`}>
+                ${!isOpen ? '-translate-x-[250px] lg:translate-x-0' : ''}`} ref={sideBarRef}>
                 <div className="text-xl">
                     <div className="p-2.5 mt-1 flex items-center relative ">
                         <h2 className="text-lg ml-3">Menu</h2>
