@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import IconButton from "./buttons/IconButton";
+import IconButton from "../buttons/IconButton";
 import { useState } from "react";
 
 

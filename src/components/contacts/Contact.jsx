@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../actions/contacts';
-import DeletableItem from '../DeletableItem';
+import DeletableItem from '../context/DeletableItem';
 import InputField from '../fields/InputField';
 
 export default function Contact({ contact, type, index, deleteMode }) {

@@ -5,7 +5,7 @@ import CircleDot from "../ui-elements/CircleDot";
 import PropTypes from 'prop-types';
 import { addNewSpec, addSpecUse, deleteSpec } from "../../actions/skills";
 import { useDispatch } from "react-redux";
-import DeletableItem from "../DeletableItem";
+import DeletableItem from "../context/DeletableItem";
 
 
 export default function Specs({ specs, skillIndex, deleteMode }) {

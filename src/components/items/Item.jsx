@@ -3,7 +3,7 @@ import InputField from "../fields/InputField";
 import PropTypes from 'prop-types';
 import SheetField from "../fields/SheetField";
 import { editField } from "../../actions/app";
-import DeletableItem from "../DeletableItem";
+import DeletableItem from "../context/DeletableItem";
 import FieldLabel from "../fields/FieldLabel";
 import { qualityTable } from "../../data/quality";
 import { deleteItem } from "../../actions/items";

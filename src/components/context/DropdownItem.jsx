@@ -1,4 +1,4 @@
-import DropdownChevron from "./DropdownChevron";
+import DropdownChevron from "../ui-elements/DropdownChevron";
 import PropTypes from 'prop-types';
 import { useState, useRef ,useLayoutEffect} from "react";
 
@@ -34,7 +34,10 @@ export default function DropdownItem({ header, children, defaultOpen}) {
 
 DropdownItem.propTypes = {
     header: PropTypes.object.isRequired,
-    children: PropTypes.array.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]).isRequired,
     defaultOpen: PropTypes.bool,
 };
 
