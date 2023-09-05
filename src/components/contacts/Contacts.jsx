@@ -19,17 +19,17 @@ export default function Contacts() {
             <div className="flex flex-col">
                 <SectionTitle title="Contacts" />
                 <div className="mt-2 space-y-1 flex flex-col">
-                    <DropdownItem header={
+                    <DropdownItem defaultOpen header={
                         <span className="text-white text-base pl-1">{`FAMILLE${relatives.length !== 0 ? ` (${relatives.length})` : ''}`}</span>
                     }>
                         <ContactList type="relatives" deleteMode={deleteMode} />
                     </DropdownItem>
-                    <DropdownItem header={
+                    <DropdownItem defaultOpen header={
                         <span className="text-white text-base pl-1">{`AMIS${friends.length !== 0 ? ` (${friends.length})` : ''}`}</span>
                     }>
                         <ContactList type="friends" deleteMode={deleteMode} />
                     </DropdownItem>
-                    <DropdownItem header={
+                    <DropdownItem defaultOpen header={
                         <span className="text-white text-base pl-1">{`ENNEMIS${enemies.length !== 0 ? ` (${enemies.length})` : ''}`}</span>
                     }>
                         <ContactList type="enemies" deleteMode={deleteMode} />
