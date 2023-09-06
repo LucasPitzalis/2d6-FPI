@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleModal } from "../../actions/app";
 import { editField } from "../../actions/app";
 import SimpleButton from "../buttons/SimpleButton";
+import PropTypes from 'prop-types';
+import { properFalse } from "../../utils/functions";
 
-export default function AvatarModal() {
+export default function AvatarModal({ petIndex }) {
     const { avatar } = useSelector((state) => state.character);
     const [currentValue, setCurrentValue] = useState(avatar);
     const dispatch = useDispatch();
@@ -12,7 +14,7 @@ export default function AvatarModal() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(editField({name: 'character.avatar', value: currentValue}));
+        dispatch(editField({name: !properFalse(petIndex) ? 'character.avatar' : `pets.${petIndex}.avatar`, value: currentValue}));
         dispatch(handleModal(false))
     }
 
@@ -29,4 +31,16 @@ export default function AvatarModal() {
             </div>
         </form>
     );
+}
+
+
+AvatarModal.propTypes = {
+    petIndex: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.number
+    ])
+};
+
+AvatarModal.defaultProps = {
+    petIndex: false,
 }

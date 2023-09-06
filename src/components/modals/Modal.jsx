@@ -20,7 +20,9 @@ export default function Modal() {
     const [modalTitle, setModalTitle] = useState();
 
     useEffect(() => {
-        switch (modal) {
+        const [modalType, index] = modal.split('.');
+
+        switch (modalType) {
             case 'editAbilities': 
                 setModalContent(<EditAbilities />);
                 setModalTitle('Modifier les caractéristiques');
@@ -38,7 +40,7 @@ export default function Modal() {
                 setModalTitle('Distribution des points des familiers');
                 break;
             case 'avatar':
-                setModalContent(<AvatarModal />);
+                setModalContent(<AvatarModal petIndex={index ? Number(index) : false} />);
                 setModalTitle('Ajouter/modifier l\'avatar');
                 break;
             case 'importSheet':

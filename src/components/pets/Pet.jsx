@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import DeletableItem from "../context/DeletableItem";
 import { deletePet } from "../../actions/pets";
 import { currentPetLevel } from "../../features/petStats";
-import Avatar from "../character/Avatar";
+import Avatar from "../Avatar";
 import AttackIcon from "../../icons/AttackIcon";
 import DefenseIcon from "../../icons/DefenseIcon";
 import WillIcon from "../../icons/WillIcon";
@@ -23,6 +23,7 @@ export default function Pet({ index, deleteMode }) {
             styles="flex-col py-2 space-y-0.5 border-t border-gray-400 w-full"
         >
             <DropdownItem 
+                defaultOpen
                 header={
                     <>
                         <StaticField name={`pets.${index}`} value={`N°${index + 1}`} />
@@ -31,47 +32,49 @@ export default function Pet({ index, deleteMode }) {
                     </>
                 }
             >
-                <div className="flex flex-col md:flex-row space-y-0.5 md:space-y-0 md:space-x-0.5">
-                    <div className="flex flex-col justify-between space-y-0.5 w-full md:w-1/2">
-                        <div className="flex space-x-0.5">
-                            
-                            <StaticField label="xp acquis" name={`pets.${index}.experience`} center styles={'w-full'} value={pet.experience} />
-                            <StaticField label="xp prochain" name={`pets.${index}.xpToReach`} value={currentPetLevel(index).nextLevelXp} styles={'w-full'} />
-                        </div>
+                <div className="flex flex-col xxs:flex-row gap-0.5">
+                    <div className="flex flex-col justify-between gap-0.5 w-full md:flex-row">
+                        <StaticField label="xp acquis" name={`pets.${index}.experience`} center styles="w-full" labelStyles="w-28" value={pet.experience} />
+                        <StaticField label="xp prochain" name={`pets.${index}.xpToReach`} value={currentPetLevel(index).nextLevelXp} styles="w-full" labelStyles="w-28" />
                     </div>
-                    <div className="flex flex-col justify-between space-y-0.5 w-full md:w-1/2">
-                        <div className="flex space-x-0.5">
-                            <InputField label="nb. de pt. pv/pe" name={`pets.${index}.hpEpPts`} htmlType="number" center styles={'w-1/2'} />
-                            <InputField label="pt. compétences" name={`pets.${index}.skillPts`} htmlType="number" center styles={'w-1/2'} />
-                        </div>
-                        <div className="flex space-x-0.5">
-                            <InputField label="PV" name={`pets.${index}.healthPts`} htmlType="number" center styles={'w-1/3'} />
-                            <InputField name={`pets.${index}.maxHp`} htmlType="number" center styles={'w-1/6'} />
-                            <InputField label="PE" name={`pets.${index}.energyPts`} htmlType="number" center styles={'w-1/3'} />
-                            <InputField name={`pets.${index}.maxEp`} htmlType="number" center styles={'w-1/6'} />
-                        </div>
+                    <div className="flex flex-col justify-between gap-0.5 w-full md:flex-row">
+                        <InputField 
+                            label="pv" name={`pets.${index}.healthPts`} styles="w-full" htmlType="number" center
+                            checkCondition={(value) => value <= pet.stats.maxHp} suffix={`/ ${pet.stats.maxHp}`} 
+                        />
+                        <InputField 
+                            label="pe" name={`pets.${index}.energyPts`} styles="w-full" htmlType="number" center
+                            checkCondition={(value) => value <= pet.stats.maxEp} suffix={`/ ${pet.stats.maxEp}`} 
+                        />
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row space-y-0.5 md:space-y-0 md:space-x-0.5">
-                    <Avatar />
-                    <div className="flex flex-col justify-between space-y-0.5 w-full md:w-1/2">
-                        <div className="flex space-x-0.5">
-                            <InputField label={{text: 'attaque', icon: <AttackIcon />}} name={`pets.${index}.atkDesc`} styles={'w-full'} />
+                <div className="flex flex-col xs:flex-row gap-0.5">
+                    <Avatar petIndex={index} />
+                    <div className="flex flex-col justify-between gap-0.5 w-full xs:w-4/5">
+                        <div className="flex gap-0.5">
+                            <InputField label={{text: 'attaque', icon: <AttackIcon />}} name={`pets.${index}.atkDesc`} styles="w-full" labelStyles="w-28" />
                             <StaticField name={`pets.${index}.stats.atk`} htmlType="number" center styles={'w-12'} value={pet.stats.atk} />
                         </div>
-                        <div className="flex space-x-0.5">
-                            <InputField label={{text: 'défense', icon: <DefenseIcon />}} name={`pets.${index}.defDesc`} styles={'w-full'} />
+                        <div className="flex gap-0.5">
+                            <InputField label={{text: 'défense', icon: <DefenseIcon />}} name={`pets.${index}.defDesc`} styles="w-full" labelStyles="w-28" />
                             <StaticField name={`pets.${index}.stats.def`} htmlType="number" center styles={'w-12'} value={pet.stats.def} />
                         </div>
-                        <div className="flex space-x-0.5">
-                            <InputField label={{text: 'volonté', icon: <WillIcon />}} name={`pets.${index}.wilDesc`} styles={'w-full'} />
+                        <div className="flex gap-0.5">
+                            <InputField label={{text: 'volonté', icon: <WillIcon />}} name={`pets.${index}.wilDesc`} styles="w-full" labelStyles="w-28" />
                             <StaticField name={`pets.${index}.stats.wil`} htmlType="number" center styles={'w-12'} value={pet.stats.wil} />
                         </div>
-                        <div className="flex space-x-0.5">
-                            <InputField label={{text: 'spécial', icon: <SpecialIcon />}} name={`pets.${index}.speDesc`} styles={'w-full'} />
+                        <div className="flex gap-0.5">
+                            <InputField label={{text: 'spécial', icon: <SpecialIcon />}} name={`pets.${index}.speDesc`} styles="w-full" labelStyles="w-28" />
                             <StaticField name={`pets.${index}.stats.spe`} htmlType="number" center styles={'w-12'} value={pet.stats.spe} />
                         </div>
                     </div>
+                </div>
+                <div className="flex">
+                    <InputField name={`pets.${index}.desc`} label="description" multiline={2} styles="w-full" />
+                </div>
+                <div className="flex flex-col sm:flex-row gap-0.5">
+                    <InputField name={`pets.${index}.talent`} label="forces" styles="w-full" />
+                    <InputField name={`pets.${index}.weakness`} label="faiblesses" styles="w-full" />
                 </div>
             </DropdownItem>
         </DeletableItem>

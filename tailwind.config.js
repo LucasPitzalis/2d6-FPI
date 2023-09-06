@@ -18,6 +18,8 @@ export default {
       },
       screens: {
         'md': '794px',
+        'xs': '550px',
+        'xxs': '400px'
       },
       transitionProperty: {
         'height': 'height',

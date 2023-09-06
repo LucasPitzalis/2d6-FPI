@@ -6,7 +6,13 @@ import SheetField from './SheetField';
 import { getProperty } from '../../utils/functions';
 
 
-export default function InputField({ label, name, htmlType, isTitle, styles, vertical, regex, center, multiline, prefix, suffix, checkCondition, placeHolder }) {
+export default function InputField({ 
+    label, name, htmlType, 
+    isTitle, styles, vertical, 
+    regex, center, multiline, 
+    prefix, suffix, checkCondition, 
+    placeHolder, labelStyles 
+}) {
     const dispatch = useDispatch();
     const currentValue = useSelector((state) => getProperty(state, name));
 
@@ -25,7 +31,7 @@ export default function InputField({ label, name, htmlType, isTitle, styles, ver
 
     return (
         <SheetField {...{isTitle, styles, vertical}} >
-            {label && <FieldLabel {...{label, name, vertical, styles: multiline ? 'h-full' : ''}} />}
+            {label && <FieldLabel {...{label, name, vertical, styles: labelStyles}} />}
             <form className="group/edit relative flex flex-1 h-full justify-center items-center space-x-1" onSubmit={(e) => e.preventDefault()}>
                 {prefix && <span className="leading-5 ml-2">{ prefix }</span>}
                 {multiline ? <textarea {...inputProps} rows={multiline} /> : <input {...inputProps}/>}
@@ -47,6 +53,7 @@ InputField.propTypes = {
     htmlType: PropTypes.string,
     isTitle: PropTypes.bool,
     styles: PropTypes.string,
+    labelStyles: PropTypes.string,
     vertical: PropTypes.bool,
     regex: PropTypes.instanceOf(RegExp),
     center: PropTypes.bool,

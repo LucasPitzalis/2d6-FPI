@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export default function FieldLabel({ name, label, vertical, styles }) {
     return (
         <label 
-            className={`bg-black text-white p-1 font-bold flex items-center justify-center space-x-2 ${vertical ? 'w-full' : 'h-full'} ${styles}`} 
+            className={`bg-black text-white p-1 font-bold flex items-center justify-center space-x-2 h-full ${vertical ? 'w-full' : ''} ${styles}`} 
             htmlFor={name}
         >
             <span className="truncate">
