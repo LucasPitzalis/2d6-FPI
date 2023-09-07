@@ -13,6 +13,7 @@ const newItem = { name: '', type: '',
     reserve: '', reloadPrice: '', kilometers: '',
     quality: "1", price: '', weight: '',
     matType: '', matQty: '',
+    bearer: -1, // -1 = character, otherwise number = petIndex
 };
 
 const reducer = (state = initialState, action = {}) => {

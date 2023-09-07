@@ -7,10 +7,13 @@ import DeletableItem from "../context/DeletableItem";
 import FieldLabel from "../fields/FieldLabel";
 import { qualityTable } from "../../data/quality";
 import { deleteItem } from "../../actions/items";
+import { properFalse } from "../../utils/functions";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
     const { quality, bonusValue, malusValue } = useSelector((state) => state.items[index]);
+    const pets = useSelector((state) => state.pets);
+    const { name } = useSelector((state) => state.character);
 
     const handleQualityChange = (e) => {
         if(e.target.value < bonusValue) dispatch(editField({name: `items.${index}.bonusValue`, value: Number(e.target.value)}));
@@ -35,12 +38,26 @@ export default function Item({ item, index, deleteMode }) {
                     <InputField multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-full'} />
                     <InputField prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
                 </div>
-                <SheetField>
-                    <FieldLabel name={`items.${index}.quality`} label="qualité" />
-                    <select name={`items.${index}.quality`} value={item.quality} onChange={handleQualityChange}>
-                        {qualityTable.map((quality) => <option key={quality.value} value={quality.value}>{quality.nameFr}</option>)}
-                    </select>
-                </SheetField>
+                <div className="flex flex-col gap-0.5 xxs:flex-row">
+                    <SheetField styles="xxs:w-1/2">
+                        <FieldLabel name={`items.${index}.quality`} label="qualité" />
+                        <select name={`items.${index}.quality`} value={item.quality} onChange={handleQualityChange} className="grow">
+                            {qualityTable.map((quality) => <option key={quality.value} value={quality.value}>{quality.nameFr}</option>)}
+                        </select>
+                    </SheetField>
+                    <SheetField styles="xxs:w-1/2">
+                        <FieldLabel name={`items.${index}.bearer`} label="porteur" />
+                        <select 
+                            className="grow"
+                            name={`items.${index}.bearer`} 
+                            value={item.bearer} 
+                            onChange={(e) => dispatch(editField({name: `items.${index}.bearer`, value: Number(e.target.value)}))}
+                        >
+                            <option value={-1}>{name}</option>
+                            {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
+                        </select>
+                    </SheetField>
+                </div>
             </div>
             <div className="flex flex-col justify-between space-y-0.5 w-full sm:w-2/5">
                 <div className="flex space-x-0.5">
@@ -57,8 +74,8 @@ export default function Item({ item, index, deleteMode }) {
                 </div>
                 <InputField label="prix" name={`items.${index}.price`} />
                 <InputField label="poids" name={`items.${index}.weight`} />
-                <InputField label="Type de minerai" name={`items.${index}.matType`} />
-                <InputField label="qté de minerai" name={`items.${index}.matQty`} />
+                <InputField label="Type minerai" name={`items.${index}.matType`} />
+                <InputField label="qté minerai" name={`items.${index}.matQty`} />
             </div>
         </DeletableItem>
     );
@@ -83,6 +100,7 @@ Item.propTypes = {
         weight: PropTypes.string.isRequired,
         matType: PropTypes.string.isRequired, 
         matQty: PropTypes.string.isRequired,
+        bearer: PropTypes.number.isRequired,
     }).isRequired,
     index: PropTypes.number.isRequired,
     deleteMode: PropTypes.bool.isRequired,

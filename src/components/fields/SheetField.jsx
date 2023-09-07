@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export default function SheetField(props) {
     return (
-        <div className={`border-2 border-black rounded items-center flex ${props.isTitle ? 'text-base' : ''} ${props.styles} ${props.vertical ? 'flex-col' : ''}`}>
+        <div className={`border-2 border-black rounded flex items-center ${props.isTitle ? 'text-base' : ''} ${props.styles} ${props.vertical ? 'flex-col' : ''}`}>
             {props.children}
         </div>
     );
