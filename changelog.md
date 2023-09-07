@@ -1,5 +1,8 @@
 # Notes de changement
 
+## v0.5 (07/09/23)
+
+
 ## v0.4 (04/09/23)
 
 - Ajout d'une page "à propos"
