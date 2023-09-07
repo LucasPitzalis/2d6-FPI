@@ -8,10 +8,12 @@ import FieldLabel from "../fields/FieldLabel";
 import { qualityTable } from "../../data/quality";
 import { deleteItem } from "../../actions/items";
 import DropdownItem from "../context/DropdownItem";
+import PetOption from "../pets/PetOption";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
     const { quality, bonusValue, malusValue } = useSelector((state) => state.items[index]);
+    const items  = useSelector((state) => state.items);
     const pets = useSelector((state) => state.pets);
     const { name } = useSelector((state) => state.character);
 
@@ -66,8 +68,13 @@ export default function Item({ item, index, deleteMode }) {
                                     value={item.bearer} 
                                     onChange={(e) => dispatch(editField({name: `items.${index}.bearer`, value: Number(e.target.value)}))}
                                 >
-                                    <option value={-1}>{name}</option>
-                                    {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
+                                    <option value={-1}>{name.trim() === '' ? `Personnage` : name.trim()}</option>
+                                    {pets.map((pet, petIndex) => <PetOption 
+                                        key={petIndex} 
+                                        name={pet.name} 
+                                        index={petIndex} 
+                                        isDisabled={items.filter((i) => i.bearer === petIndex).length >= 3} 
+                                    />)}
                                 </select>
                             </SheetField>
                         </div>

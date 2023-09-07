@@ -8,6 +8,7 @@ import SimpleButton from "../buttons/SimpleButton";
 import { currentPetLevel } from "../../features/petStats";
 import { editPetExperience } from "../../actions/pets";
 import { useLocation } from "react-router-dom";
+import PetOption from "../pets/PetOption";
 
 
 export default function EditExperience() {
@@ -61,7 +62,7 @@ export default function EditExperience() {
                 <div className="relative border-b border-gray-400 pb-2 flex flex-col justify-between space-y-1">
                     <h4 className="font-bold">Sélection du familier :</h4>
                     <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
-                        {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
+                        {pets.map((pet, index) => <PetOption key={index} name={pet.name} index={index} />)}
                     </select>
                 </div>
             }

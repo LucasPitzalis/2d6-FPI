@@ -7,6 +7,7 @@ import { petPoints } from "../../features/petStats";
 import { getStatNameFr } from "../../utils/functions";
 import HoverableButton from "../buttons/HoverableButton";
 import SimpleButton from "../buttons/SimpleButton";
+import PetOption from "../pets/PetOption";
 
 export default function EditPetStats() {
     const dispatch = useDispatch();
@@ -77,7 +78,7 @@ export default function EditPetStats() {
             <div className="relative border-b border-gray-400 pb-2 flex flex-col justify-between space-y-1">
                 <h4 className="font-bold">Sélection du familier :</h4>
                 <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
-                    {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
+                    {pets.map((pet, index) => <PetOption key={index} name={pet.name} index={index} />)}
                 </select>
             </div>
             <p>Points de PV/PE restants : <span className={`font-bold ${hpEpPts.currentLeft < 0 && 'text-red-600'}`}>{hpEpPts.currentLeft}</span></p>

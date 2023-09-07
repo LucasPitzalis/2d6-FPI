@@ -51,7 +51,7 @@ export default function EditPetRolls() {
                 <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >
                     {pets.map((pet, index) => 
                         <option key={index} value={index}>
-                            {`n°${index + 1} : ${pet.name}`}
+                            {pet.name.trim() === '' ? `Familier n°${index}` : `n°${index + 1} : ${pet.name.trim()}`}
                             {pendingRolls(pet) !== 0 && ` (${pendingRolls(pet)} niv. en attente)`}
                         </option>
                     )}
