@@ -7,7 +7,7 @@ import DeletableItem from "../context/DeletableItem";
 import FieldLabel from "../fields/FieldLabel";
 import { qualityTable } from "../../data/quality";
 import { deleteItem } from "../../actions/items";
-import { properFalse } from "../../utils/functions";
+import DropdownItem from "../context/DropdownItem";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
@@ -25,58 +25,70 @@ export default function Item({ item, index, deleteMode }) {
         <DeletableItem 
             handler={() => dispatch(deleteItem(index))}
             deleteMode={deleteMode}
-            styles="flex-col py-2 sm:flex-row space-y-0.5 sm:space-y-0 sm:space-x-1 border-t border-gray-400"
+            styles="py-2 border-t border-gray-400"
         >
-            <div className="flex flex-col justify-between space-y-0.5 w-full sm:w-3/5">
-                <InputField label="nom" name={`items.${index}.name`} />
-                <InputField label="type" name={`items.${index}.type`} />
-                <div className="flex space-x-0.5">
-                    <InputField multiline={3} label="bonus" name={`items.${index}.bonusDesc`} styles={'w-full'} />
-                    <InputField prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
+            <DropdownItem
+                defaultOpen
+                header={
+                    <InputField placeHolder="Nom de l'objet..." name={`items.${index}.name`} styles="w-full" />
+                }
+            >
+                <div className="flex flex-col sm:flex-row gap-y-0.5 gap-x-1">
+                    <div className="flex flex-col justify-between space-y-0.5 w-full sm:w-3/5">
+                        <InputField label="type" name={`items.${index}.type`} />
+                        <div className="flex gap-0.5 flex-col xxs:flex-row">
+                            <div className="flex gap-0.5">
+                                <InputField label="pr" name={`items.${index}.resistance`} htmlType="number" center regex={/^[0-9]\d*$/} />
+                                <InputField label="pde" name={`items.${index}.armor`} htmlType="number"  center regex={/^[0-9]\d*$/} />
+                            </div>
+                            <InputField label="dgt" name={`items.${index}.dmg`} styles="w-full" center />
+                        </div>
+                        <div className="flex gap-0.5">
+                            <InputField multiline={3} label="bonus" name={`items.${index}.bonusDesc`} styles={'w-full'} />
+                            <InputField prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
+                        </div>
+                        <div className="flex gap-0.5">
+                            <InputField multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-full'} />
+                            <InputField prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
+                        </div>
+                        <div className="flex flex-col gap-0.5 xxs:flex-row">
+                            <SheetField styles="xxs:w-1/2">
+                                <FieldLabel name={`items.${index}.quality`} label="qualité" />
+                                <select name={`items.${index}.quality`} value={item.quality} onChange={handleQualityChange} className="grow">
+                                    {qualityTable.map((quality) => <option key={quality.value} value={quality.value}>{quality.nameFr}</option>)}
+                                </select>
+                            </SheetField>
+                            <SheetField styles="xxs:w-1/2">
+                                <FieldLabel name={`items.${index}.bearer`} label="porteur" />
+                                <select 
+                                    className="grow"
+                                    name={`items.${index}.bearer`} 
+                                    value={item.bearer} 
+                                    onChange={(e) => dispatch(editField({name: `items.${index}.bearer`, value: Number(e.target.value)}))}
+                                >
+                                    <option value={-1}>{name}</option>
+                                    {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
+                                </select>
+                            </SheetField>
+                        </div>
+                    </div>
+                    <div className="flex flex-col justify-evenly gap-0.5 w-full sm:w-2/5">
+                        <div className="flex flex-col xs:flex-row sm:flex-col gap-0.5">
+                            <InputField label="réservoir" name={`items.${index}.reserve`} />
+                            <InputField label="prix rech." name={`items.${index}.reloadPrice`} />
+                            <InputField label="nb. de km" name={`items.${index}.kilometers`} />
+                        </div>
+                        <div className="flex flex-col xs:flex-row sm:flex-col gap-0.5">
+                            <InputField label="prix" name={`items.${index}.price`} />
+                            <InputField label="poids" name={`items.${index}.weight`} />
+                        </div>
+                        <div className="flex flex-col xs:flex-row sm:flex-col gap-0.5">
+                            <InputField label="Type minerai" name={`items.${index}.matType`} />
+                            <InputField label="qté minerai" name={`items.${index}.matQty`} />
+                        </div>
+                    </div>
                 </div>
-                <div className="flex space-x-0.5">
-                    <InputField multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-full'} />
-                    <InputField prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
-                </div>
-                <div className="flex flex-col gap-0.5 xxs:flex-row">
-                    <SheetField styles="xxs:w-1/2">
-                        <FieldLabel name={`items.${index}.quality`} label="qualité" />
-                        <select name={`items.${index}.quality`} value={item.quality} onChange={handleQualityChange} className="grow">
-                            {qualityTable.map((quality) => <option key={quality.value} value={quality.value}>{quality.nameFr}</option>)}
-                        </select>
-                    </SheetField>
-                    <SheetField styles="xxs:w-1/2">
-                        <FieldLabel name={`items.${index}.bearer`} label="porteur" />
-                        <select 
-                            className="grow"
-                            name={`items.${index}.bearer`} 
-                            value={item.bearer} 
-                            onChange={(e) => dispatch(editField({name: `items.${index}.bearer`, value: Number(e.target.value)}))}
-                        >
-                            <option value={-1}>{name}</option>
-                            {pets.map((pet, index) => <option key={index} value={index}>{`n°${index + 1} : ${pet.name}`}</option>)}
-                        </select>
-                    </SheetField>
-                </div>
-            </div>
-            <div className="flex flex-col justify-between space-y-0.5 w-full sm:w-2/5">
-                <div className="flex space-x-0.5">
-                    <InputField label="pr" name={`items.${index}.resistance`} htmlType="number" center styles={'w-1/3'} regex={/^[0-9]\d*$/} />
-                    <InputField label="réservoir" name={`items.${index}.reserve`} styles={'w-2/3'}/>
-                </div>
-                <div className="flex space-x-0.5">
-                    <InputField label="dgt" name={`items.${index}.dmg`} styles={'w-1/2'}/>
-                    <InputField label="prix rech." name={`items.${index}.reloadPrice`} styles={'w-1/2'}/>
-                </div>
-                <div className="flex space-x-0.5">
-                    <InputField label="pde" name={`items.${index}.armor`} htmlType="number" center styles={'w-1/3'} regex={/^[0-9]\d*$/} />
-                    <InputField label="nb. de km" name={`items.${index}.kilometers`} styles={'w-2/3'}/>
-                </div>
-                <InputField label="prix" name={`items.${index}.price`} />
-                <InputField label="poids" name={`items.${index}.weight`} />
-                <InputField label="Type minerai" name={`items.${index}.matType`} />
-                <InputField label="qté minerai" name={`items.${index}.matQty`} />
-            </div>
+            </DropdownItem>
         </DeletableItem>
     );
 }
