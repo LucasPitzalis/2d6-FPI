@@ -1,7 +1,10 @@
 # Notes de changement
 
-## v0.5 (07/09/23)
+## v0.5 (08/09/23)
 
+- Ajout des fonctionnalités liées aux familiers
+- Les compétences, objets et contacts sont maintenant sous forme d'objets déroulants
+- Amérliorations et correctifs divers d'affichage et d'ergonomie
 
 ## v0.4 (04/09/23)
 
