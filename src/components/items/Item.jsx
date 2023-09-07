@@ -26,7 +26,7 @@ export default function Item({ item, index, deleteMode }) {
         <DeletableItem 
             handler={() => dispatch(deleteItem(index))}
             deleteMode={deleteMode}
-            styles="py-2 border-t border-gray-400"
+            styles="py-2 border-b border-gray-400"
         >
             <DropdownItem
                 defaultOpen
@@ -85,12 +85,12 @@ export default function Item({ item, index, deleteMode }) {
                             <InputField label="nb. de km" name={`items.${index}.kilometers`} />
                         </div>
                         <div className="flex flex-col xs:flex-row sm:flex-col gap-0.5">
-                            <InputField label="prix" name={`items.${index}.price`} />
-                            <InputField label="poids" name={`items.${index}.weight`} />
+                            <InputField label="prix" name={`items.${index}.price`} styles="w-full xs:w-1/2 sm:w-full" />
+                            <InputField label="poids" name={`items.${index}.weight`} styles="w-full xs:w-1/2 sm:w-full" />
                         </div>
                         <div className="flex flex-col xs:flex-row sm:flex-col gap-0.5">
-                            <InputField label="Type minerai" name={`items.${index}.matType`} />
-                            <InputField label="qté minerai" name={`items.${index}.matQty`} />
+                            <InputField label="Type minerai" name={`items.${index}.matType`} styles="w-full xs:w-1/2 sm:w-full" />
+                            <InputField label="qté minerai" name={`items.${index}.matQty`} styles="w-full xs:w-1/2 sm:w-full" />
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ export default function Pet({ index, deleteMode }) {
         <DeletableItem 
             handler={() => dispatch(deletePet(index))}
             deleteMode={deleteMode}
-            styles="flex-col py-2 space-y-0.5 border-t border-gray-400 w-full"
+            styles="flex-col py-2 space-y-0.5 border-b border-gray-400 w-full"
         >
             <DropdownItem 
                 defaultOpen

@@ -18,7 +18,7 @@ export default function Skill({ skill, index, deleteMode }) {
         <DeletableItem 
             handler={() => dispatch(deleteSkill(index))}
             deleteMode={deleteMode}
-            styles="flex-col py-2 md:flex-row space-y-0.5 md:space-y-0 md:space-x-0.5 border-t border-gray-400"
+            styles="flex-col py-2 md:flex-row space-y-0.5 md:space-y-0 md:space-x-0.5 border-b border-gray-400"
         >
             <div className="flex flex-col justify-between space-y-0.5 w-full md:w-3/5 relative">
                 <div className="flex space-x-0.5">
@@ -27,9 +27,9 @@ export default function Skill({ skill, index, deleteMode }) {
                 </div>
                 <div className="flex space-x-0.5">
                     <InputField label="info" name={`skills.${index}.description`} multiline={2} styles={'w-2/3'} />
-                    <SheetField vertical styles={'w-1/3 justify-center'}>
-                        <span className="text-xs">Carac. associées</span>
-                        <div className="flex space-x-0.5 items-center">
+                    <SheetField vertical styles="w-1/3 justify-center">
+                        <span className="text-xs text-center">Carac. associées</span>
+                        <div className="flex space-x-0.5 justify-center items-center flex-wrap">
                             <select name={`skills.${index}.ability1`} value={skill.ability1} onChange={(e) => dispatch(editField(e.target))}>
                                 {abilityStrings
                                     .filter((ability) => ability !== skill.ability2)
@@ -37,14 +37,16 @@ export default function Skill({ skill, index, deleteMode }) {
                                         <option key={ability} value={ability}>{getStatNameFr(ability)}</option>
                                     ))}
                             </select>
-                            <span className="font-bold">+</span>
-                            <select name={`skills.${index}.ability2`} value={skill.ability2} onChange={(e) => dispatch(editField(e.target))}>
-                                {abilityStrings
-                                    .filter((ability) => ability !== skill.ability1)
-                                    .map((ability) => (
-                                        <option key={ability} value={ability}>{getStatNameFr(ability)}</option>
-                                    ))}
-                            </select>
+                            <div>
+                                <span className="font-bold">+</span>
+                                <select name={`skills.${index}.ability2`} value={skill.ability2} onChange={(e) => dispatch(editField(e.target))}>
+                                    {abilityStrings
+                                        .filter((ability) => ability !== skill.ability1)
+                                        .map((ability) => (
+                                            <option key={ability} value={ability}>{getStatNameFr(ability)}</option>
+                                        ))}
+                                </select>
+                            </div>
                         </div>
                     </SheetField>
                 </div>

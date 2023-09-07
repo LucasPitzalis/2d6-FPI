@@ -25,7 +25,7 @@ export default function SubMenu({title, icon, children, defaultOpen}) {
                 </div>
             </div>
             <div
-                className={`ml-4 dropdown`}
+                className={`ml-4 dropdown ${isOpen ? '' : 'overflow-hidden'}`}
                 style={{maxHeight: !isOpen ? 0 : contentHeight}}
                 ref={contentRef}
             >
