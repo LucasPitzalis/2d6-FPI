@@ -11,6 +11,7 @@ import DefenseIcon from "../../icons/DefenseIcon";
 import WillIcon from "../../icons/WillIcon";
 import SpecialIcon from "../../icons/SpecialIcon";
 import DropdownItem from "../context/DropdownItem";
+import PetItem from "./PetItem";
 
 export default function Pet({ index, deleteMode }) {
     const dispatch = useDispatch();
@@ -53,19 +54,19 @@ export default function Pet({ index, deleteMode }) {
                     <Avatar petIndex={index} />
                     <div className="flex flex-col justify-between gap-0.5 w-full xs:w-4/5">
                         <div className="flex gap-0.5">
-                            <InputField label={{text: 'attaque', icon: <AttackIcon />}} name={`pets.${index}.atkDesc`} styles="w-full" labelStyles="w-24 xxs:w-28" />
+                            <InputField label={{text: 'attaque', icon: <AttackIcon />}} name={`pets.${index}.atkDesc`} styles="w-full" />
                             <StaticField name={`pets.${index}.stats.atk`} htmlType="number" center styles={'w-12'} value={pet.stats.atk} />
                         </div>
                         <div className="flex gap-0.5">
-                            <InputField label={{text: 'défense', icon: <DefenseIcon />}} name={`pets.${index}.defDesc`} styles="w-full" labelStyles="w-24 xxs:w-28" />
+                            <InputField label={{text: 'défense', icon: <DefenseIcon />}} name={`pets.${index}.defDesc`} styles="w-full" />
                             <StaticField name={`pets.${index}.stats.def`} htmlType="number" center styles={'w-12'} value={pet.stats.def} />
                         </div>
                         <div className="flex gap-0.5">
-                            <InputField label={{text: 'volonté', icon: <WillIcon />}} name={`pets.${index}.wilDesc`} styles="w-full" labelStyles="w-24 xxs:w-28" />
+                            <InputField label={{text: 'volonté', icon: <WillIcon />}} name={`pets.${index}.wilDesc`} styles="w-full" />
                             <StaticField name={`pets.${index}.stats.wil`} htmlType="number" center styles={'w-12'} value={pet.stats.wil} />
                         </div>
                         <div className="flex gap-0.5">
-                            <InputField label={{text: 'spécial', icon: <SpecialIcon />}} name={`pets.${index}.speDesc`} styles="w-full" labelStyles="w-24 xxs:w-28" />
+                            <InputField label={{text: 'spécial', icon: <SpecialIcon />}} name={`pets.${index}.speDesc`} styles="w-full" />
                             <StaticField name={`pets.${index}.stats.spe`} htmlType="number" center styles={'w-12'} value={pet.stats.spe} />
                         </div>
                     </div>
@@ -76,6 +77,9 @@ export default function Pet({ index, deleteMode }) {
                 <div className="flex flex-col sm:flex-row gap-0.5">
                     <InputField name={`pets.${index}.talent`} label="forces" styles="w-full" />
                     <InputField name={`pets.${index}.weakness`} label="faiblesses" styles="w-full" />
+                </div>
+                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-0.5">
+                    {carriedItems.map((item, itemIndex) => <PetItem key={`item.${itemIndex}`} {...{itemIndex, item}}/>)}
                 </div>
             </DropdownItem>
         </DeletableItem>

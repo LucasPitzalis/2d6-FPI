@@ -23,7 +23,7 @@ export default function InputField({
 
     const inputProps = {
         rows: 2,
-        className: `min-h-fit p-1 w-full flex-1 ${center ? 'text-center' : ''}`, 
+        className: `p-1 w-full flex-1 ${center ? 'text-center' : ''}`, 
         type: htmlType, step: "1", name: name,
         value: currentValue, onChange: (e) => regex.test(e.target.value) && checkCondition(e.target.value) && handleChange(e),
         placeholder: placeHolder,
@@ -32,7 +32,7 @@ export default function InputField({
     return (
         <SheetField {...{isTitle, styles, vertical}} >
             {label && <FieldLabel {...{label, name, vertical, styles: labelStyles}} />}
-            <form className="group/edit relative flex flex-1 h-full justify-center items-center space-x-1" onSubmit={(e) => e.preventDefault()}>
+            <form className="group/edit relative flex flex-1 h-full justify-center items-center space-x-1 w-full" onSubmit={(e) => e.preventDefault()}>
                 {prefix && <span className="leading-5 ml-2">{ prefix }</span>}
                 {multiline ? <textarea {...inputProps} rows={multiline} /> : <input {...inputProps}/>}
                 {suffix && <span className="leading-5 font-bold italic p-1">{ suffix }</span>}

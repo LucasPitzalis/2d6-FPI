@@ -20,16 +20,16 @@ export default function Character() {
                     <Avatar />
                     <Measurements />
                     <Job />
-                    <InputField label="ordre" name="character.order" labelStyles="w-16 xxs:w-20" />
-                    <InputField label="religion" name="character.religion" labelStyles="w-20"/>
+                    <InputField label="ordre" name="character.order" />
+                    <InputField label="religion" name="character.religion" />
                 </div>
                 <div className="flex flex-col space-y-0.5 justify-between w-full sm:w-1/2">
                     <SectionTitle title="statistiques et état du personnage" />
                     <Level />
-                    <InputField label="état physique" name="character.physicalCondition" labelStyles="w-28 xxs:w-32"/>
-                    <InputField label="conséquence" name="character.physicalConsequences" labelStyles="w-28 xxs:w-32"/>
-                    <InputField label="état mental" name="character.mentalCondition" labelStyles="w-28 xxs:w-32"/>
-                    <InputField label="conséquence" name="character.mentalConsequences" labelStyles="w-28 xxs:w-32"/>
+                    <InputField label="état physique" name="character.physicalCondition"/>
+                    <InputField label="conséquence" name="character.physicalConsequences"/>
+                    <InputField label="état mental" name="character.mentalCondition"/>
+                    <InputField label="conséquence" name="character.mentalConsequences"/>
                     <Stats />
                     <div className="flex space-x-0.5">
                         <StaticField label="poids max (kg)" name="character.maxWeight" styles="w-1/3" value={maxWeight()} vertical />

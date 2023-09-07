@@ -12,14 +12,13 @@ import PetOption from "../pets/PetOption";
 
 export default function Item({ item, index, deleteMode }) {
     const dispatch = useDispatch();
-    const { quality, bonusValue, malusValue } = useSelector((state) => state.items[index]);
     const items  = useSelector((state) => state.items);
     const pets = useSelector((state) => state.pets);
     const { name } = useSelector((state) => state.character);
 
     const handleQualityChange = (e) => {
-        if(e.target.value < bonusValue) dispatch(editField({name: `items.${index}.bonusValue`, value: Number(e.target.value)}));
-        if(e.target.value < malusValue) dispatch(editField({name: `items.${index}.malusValue`, value: Number(e.target.value)}));
+        if(e.target.value < item.bonusValue) dispatch(editField({name: `items.${index}.bonusValue`, value: Number(e.target.value)}));
+        if(e.target.value < item.malusValue) dispatch(editField({name: `items.${index}.malusValue`, value: Number(e.target.value)}));
         dispatch(editField(e.target));
     }
 
@@ -47,11 +46,11 @@ export default function Item({ item, index, deleteMode }) {
                         </div>
                         <div className="flex gap-0.5">
                             <InputField multiline={3} label="bonus" name={`items.${index}.bonusDesc`} styles={'w-full'} />
-                            <InputField prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
+                            <InputField prefix="+" htmlType="number" name={`items.${index}.bonusValue`} styles={'w-16'} regex={new RegExp(`^[0-${item.quality}]d*$`)} />
                         </div>
                         <div className="flex gap-0.5">
                             <InputField multiline={3} label="malus" name={`items.${index}.malusDesc`} styles={'w-full'} />
-                            <InputField prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-16'} regex={new RegExp(`^[0-${quality}]d*$`)} />
+                            <InputField prefix="-" htmlType="number" name={`items.${index}.malusValue`} styles={'w-16'} regex={new RegExp(`^[0-${item.quality}]d*$`)} />
                         </div>
                         <div className="flex flex-col gap-0.5 xxs:flex-row">
                             <SheetField styles="xxs:w-1/2">
