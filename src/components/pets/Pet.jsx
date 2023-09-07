@@ -14,7 +14,8 @@ import DropdownItem from "../context/DropdownItem";
 
 export default function Pet({ index, deleteMode }) {
     const dispatch = useDispatch();
-    const pet = useSelector((state) => state.pets[index])
+    const pet = useSelector((state) => state.pets[index]);
+    const carriedItems = useSelector((state) => state.items).filter((item) => item.bearer === index);
 
     return (
         <DeletableItem 
