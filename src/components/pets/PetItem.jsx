@@ -19,8 +19,8 @@ export default function PetItem({ itemIndex, item }) {
         <div className="flex flex-col gap-0.5">
             <InputField vertical name={`items.${itemIndex}.name`} label={`objet ${itemIndex + 1}`} />
             <div className="flex gap-0.5">
-                <InputField vertical label="pr" name={`items.${itemIndex}.resistance`} htmlType="number" center regex={/^[0-9]\d*$/} />
-                <InputField vertical label="pde" name={`items.${itemIndex}.armor`} htmlType="number"  center regex={/^[0-9]\d*$/} />
+                <InputField vertical label="pr" name={`items.${itemIndex}.resistance`} htmlType="number" center />
+                <InputField vertical label="pde" name={`items.${itemIndex}.armor`} htmlType="number"  center />
                 <InputField vertical label="dgt" name={`items.${itemIndex}.dmg`} center />
             </div>
             <SheetField>

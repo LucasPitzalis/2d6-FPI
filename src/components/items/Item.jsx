@@ -39,8 +39,8 @@ export default function Item({ item, index, deleteMode }) {
                         <InputField label="type" name={`items.${index}.type`} />
                         <div className="flex gap-0.5 flex-col xxs:flex-row">
                             <div className="flex gap-0.5">
-                                <InputField label="pr" name={`items.${index}.resistance`} htmlType="number" center regex={/^[0-9]\d*$/} />
-                                <InputField label="pde" name={`items.${index}.armor`} htmlType="number"  center regex={/^[0-9]\d*$/} />
+                                <InputField label="pr" name={`items.${index}.resistance`} htmlType="number" center />
+                                <InputField label="pde" name={`items.${index}.armor`} htmlType="number"  center />
                             </div>
                             <InputField label="dgt" name={`items.${index}.dmg`} styles="w-full" center />
                         </div>
