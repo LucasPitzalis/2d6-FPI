@@ -20,7 +20,7 @@ export default function Avatar({petIndex}) {
                 </div>
             }
             {avatar !== '' && 
-                <div className={`group/edit flex justify-center items-center flex-grow aspect-avatar group relative max-w-sm`}>
+                <div className={`group/edit flex justify-center items-center flex-grow aspect-avatar group relative max-w-sm ${properFalse(petIndex) ? 'max-h-40' : 'max-h-60'}`}>
                     <img src={avatar} className="max-h-full" alt="URL d'avatar non valide !" />
                     <div className="hidden group-hover/edit:block absolute right-0 top-0">
                         <IconButton hidden styles="bg-white" size={15} handler={() => dispatch(handleModal(!properFalse(petIndex) ? 'avatar' : `avatar.${petIndex}`))} icon="edit" />
