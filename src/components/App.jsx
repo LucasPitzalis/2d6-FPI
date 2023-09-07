@@ -16,7 +16,7 @@ function App() {
   const [isSheet, setIsSheet] = useState(true);
 
   const updateMedia = () => {
-    dispatch(setMobile(window.innerWidth < 640))
+    dispatch(setMobile(window.innerWidth < 400))
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function App() {
   }, [location]);
 
   return (
-    <div className="bg-black w-full min-h-screen min-w-screen text-sm flex items-center justify-between flex-col select-none">
+    <div className="bg-black w-full min-h-screen min-w-screen text-xs xxs:text-sm flex items-center justify-between flex-col select-none">
       <div className="flex flex-1 w-full min-w-[80%] items-center justify-between">
         <SideBar />
         <div className="flex flex-1 justify-center max-h-screen overflow-auto ">

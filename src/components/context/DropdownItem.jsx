@@ -14,7 +14,7 @@ export default function DropdownItem({ header, children, defaultOpen}) {
     }, [contentRef, children]);
 
     return (
-        <div className={`flex flex-col ${isOpen ? 'gap-y-1' : ''}`}>
+        <div className={`flex flex-col w-full ${isOpen ? 'gap-y-1' : ''}`}>
             <div className="flex justify-between items-center bg-black w-full p-1">
                 <div className="flex flex-wrap gap-x-1 grow font-semibold">
                     { header }

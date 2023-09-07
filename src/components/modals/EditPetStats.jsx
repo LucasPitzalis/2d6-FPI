@@ -73,7 +73,7 @@ export default function EditPetStats() {
     }
 
     return (
-        <form className="flex flex-col space-y-2 align-start mt-2 sm:p-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col space-y-2 align-start mt-2 xxs:p-2" onSubmit={handleSubmit}>
             <div className="relative border-b border-gray-400 pb-2 flex flex-col justify-between space-y-1">
                 <h4 className="font-bold">Sélection du familier :</h4>
                 <select className="border border-black rounded" onChange={(e) => setPetIndex(e.target.value)} >

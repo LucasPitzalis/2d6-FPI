@@ -2,7 +2,7 @@ import { HANDLE_MODAL, SET_EXPORT_BLOB_URL, SET_MOBILE } from "../actions/app";
 
 const initialState = {
     modal: false,
-    isMobile: window.innerWidth < 640,
+    isMobile: window.innerWidth < 400,
     exportBlobUrl: null,
 };
   

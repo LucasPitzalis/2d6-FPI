@@ -48,7 +48,7 @@ export default function EditAbilities() {
     }
 
     return (
-        <form className="flex flex-col space-y-2 align-start mt-2 sm:p-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col space-y-2 align-start mt-2 xxs:p-2" onSubmit={handleSubmit}>
             <p>Points restants : <span className={`font-bold ${remainingPoints < 0 && 'text-red-600'}`}>{remainingPoints}</span></p>
             <table className="table-auto text-center mt-2">
                 <thead>

@@ -57,7 +57,7 @@ export default function Modal() {
 
     return (
         <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/50 flex justify-center items-center z-20">
-            <dialog open className="rounded bg-white text-xs sm:text-base p-2 sm:p-3">
+            <dialog open className="rounded bg-white text-xs xxs:text-base p-2 xss:p-3">
                 <div className="relative border-b border-gray-400 flex justify-between">
                     <h3 className="font-bold">{modalTitle}</h3>
                     <div className="relative bottom-0.5"><IconButton size={isMobile ? 15 : 20} icon={"close"} handler={() => dispatch(handleModal(false))} /></div>
